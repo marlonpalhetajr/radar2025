@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 4 Proporção de Idosos Razão de Dependência e Indice de Envelhecimento 2025 ri rio caeté | Radar 2024</title>
+    <meta name="description" content="Tabela 4 Proporção de Idosos Razão de Dependência e Indice de Envelhecimento 2025 ri rio caeté">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --primary-purple: #7c3aed;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container-table {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 18px;
+            margin: 20px auto;
+            max-width: 98%;
+        }
+        
+        .table-header {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .table-header h1 {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .table-header .subtitle {
+            color: #e0e7ff;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .btn-export {
+            background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: white;
+        }
+        
+        .table-responsive {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table.dataTable {
+            width: 100% !important;
+            border-collapse: collapse;
+        }
+        
+        table.dataTable thead {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+        }
+        
+        table.dataTable thead th {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            padding: 10px 8px !important;
+            text-align: center !important;
+            font-size: 12px !important;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            border: none !important;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
+        }
+        
+        table.dataTable tbody td {
+            padding: 8px !important;
+            border-bottom: 1px solid #e5e7eb;
+            color: #111827;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center !important;
+        }
+        
+        table.dataTable tbody td:first-child {
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        table.dataTable tbody tr:first-child {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            font-weight: 700;
+        }
+        
+        table.dataTable tbody tr:first-child td {
+            color: #1e40af;
+            font-weight: 800;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            transition: all 0.2s ease;
+        }
+        
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        #tableNotes {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .table-header h1 {
+                font-size: 18px;
+            }
+            
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            table.dataTable thead th,
+            table.dataTable tbody td {
+                font-size: 11px !important;
+                padding: 8px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table">
+        <div class="table-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1><i class="bi bi-table"></i> Tabela 4 Proporção de Idosos Razão de Dependência e Indice de Envelhecimento 2025 ri rio caeté</h1>
+                <a href="../../index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="btn-export" onclick="exportToExcel()">
+                <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+            </button>
+            <div style="font-size: 12px; color: #999;">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr id="tableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="tableNotes" class="mt-3" style="font-size: 12px; color: #6c757d;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        const tabelaDados = [
+  {
+    "col0": "Pará",
+    "col1": 8711196.0,
+    "col2": 1999423.0,
+    "col3": 6029379.0,
+    "col4": 682394.0,
+    "col5": 7.8335282549032295,
+    "col6": 44.47915780381363,
+    "col7": 34.129546374128935
+  },
+  {
+    "col0": "RI Rio Caeté",
+    "col1": 523445.0,
+    "col2": 119517.0,
+    "col3": 359425.0,
+    "col4": 44503.0,
+    "col5": 8.501943852744796,
+    "col6": 45.63399874800027,
+    "col7": 37.235707054226594
+  },
+  {
+    "col0": "Augusto Corrêa",
+    "col1": 47912.0,
+    "col2": 12473.0,
+    "col3": 31943.0,
+    "col4": 3496.0,
+    "col5": 7.296710636166305,
+    "col6": 49.99217355915224,
+    "col7": 28.028541649963923
+  },
+  {
+    "col0": "Bonito",
+    "col1": 12961.0,
+    "col2": 2748.0,
+    "col3": 9122.0,
+    "col4": 1091.0,
+    "col5": 8.417560373427976,
+    "col6": 42.0850690638018,
+    "col7": 39.70160116448326
+  },
+  {
+    "col0": "Bragança",
+    "col1": 132489.0,
+    "col2": 30343.0,
+    "col3": 91504.0,
+    "col4": 10642.0,
+    "col5": 8.03236495105254,
+    "col6": 44.790391676866584,
+    "col7": 35.07233958408859
+  },
+  {
+    "col0": "Cachoeira do Piriá",
+    "col1": 19223.0,
+    "col2": 4982.0,
+    "col3": 13047.0,
+    "col4": 1194.0,
+    "col5": 6.21130936898507,
+    "col6": 47.33655246416801,
+    "col7": 23.966278602970696
+  },
+  {
+    "col0": "Capanema",
+    "col1": 75309.0,
+    "col2": 15108.0,
+    "col3": 53299.0,
+    "col4": 6902.0,
+    "col5": 9.164907248801605,
+    "col6": 41.29533387117957,
+    "col7": 45.68440561292031
+  },
+  {
+    "col0": "Nova Timboteua",
+    "col1": 13175.0,
+    "col2": 2356.0,
+    "col3": 9179.0,
+    "col4": 1640.0,
+    "col5": 12.447817836812144,
+    "col6": 43.53415404728184,
+    "col7": 69.60950764006792
+  },
+  {
+    "col0": "Peixe-Boi",
+    "col1": 8686.0,
+    "col2": 1633.0,
+    "col3": 6014.0,
+    "col4": 1039.0,
+    "col5": 11.961777573106149,
+    "col6": 44.42966411706019,
+    "col7": 63.625229638701775
+  },
+  {
+    "col0": "Primavera",
+    "col1": 11379.0,
+    "col2": 2472.0,
+    "col3": 7694.0,
+    "col4": 1213.0,
+    "col5": 10.65998769663415,
+    "col6": 47.89446321809202,
+    "col7": 49.06957928802589
+  },
+  {
+    "col0": "Quatipuru",
+    "col1": 11838.0,
+    "col2": 2534.0,
+    "col3": 8048.0,
+    "col4": 1256.0,
+    "col5": 10.60990032100017,
+    "col6": 47.09244532803181,
+    "col7": 49.56590370955012
+  },
+  {
+    "col0": "Salinópolis",
+    "col1": 48663.0,
+    "col2": 10418.0,
+    "col3": 34286.0,
+    "col4": 3959.0,
+    "col5": 8.13554445882909,
+    "col6": 41.93256722860642,
+    "col7": 38.00153580341716
+  },
+  {
+    "col0": "Santa Luzia do Pará",
+    "col1": 21295.0,
+    "col2": 4779.0,
+    "col3": 14636.0,
+    "col4": 1880.0,
+    "col5": 8.828363465602255,
+    "col6": 45.49740366220279,
+    "col7": 39.33877380205064
+  },
+  {
+    "col0": "Santarém Novo",
+    "col1": 6355.0,
+    "col2": 1352.0,
+    "col3": 4352.0,
+    "col4": 651.0,
+    "col5": 10.24390243902439,
+    "col6": 46.02481617647059,
+    "col7": 48.150887573964496
+  },
+  {
+    "col0": "São João de Pirabas",
+    "col1": 21477.0,
+    "col2": 4746.0,
+    "col3": 14509.0,
+    "col4": 2222.0,
+    "col5": 10.345951482981794,
+    "col6": 48.0253635674409,
+    "col7": 46.818373367045936
+  },
+  {
+    "col0": "Tracuateua",
+    "col1": 30494.0,
+    "col2": 6921.0,
+    "col3": 20827.0,
+    "col4": 2746.0,
+    "col5": 9.005050173804682,
+    "col6": 46.41571037595429,
+    "col7": 39.67634734864904
+  },
+  {
+    "col0": "Viseu",
+    "col1": 62189.0,
+    "col2": 16652.0,
+    "col3": 40965.0,
+    "col4": 4572.0,
+    "col5": 7.3517824695685725,
+    "col6": 51.81008177712682,
+    "col7": 27.456161422051405
+  },
+  {
+    "col0": "é composta por pessoas de 15 a 64 anos de idade e a população idosa formada pelas pessoas com 65 anos e mais de idade.",
+    "col1": "",
+    "col2": "",
+    "col3": "",
+    "col4": "",
+    "col5": "",
+    "col6": "",
+    "col7": ""
+  }
+];
+        const colunas = ["Estado/Municípios", "População Total", "População menor que 15 anos", "População entre 15 e 64 anos", "População maior que 64 anos", "Proporção de Idosos", "Razão de Dependência", "Índice de Envelhecimento"];
+        const notas = [
+  "Fonte: DATASUS - Estudo de Estimativas Populacionais por Município, Idade e Sexo 2000-2025",
+  "Elaboração: FAPESPA",
+  "Nota1: Indicador calculado com base na referência internacional de comparação, onde a população considerada ativa"
+];
+        const regiaoAtual = "Rio Caeté";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reordenar dados para colocar a região principal primeiro
+            if (regiaoAtual && regiaoAtual.trim() !== "") {
+                const regiaoDados = regiaoAtual.toLowerCase().replace(/ri\s*/, '').trim();
+                
+                tabelaDados.sort((a, b) => {
+                    const aText = a.col0 ? a.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    const bText = b.col0 ? b.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    
+                    // Verifica correspondência exata
+                    if (aText === regiaoDados) return -1;
+                    if (bText === regiaoDados) return 1;
+                    
+                    // Verifica correspondência parcial (para casos como "RI Araguaia" vs "Araguaia")
+                    if (aText.includes(regiaoDados)) return -1;
+                    if (bText.includes(regiaoDados)) return 1;
+                    
+                    return 0;
+                });
+            }
+            const thead = document.querySelector('#tableHeader');
+            const tbody = document.querySelector('#tabelaDados tbody');
+            const notesEl = document.querySelector('#tableNotes');
+
+            colunas.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = col || '';
+                thead.appendChild(th);
+            });
+            
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colunas.length; i++) {
+                    const td = document.createElement('td');
+                    const valor = row[`col${i}`];
+                    
+                    if (typeof valor === 'number') {
+                        if (Number.isInteger(valor) && valor > 1000) {
+                            td.textContent = new Intl.NumberFormat('pt-BR').format(valor);
+                        } else {
+                            td.textContent = new Intl.NumberFormat('pt-BR', {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 4
+                            }).format(valor);
+                        }
+                    } else {
+                        td.textContent = valor || '';
+                        if (i === 0) td.style.textAlign = 'left';
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+
+            $('#tabelaDados').DataTable({
+                language: {
+                    emptyTable: "Nenhum dado disponível na tabela",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "(filtrado de _MAX_ registros)",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    loadingRecords: "Carregando...",
+                    processing: "Processando...",
+                    search: "Buscar:",
+                    zeroRecords: "Nenhum registro encontrado",
+                    paginate: {
+                        first: "Primeiro",
+                        last: "Último",
+                        next: "Próximo",
+                        previous: "Anterior"
+                    }
+                },
+                paging: true,
+                pageLength: 25,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+
+            if (notas.length) {
+                notesEl.innerHTML = notas.map(nota => `<div>${nota}</div>`).join('');
+            }
+        });
+
+        function exportToExcel() {
+            const ws_data = [colunas];
+            
+            tabelaDados.forEach(row => {
+                const rowData = [];
+                for (let i = 0; i < colunas.length; i++) {
+                    rowData.push(row[`col${i}`]);
+                }
+                ws_data.push(rowData);
+            });
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            
+            const colWidths = colunas.map(() => ({ wch: 20 }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Dados');
+            
+            const nomeArquivo = 'tabela-4-proporcao-de-idosos-e-razao-de-dependencia-2022-ri-rio-caete.xlsx';
+            XLSX.writeFile(wb, nomeArquivo);
+            
+            const btn = document.querySelector('.btn-export');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Download Concluído!';
+            btn.style.backgroundColor = '#198754';
+            setTimeout(() => {
+                btn.innerHTML = textoOriginal;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

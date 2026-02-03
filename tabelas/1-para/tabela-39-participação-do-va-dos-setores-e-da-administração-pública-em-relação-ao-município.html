@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 39 Participação do VA dos Setores e da Administração Pública em relação ao Município 2021 para | Radar 2024</title>
+    <meta name="description" content="Tabela 39 Participação do VA dos Setores e da Administração Pública em relação ao Município 2021 para">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --success-color: #198754;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .container-table {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 95%;
+        }
+        .table-header {
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+        .table-header h1 {
+            color: #1a1a1a;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .table-header .subtitle {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .btn-export {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-export:hover {
+            background-color: #157347;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-back {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-back:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        table.dataTable thead {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+        table.dataTable thead th {
+            color: #1a1a1a;
+            font-weight: 600;
+            padding: 12px 8px;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.dataTable tbody td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #dee2e6;
+            color: #333;
+            font-size: 13px;
+        }
+        table.dataTable tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+        table.dataTable tbody td:nth-child(n+2) {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+        }
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+            }
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table">
+        <div class="table-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1><i class="bi bi-table"></i> Tabela 39 Participação do VA dos Setores e da Administração Pública em relação ao Município 2021 para</h1>
+                <a href="../../index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="btn-export" onclick="exportToExcel()">
+                <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+            </button>
+            <div style="font-size: 12px; color: #999;">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr><th>Unnamed: 0</th><th>Unnamed: 1</th><th>Unnamed: 2</th><th>Unnamed: 3</th><th>Unnamed: 4</th><th>Unnamed: 5</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        const tabelaDados = [
+  {
+    "col0": "Estado/RIs",
+    "col1": "% Participação VA Agropecuária",
+    "col2": "% Participação VA Indústria",
+    "col3": "% Participação VA Serviços, exclusive Administração Pública",
+    "col4": "% Participação VA Administração Pública",
+    "col5": "% Participação VA Total"
+  },
+  {
+    "col0": "Pará",
+    "col1": 10.119479036388217,
+    "col2": 46.36501845251364,
+    "col3": 26.96548223760274,
+    "col4": 16.550020275994406,
+    "col5": 100.0
+  },
+  {
+    "col0": "Araguaia",
+    "col1": 28.31852284191451,
+    "col2": 20.114845137554646,
+    "col3": 31.131310657867022,
+    "col4": 20.43532140276405,
+    "col5": 100.0
+  },
+  {
+    "col0": "Baixo Amazonas",
+    "col1": 19.37501540335932,
+    "col2": 19.732810259565007,
+    "col3": 34.75424411132668,
+    "col4": 26.137930240293837,
+    "col5": 100.0
+  },
+  {
+    "col0": "Carajás",
+    "col1": 1.9028309205413305,
+    "col2": 80.81226890541868,
+    "col3": 12.873941175113094,
+    "col4": 4.410958999918817,
+    "col5": 100.0
+  },
+  {
+    "col0": "Guajará",
+    "col1": 0.36149003228896404,
+    "col2": 13.707390155630774,
+    "col3": 63.61020481602989,
+    "col4": 22.32091499087417,
+    "col5": 100.0
+  },
+  {
+    "col0": "Guamá",
+    "col1": 18.48211944396685,
+    "col2": 10.57559973493665,
+    "col3": 37.4732014752134,
+    "col4": 33.469079345883074,
+    "col5": 100.0
+  },
+  {
+    "col0": "Lago de Tucuruí",
+    "col1": 13.987135536712106,
+    "col2": 48.10548645766875,
+    "col3": 16.43046327113685,
+    "col4": 21.47691470202206,
+    "col5": 100.0
+  },
+  {
+    "col0": "Marajó",
+    "col1": 30.518103089022464,
+    "col2": 3.15825659268621,
+    "col3": 15.03735726104799,
+    "col4": 51.28628303986087,
+    "col5": 100.0
+  },
+  {
+    "col0": "Rio Caeté",
+    "col1": 17.082411035515612,
+    "col2": 9.856235607308655,
+    "col3": 32.329086662258284,
+    "col4": 40.73226673005795,
+    "col5": 100.0
+  },
+  {
+    "col0": "Rio Capim",
+    "col1": 29.927148043337848,
+    "col2": 18.466379665602954,
+    "col3": 25.026601372151163,
+    "col4": 26.579870927175943,
+    "col5": 100.0
+  },
+  {
+    "col0": "Tapajós",
+    "col1": 13.758987061451144,
+    "col2": 24.100072710322056,
+    "col3": 38.87514207055814,
+    "col4": 23.26579817736708,
+    "col5": 100.0
+  },
+  {
+    "col0": "Tocantins",
+    "col1": 21.382227625411257,
+    "col2": 32.72323921462748,
+    "col3": 21.99662404295559,
+    "col4": 23.897909117005657,
+    "col5": 100.0
+  },
+  {
+    "col0": "Xingu",
+    "col1": 22.748562362215104,
+    "col2": 39.559842766700136,
+    "col3": 20.43888264201985,
+    "col4": 17.25271222906493,
+    "col5": 100.0
+  },
+  {
+    "col0": "Fonte: FAPESPA/IBGE",
+    "col1": "",
+    "col2": "",
+    "col3": "",
+    "col4": "",
+    "col5": ""
+  },
+  {
+    "col0": "Elaboração: FAPESPA",
+    "col1": "",
+    "col2": "",
+    "col3": "",
+    "col4": "",
+    "col5": ""
+  }
+];
+        const colunas = ["Unnamed: 0", "Unnamed: 1", "Unnamed: 2", "Unnamed: 3", "Unnamed: 4", "Unnamed: 5"];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tbody = document.querySelector('#tabelaDados tbody');
+            
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colunas.length; i++) {
+                    const td = document.createElement('td');
+                    const valor = row[`col${i}`];
+                    
+                    if (typeof valor === 'number') {
+                        if (Number.isInteger(valor) && valor > 1000) {
+                            td.textContent = new Intl.NumberFormat('pt-BR').format(valor);
+                        } else {
+                            td.textContent = new Intl.NumberFormat('pt-BR', {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 4
+                            }).format(valor);
+                        }
+                    } else {
+                        td.textContent = valor || '';
+                        if (i === 0) td.style.textAlign = 'left';
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+
+            $('#tabelaDados').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json'
+                },
+                paging: true,
+                pageLength: 25,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+        });
+
+        function exportToExcel() {
+            const ws_data = [colunas];
+            
+            tabelaDados.forEach(row => {
+                const rowData = [];
+                for (let i = 0; i < colunas.length; i++) {
+                    rowData.push(row[`col${i}`]);
+                }
+                ws_data.push(rowData);
+            });
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            
+            const colWidths = colunas.map(() => ({ wch: 20 }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Dados');
+            
+            const nomeArquivo = 'tabela-39-participação-do-va-dos-setores-e-da-administração-pública-em-relação-ao-município.xlsx';
+            XLSX.writeFile(wb, nomeArquivo);
+            
+            const btn = document.querySelector('.btn-export');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Download Concluído!';
+            btn.style.backgroundColor = '#198754';
+            setTimeout(() => {
+                btn.innerHTML = textoOriginal;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

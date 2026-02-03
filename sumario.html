@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumário - Radar 2024 | FAPESPA</title>
+    <meta name="description" content="Sumário do Radar de Indicadores das Regiões de Integração do Pará">
+    <meta name="keywords" content="Sumário, Radar, Indicadores, FAPESPA">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sumário - Radar 2024 - FAPESPA">
+    <meta property="og:description" content="Sumário do Radar de Indicadores das Regiões de Integração do Pará">
+    <meta property="og:image" content="img/anuario.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fapespa.pa.gov.br/radar">
+
+    <link rel="icon" href="img/fapespa2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://www.fapespa.pa.gov.br/radar">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sumário - Radar 2024 - FAPESPA">
+    <meta name="twitter:description" content="Sumário do Radar de Indicadores das Regiões de Integração do Pará">
+    <meta name="twitter:image" content="img/anuario.png">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Estilo para os itens principais (os títulos como DEMOGRAFIA, EDUCAÇÃO etc.) */
+        .formatar-li {
+            list-style-type: none;
+            margin-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Estilo para os subitens com bullets automáticos*/
+        .subitem {
+            list-style-type: disc;
+            margin-left: 20px;
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="acess-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Modal Genérico -->
+    <div id="modalBackdrop" class="modal-backdrop-custom" onclick="closeCustomModal();"></div>
+    <div id="contentModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h5 id="contentModalLabel">Conteúdo</h5>
+                <button type="button" class="custom-modal-close" onclick="closeCustomModal();">&times;</button>
+            </div>
+            <div class="custom-modal-body" id="contentModalBody">
+                <div class="text-center py-5">
+                    <div class="spinner-border"></div>
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <a id="modal-open-full" href="#" target="_blank" class="btn btn-outline-primary btn-sm">Abrir em nova aba</a>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="closeCustomModal();">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" id="navbar">
+        <a href="https://www.fapespa.pa.gov.br/" target="_blank" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-3">FAPESPA</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto p-4 p-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#radar">Radar</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+                <li class="nav-item position-relative">
+                    <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+                        ♿ <span class="d-none d-lg-inline">Acessibilidade</span>
+                    </button>
+                    <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+                        <div class="acess-section-title">Visão</div>
+                        <div class="acess-row">
+                            <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+                            <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+                        </div>
+                        <div class="acess-section-title">Cores</div>
+                        <div class="acess-row">
+                            <button id="acess-grayscale" class="acess-control" type="button">Escala em Cinza</button>
+                        </div>
+                        <div class="acess-section-title">Tamanho da Fonte</div>
+                        <div class="acess-row">
+                            <button id="font-dec" class="acess-control" type="button">A-</button>
+                            <button id="font-reset" class="acess-control" type="button">A</button>
+                            <button id="font-inc" class="acess-control" type="button">A+</button>
+                        </div>
+                        <div class="acess-section-title">Daltonismo</div>
+                        <div class="acess-row">
+                            <button id="dalton-prot" class="acess-control" type="button">Protanopia</button>
+                            <button id="dalton-deut" class="acess-control" type="button">Deuteranopia</button>
+                            <button id="dalton-trit" class="acess-control" type="button">Tritanopia</button>
+                            <button id="dalton-off" class="acess-control" type="button">Normal</button>
+                        </div>
+                        <div class="acess-section-title">Leitura &amp; Legibilidade</div>
+                        <div class="acess-row">
+                            <button id="acess-dislexia" class="acess-control" type="button">Modo Dislexia</button>
+                            <button id="acess-reading" class="acess-control" type="button">Modo Leitura</button>
+                            <button id="acess-links" class="acess-control" type="button">Destacar Links</button>
+                        </div>
+                        <div class="acess-section-title">Movimento</div>
+                        <div class="acess-row">
+                            <button id="reduce-motion" class="acess-control" type="button">Reduzir Animações</button>
+                        </div>
+                        <div class="acess-section-title">Geral</div>
+                        <div class="acess-row">
+                            <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Início da seção de Sumário do Radar de Indicadores -->
+    <div class="container-xxl wow fadeInUp" style="padding-top: 2rem; padding-bottom: 1rem;" data-wow-delay="0.1s">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- <h1 class="mb-4">Radar Estatístico do Pará 2024</h1> -->
+                    <h1 style="font-weight: bold;">Sumário</h1>
+                    <div class="pagina pagina-ativa">
+                        <ul class="list-unstyled text-start">
+                            <li class="formatar-li"><strong>I. DEMOGRAFIA</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 1 - População, Área Territorial (km²) e Densidade Demográfica - 2024 </li>
+                                    <li class="subitem">Tabela 2 - População por Sexo e Razão entre os Sexos - 2022</li>
+                                    <li class="subitem">Tabela 3 - População por Faixa Etária - 2022</li>
+                                    <li class="subitem">Tabela 4 - Proporção de Idosos, Razão de Dependência e Índice de Envelhecimento - 2022</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <!-- <ul class="list-unstyled text-start"> -->
+                            <li class="formatar-li"><strong>II. EDUCAÇÃO</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 5 - Número de Matrículas nos Ensinos Pré-escolar, Fundamental e Médio por Esfera Administrativa - 2023 </li>
+                                    <li class="subitem">Tabela 6 - Estabelecimentos de Ensino Fundamental e Médio por Dependência Administrativa - 2023</li>
+                                    <li class="subitem">Tabela 7 - Número de Docentes nos Ensinos Pré-escolar, Fundamental e Médio por Esfera Administrativa - 2023</li>
+                                    <li class="subitem">Tabela 8 - Taxas de Aprovação, Reprovação e Evasão no Ensino Fundamental por Esfera Administrativa - 2023</li>
+                                    <li class="subitem">Tabela 9 - Taxas de Aprovação, Reprovação e Evasão no Ensino Médio por Esfera Administrativa - 2023</li>
+                                    <li class="subitem">Tabela 10 - Distorção Idade-Série Total por Nível de Ensino - 2023</li>
+                                    <li class="subitem">Tabela 11 - Índice de Desenvolvimento da Educação Básica - IDEB (Escola Pública) - 2023</li>
+                                    <li class="subitem">Tabela 12 - Média de Alunos por Nível de Ensino - 2023</li>
+                                </ul>
+                            <!-- </ul> -->
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>III. SAÚDE</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 13 - Taxas de Mortalidade Infantil, Mortalidade em Menores que 05 Anos e Mortalidade Materna - 2023 </li>
+                                    <li class="subitem">Tabela 14 - Taxas de Mortalidade Geral e Percentual de Mortes por sexo - 2023</li>
+                                    <li class="subitem">Tabela 15 - Taxa de Natalidade e Percentual de Nascidos Vivos por tipo de Parto - 2023</li>
+                                    <li class="subitem">Tabela 16 - Percentual de Nascidos Vivos Conforme o Número de Consultas Pré-Natal - 2023</li>
+                                    <li class="subitem">Tabela 17 - Percentual de Nascidos Vivos Conforme a Faixa Etária da Mãe - 2023* e Proporção de Mulheres de 25 a 64 Anos que Realizaram Exame Citopatológico - 2023 </li>
+                                    <li class="subitem">Tabela 18 - Óbitos segundo Principais Causas (CID-10) - 2023</li>
+                                    <li class="subitem">Tabela 19 - Caracterização Hospitalar por  Tipo - 2024</li>
+                                    <li class="subitem">Tabela 20 - Médicos e Profissionais de Ensino Superior na Área da Saúde - 2024</li>
+                                    <li class="subitem">Tabela 21 – Caracterização Leitos Existentes - 2024</li>
+                                    <li class="subitem">Tabela 22 – Caracterização Hospitalar – Equipamentos de diagnósticos por imagem e infra estrutura - 2024</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>IV. MERCADO DE TRABALHO</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 23 - Vínculos Empregatícios Total e por Sexo no Emprego Formal - 2023</li>
+                                    <li class="subitem">Tabela 24 - Vínculos Empregatícios no Emprego Formal por Grande Setor (IBGE) - 2023</li>
+                                    <li class="subitem">Tabela 25 - Vínculos Empregatícios no Emprego Formal por Setor Econômico - 2023</li>
+                                    <li class="subitem">Tabela 26 - Vínculos Empregatícios por Escolaridade do Trabalhador Formal - 2023</li>
+                                    <li class="subitem">Tabela 27 - Remuneração Média (R$) Total e por Sexo do Trabalhador Formal - 2023</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>V. ASSISTÊNCIA E PREVIDÊNCIA SOCIAL</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 28 - Informações de Famílias Inscritas no Cadastro Único para Programas Sociais (CadÚnico) e Bolsa Família - 2023</li>
+                                    <li class="subitem">Tabela 29 - Arrecadação e Benefícios Emitidos pela Previdência Social - 2023</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>VI. SEGURANÇA</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 30 - Número de Óbitos por Agressão, População e Taxa de Homicídio Total - 2023</li>
+                                    <li class="subitem">Tabela 31 - Número de Óbitos de Jovens de 15 a 29 anos por Agressão, População Jovem e Taxa de Homicídio de Jovens - 2023</li>
+                                    <li class="subitem">Tabela 32 - Número de Óbitos por Acidente de Trânsito, População e Taxa de Homicídio no Trânsito - 2023</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>VII. MEIO AMBIENTE</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 33 - Desflorestamento Acumulado (km²), Incremento do Desflorestamento (km²) e Focos de Calor - 2023</li>
+                                    <li class="subitem">Tabela 34 - Área de Floresta (km²) e Hidrografia (km²) - 2023</li>
+                                    <li class="subitem">Tabela 35 - Área Territorial, Área Cadastrável e Área Cadastrada no Cadastro Ambiental Rural (CAR) - 2024</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>VIII. ECONOMIA</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 36 - Produto Interno Bruto Total, Valor Adicionado e Impostos (R$ 1.000) - 2021</li>
+                                    <li class="subitem">Tabela 37 - Valor Adicionado Total e por Setores com Administração Pública (R$ 1.000) - 2021</li>
+                                    <li class="subitem">Tabela 38 - Participação do Valor Adicionado dos Setores e da Administração Pública em relação ao Total do Estado - 2021</li>
+                                    <li class="subitem">Tabela 39 - Participação do Valor Adicionado dos Setores e da Administração Pública em relação ao Município - 2021</li>
+                                    <li class="subitem">Tabela 40 - PIB Total (R$ 1.000), Ranking Estadual e Participação em Relação ao Estado e a Região de Integração - 2021</li>
+                                    <li class="subitem">Tabela 41 - PIB Total (R$ 1.000), População, PIB per capita (R$ 1,00) e Razão entre PIB per capita do Município e do Estado - 2021</li>
+                                    <li class="subitem">Tabela 42 - Balança Comercial - Exportação, Importação e Saldo (US$ 1.000) - 2023</li>
+                                    <li class="subitem">Tabela 43 - Área colhida (Hectares), Quantidade Produzida e Valor (R$) da Produção por Tipo de Lavoura Permanente - 2023</li>
+                                    <li class="subitem">Tabela 44 - Área colhida (Hectares), Quantidade Produzida e Valor (R$) da Produção por Tipo de Lavoura Temporária - 2023</li>
+                                    <li class="subitem">Tabela 45 - Efetivo de Rebanho por Tipo - 2023</li>
+                                    <li class="subitem">Tabela 46 - Produção de Origem Animal por Tipo - 2023</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>IX. FINANÇAS PÚBLICAS</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 47 - Repasse e Participação ICMS, IPI E IPVA - 2023</li>
+                                    <li class="subitem">Tabela 48 - Receitas Orçamentária, Corrente, Transferidas e Impostos - 2023</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li class="formatar-li"><strong>X. INFRAESTRUTURA</strong>
+                                <ul>
+                                    <li class="subitem">Tabela 49 - Consumo de Energia Elétrica Total (kWH) e Consumidores de Energia Elétrica por Tipo - 2023</li>
+                                    <li class="subitem">Tabela 50 - Total da Frota de Veículos subdivididos em Licenciados e Não Licenciados - 2023</li>
+                                    <li class="subitem">Tabela 51 - Total da Frota de Veículos por Tipo - 2023</li>
+                                </ul>
+                            </li>
+                            <br>
+                        </ul>
+                    </div>
+                <br>
+                </ul>
+                    
+                    <!-- <a class="btn btn-primary py-3 px-4" href="index.html">Voltar para a Página Inicial</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ PRINCIPAL -->
+    <footer class="footer-main" id="contato">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Sobre FAPESPA</h5>
+                    <p class="small text-light">Fundação Amazônia de Amparo a Estudos e Pesquisas, promovendo ciência, tecnologia e inovação para o desenvolvimento do estado.</p>
+                    <div class="social-icons mt-4">
+                        <a href="https://www.instagram.com/fapespa/" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/FapespaPA" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://x.com/fapespa" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter" aria-label="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Contato</h5>
+                    <ul class="list-unstyled small text-light">
+                        <li class="mb-3"><i class="bi bi-geo-alt me-2 text-primary"></i><span>Av. Presidente Vargas, 670</span></li>
+                        <li class="mb-3"><i class="bi bi-telephone me-2 text-primary"></i><span>+55 (91) 3323-2550</span></li>
+                        <li class="mb-3"><i class="bi bi-clock me-2 text-primary"></i><span>Seg-Sex: 8h às 14h</span></li>
+                        <li><i class="bi bi-envelope me-2 text-primary"></i><a href="mailto:contato@fapespa.pa.gov.br" class="text-light text-decoration-none">contato@fapespa.pa.gov.br</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Produtos</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/anuario-estatistico-do-para-2/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Anuário Estatístico</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/radar-de-indicadores-das-ri/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Radar de Indicadores</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/para-no-contexto-nacional-2/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Pará no Contexto Nacional</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/estatistica-municipal/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Estatística Municipal</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/para-em-numeros/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Pará em Números</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Localização</h5>
+                    <div class="map-embed rounded">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.61483842183!2d-48.4907923!3d-1.4589201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a488a1b633b497%3A0xf63d2e2601a4e1e8!2sFundação%20Amazônia%20de%20Amparo%20a%20Estudos%20e%20Pesquisas%20-%20FAPESPA!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização FAPESPA"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-copyright text-center py-4">
+        <div class="container">
+            <small class="text-muted">© Radar de Indicadores das Regiões de Integração, Todos os direitos reservados. <a href="https://www.fapespa.pa.gov.br/" class="text-muted text-decoration-none">FAPESPA</a></small>
+        </div>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <button id="btnTop" title="Voltar ao topo" aria-label="Voltar ao topo" type="button">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <div id="virtual-keyboard" class="keyboard-container" hidden>
+        <div class="keyboard-keys"></div>
+    </div>
+</body>
+</html>

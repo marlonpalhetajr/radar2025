@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 33 Desflorestamento Acumulado (km²) Incremento do Desflorestamento (km²) e Focos de Calor 2023 para | Radar 2024</title>
+    <meta name="description" content="Tabela 33 Desflorestamento Acumulado (km²) Incremento do Desflorestamento (km²) e Focos de Calor 2023 para">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --success-color: #198754;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .container-table {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 95%;
+        }
+        .table-header {
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+        .table-header h1 {
+            color: #1a1a1a;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .table-header .subtitle {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .btn-export {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-export:hover {
+            background-color: #157347;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-back {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-back:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        table.dataTable thead {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+        table.dataTable thead th {
+            color: #1a1a1a;
+            font-weight: 600;
+            padding: 12px 8px;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.dataTable tbody td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #dee2e6;
+            color: #333;
+            font-size: 13px;
+        }
+        table.dataTable tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+        table.dataTable tbody td:nth-child(n+2) {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+        }
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+            }
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table">
+        <div class="table-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1><i class="bi bi-table"></i> Tabela 33 Desflorestamento Acumulado (km²) Incremento do Desflorestamento (km²) e Focos de Calor 2023 para</h1>
+                <a href="../../index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="btn-export" onclick="exportToExcel()">
+                <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+            </button>
+            <div style="font-size: 12px; color: #999;">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr><th>Unnamed: 0</th><th>Unnamed: 1</th><th>Unnamed: 2</th><th>Unnamed: 3</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        const tabelaDados = [
+  {
+    "col0": "Estado/RIs",
+    "col1": "Desflorestamento Acumulado (km²)",
+    "col2": "Incremento do Desflorestamento (km²)",
+    "col3": "Focos de Calor"
+  },
+  {
+    "col0": "Pará",
+    "col1": 291486.0687628959,
+    "col2": 2260.8388311055446,
+    "col3": 56070.0
+  },
+  {
+    "col0": "Araguaia",
+    "col1": 70111.03309847045,
+    "col2": 165.5189200664475,
+    "col3": 13641.0
+  },
+  {
+    "col0": "Baixo Amazonas",
+    "col1": 22976.419641886583,
+    "col2": 388.5043292193063,
+    "col3": 5329.0
+  },
+  {
+    "col0": "Carajás",
+    "col1": 28319.29389043142,
+    "col2": 33.94891635464632,
+    "col3": 1369.0
+  },
+  {
+    "col0": "Guajará",
+    "col1": 703.7860545084804,
+    "col2": 0.2203376246434211,
+    "col3": 15.0
+  },
+  {
+    "col0": "Guamá",
+    "col1": 7925.954912541341,
+    "col2": 8.970086924988575,
+    "col3": 626.0
+  },
+  {
+    "col0": "Lago de Tucuruí",
+    "col1": 24587.76711428831,
+    "col2": 146.0375717699384,
+    "col3": 1325.0
+  },
+  {
+    "col0": "Marajó",
+    "col1": 6546.408966112887,
+    "col2": 153.71304420357194,
+    "col3": 3721.0
+  },
+  {
+    "col0": "Rio Caeté",
+    "col1": 11687.294630899993,
+    "col2": 21.840317550143443,
+    "col3": 901.0
+  },
+  {
+    "col0": "Rio Capim",
+    "col1": 39469.62527113019,
+    "col2": 221.02026935388358,
+    "col3": 3146.0
+  },
+  {
+    "col0": "Tapajós",
+    "col1": 23083.84741875891,
+    "col2": 383.8830811961475,
+    "col3": 11867.0
+  },
+  {
+    "col0": "Tocantins",
+    "col1": 14727.521779875933,
+    "col2": 152.72474456797423,
+    "col3": 3309.0
+  },
+  {
+    "col0": "Xingu",
+    "col1": 41347.11598399121,
+    "col2": 584.4572122738527,
+    "col3": 10821.0
+  },
+  {
+    "col0": "Fonte: INPE/ TERRA BRASILIS - Queimadas",
+    "col1": "",
+    "col2": "",
+    "col3": ""
+  },
+  {
+    "col0": "Elaboração: FAPESPA",
+    "col1": "",
+    "col2": "",
+    "col3": ""
+  }
+];
+        const colunas = ["Unnamed: 0", "Unnamed: 1", "Unnamed: 2", "Unnamed: 3"];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tbody = document.querySelector('#tabelaDados tbody');
+            
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colunas.length; i++) {
+                    const td = document.createElement('td');
+                    const valor = row[`col${i}`];
+                    
+                    if (typeof valor === 'number') {
+                        if (Number.isInteger(valor) && valor > 1000) {
+                            td.textContent = new Intl.NumberFormat('pt-BR').format(valor);
+                        } else {
+                            td.textContent = new Intl.NumberFormat('pt-BR', {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 4
+                            }).format(valor);
+                        }
+                    } else {
+                        td.textContent = valor || '';
+                        if (i === 0) td.style.textAlign = 'left';
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+
+            $('#tabelaDados').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json'
+                },
+                paging: true,
+                pageLength: 25,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+        });
+
+        function exportToExcel() {
+            const ws_data = [colunas];
+            
+            tabelaDados.forEach(row => {
+                const rowData = [];
+                for (let i = 0; i < colunas.length; i++) {
+                    rowData.push(row[`col${i}`]);
+                }
+                ws_data.push(rowData);
+            });
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            
+            const colWidths = colunas.map(() => ({ wch: 20 }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Dados');
+            
+            const nomeArquivo = 'tabela-33-desflorestamento-acumulado-km2-incremento-do-desflorestamento-km2-e-focos-de-calor.xlsx';
+            XLSX.writeFile(wb, nomeArquivo);
+            
+            const btn = document.querySelector('.btn-export');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Download Concluído!';
+            btn.style.backgroundColor = '#198754';
+            setTimeout(() => {
+                btn.innerHTML = textoOriginal;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

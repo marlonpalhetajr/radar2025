@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice de Tabelas Interativas - Pará | Radar 2024</title>
+    <meta name="description" content="Índice completo das tabelas interativas do Radar 2024">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --success-color: #198754;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-section p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+        
+        .category-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .category-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+        }
+        
+        .category-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+        }
+        
+        .table-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .table-list li {
+            margin-bottom: 12px;
+        }
+        
+        .table-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .table-link:hover {
+            background: #e9ecef;
+            border-left-color: var(--primary-color);
+            transform: translateX(5px);
+            color: var(--primary-color);
+        }
+        
+        .table-link i {
+            font-size: 20px;
+            color: var(--success-color);
+        }
+        
+        .table-number {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .stats-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-back {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            background: transparent;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 32px;
+            }
+            .category-title {
+                font-size: 22px;
+            }
+            .stat-number {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div>
+                    <h1><i class="bi bi-grid-3x3-gap"></i> Índice de Tabelas Interativas</h1>
+                    <p>Radar de Indicadores das Regiões de Integração - Pará 2024/2025</p>
+                </div>
+                <a href="index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar ao Início
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="container">
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">36</div>
+                <div class="stat-label">Tabelas Disponíveis</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Categorias</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">✓</div>
+                <div class="stat-label">Download Excel</div>
+            </div>
+        </div>
+
+        <!-- Demografia -->
+        <div class="category-section">
+            <div class="category-header">
+                <i class="bi bi-people category-icon"></i>
+                <h2 class="category-title">Demografia</h2>
+            </div>
+            <ul class="table-list">
+                <li>
+                    <a href="tabelas/1-para/tabela-1-população-área-territorial-km2-e-densidade-demográfica.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 1</span>
+                        <span>População, Área Territorial (km²) e Densidade Demográfica - 2025</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-2-população-por-sexo-e-razão-de-sexo.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 2</span>
+                        <span>População por Sexo e Razão de Sexo - 2025</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-3-população-por-faixa-etária.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 3</span>
+                        <span>População por Faixa Etária - 2025</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-4-proporção-de-idosos-razão-de-dependência-e-indice-de-envelhecimento.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 4</span>
+                        <span>Proporção de Idosos, Razão de Dependência e Índice de Envelhecimento - 2025</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Educação -->
+        <div class="category-section">
+            <div class="category-header">
+                <i class="bi bi-book category-icon"></i>
+                <h2 class="category-title">Educação</h2>
+            </div>
+            <ul class="table-list">
+                <li>
+                    <a href="tabelas/1-para/tabela-5-número-de-matrículas-em-creches-e-nos-ensinos-pré-escolar-fundamental-e-médio-por-dependência-administrativa.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 5</span>
+                        <span>Matrículas em Creches e Ensinos - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-6-estabelecimentos-de-creche-e-ensinos-pré-escolar-fundamental-e-médio-por-dependência-administrativa.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 6</span>
+                        <span>Estabelecimentos de Ensino - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-7-número-de-docentes-em-crecehes-e-nos-ensinos-pré-escolar-fundamental-e-médio-por-dependência-administrativa.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 7</span>
+                        <span>Número de Docentes - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-8-taxas-de-aprovação-reprovação-e-abandono-no-ensino-fundamental-por-dependência-administrativa.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 8</span>
+                        <span>Taxas de Aprovação, Reprovação e Abandono - Ensino Fundamental - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-9-taxas-de-aprovação-reprovação-e-abandono-no-ensino-médio-por-dependência-administrativa.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 9</span>
+                        <span>Taxas de Aprovação, Reprovação e Abandono - Ensino Médio - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-10-distorção-idade-série-total-por-nível-de-ensino.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 10</span>
+                        <span>Distorção Idade-Série por Nível de Ensino - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-11-índice-de-desenvonvimento-da-educação-básica-ideb-escola-pública.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 11</span>
+                        <span>IDEB - Índice de Desenvolvimento da Educação Básica - 2023</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-12-média-de-alunos-por-turma-por-nível-de-ensino.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 12</span>
+                        <span>Média de Alunos por Turma - 2024</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Social e Saúde -->
+        <div class="category-section">
+            <div class="category-header">
+                <i class="bi bi-heart-pulse category-icon"></i>
+                <h2 class="category-title">Social e Saúde</h2>
+            </div>
+            <ul class="table-list">
+                <li>
+                    <a href="tabelas/1-para/tabela-23-vínculos-empregatícios-total-e-por-sexo-no-emprego-formal.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 23</span>
+                        <span>Vínculos Empregatícios Total e por Sexo - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-24-vínculos-empregatícios-no-emprego-formal-por-grande-setor-ibge.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 24</span>
+                        <span>Vínculos Empregatícios por Grande Setor IBGE - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-25-vínculos-empregatícios-no-emprego-formal-por-setor-econômico.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 25</span>
+                        <span>Vínculos Empregatícios por Setor Econômico - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-26-vínculos-empregatícios-por-escolaridade-do-trabalhador-formal.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 26</span>
+                        <span>Vínculos Empregatícios por Escolaridade - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-27-remuneração-média-r-total-e-por-sexo-do-trabalhador-formal.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 27</span>
+                        <span>Remuneração Média (R$) Total e por Sexo - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-31-óbitos-de-jovens-de-15-a-29-anos-por-agressão-população-jovem-e-taxa-de-homicídio-de-jovens.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 31</span>
+                        <span>Óbitos de Jovens por Agressão - Taxa de Homicídio - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-32-número-de-óbitos-por-acidente-de-trânsito-população-e-taxa-de-mortes-por-acidentes-de-trânsito.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 32</span>
+                        <span>Óbitos por Acidente de Trânsito - 2024</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Meio Ambiente -->
+        <div class="category-section">
+            <div class="category-header">
+                <i class="bi bi-tree category-icon"></i>
+                <h2 class="category-title">Meio Ambiente</h2>
+            </div>
+            <ul class="table-list">
+                <li>
+                    <a href="tabelas/1-para/tabela-33-desflorestamento-acumulado-km2-incremento-do-desflorestamento-km2-e-focos-de-calor.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 33</span>
+                        <span>Desflorestamento Acumulado e Focos de Calor - 2023</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-34-área-de-floresta-km2-e-hidrografia-km2-por-região-de-integração.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 34</span>
+                        <span>Área de Floresta e Hidrografia - 2022</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-35-área-territorial-área-cadastrável-e-área-cadastrada-no-cadastro-ambiental-rural-car.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 35</span>
+                        <span>Cadastro Ambiental Rural (CAR) - 2025</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Economia e Infraestrutura -->
+        <div class="category-section">
+            <div class="category-header">
+                <i class="bi bi-graph-up category-icon"></i>
+                <h2 class="category-title">Economia e Infraestrutura</h2>
+            </div>
+            <ul class="table-list">
+                <li>
+                    <a href="tabelas/1-para/tabela-36-produto-interno-bruto-total-valor-adicionado-e-impostos.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 36</span>
+                        <span>PIB Total, Valor Adicionado e Impostos - 2023</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-37-valor-adicionado-total-e-por-setores-com-administração-pública.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 37</span>
+                        <span>Valor Adicionado por Setores - 2021</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-40-pib-total-ranking-estadual-regional-e-participação.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 40</span>
+                        <span>PIB Total e Ranking - 2023</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-42-balança-comercial-exportação-importação-e-saldo-us-1000.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 42</span>
+                        <span>Balança Comercial - Exportação e Importação - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-43-área-colhida-hectares-quantidade-produzida-toneladas-e-valor-mil-reais-da-produção-por-tipo-de-lavoura-permanente.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 43</span>
+                        <span>Produção de Lavoura Permanente - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-44-área-colhida-hectares-quantidade-produzida-toneladas-e-valor-mil-reais-da-produção-por-tipo-de-lavoura-temporária.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 44</span>
+                        <span>Produção de Lavoura Temporária - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-45-efetivo-de-rebanho-cabecas-por-tipo.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 45</span>
+                        <span>Efetivo de Rebanho por Tipo - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-49-consumo-de-energia-elétrica-total-e-consumidores-de-energia-elétrica-por-tipo.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 49</span>
+                        <span>Consumo de Energia Elétrica - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-50-total-da-frota-de-veículos-subdiv-em-licenciados-e-não-licenciados.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 50</span>
+                        <span>Frota de Veículos - 2024</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tabelas/1-para/tabela-51-total-da-frota-de-veículos-por-tipo.html" class="table-link">
+                        <i class="bi bi-file-earmark-spreadsheet"></i>
+                        <span class="table-number">Tabela 51</span>
+                        <span>Frota de Veículos por Tipo - 2024</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 py-4 bg-dark text-white text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 Radar de Indicadores - FAPESPA. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

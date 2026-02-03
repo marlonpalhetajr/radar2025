@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expediente - Radar 2024 | FAPESPA</title>
+    <meta name="description" content="Expediente do Radar de Indicadores das Regiões de Integração do Pará">
+    <meta name="keywords" content="Expediente, Radar, FAPESPA, Pará">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Expediente - Radar 2024 - FAPESPA">
+    <meta property="og:description" content="Expediente do Radar de Indicadores das Regiões de Integração do Pará">
+    <meta property="og:image" content="img/anuario.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fapespa.pa.gov.br/radar">
+
+    <link rel="icon" href="img/fapespa2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="canonical" href="https://www.fapespa.pa.gov.br/radar">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Expediente - Radar 2024 - FAPESPA">
+    <meta name="twitter:description" content="Expediente do Radar de Indicadores das Regiões de Integração do Pará">
+    <meta name="twitter:image" content="img/anuario.png">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="acess-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Modal Genérico -->
+    <div id="modalBackdrop" class="modal-backdrop-custom" onclick="closeCustomModal();"></div>
+    <div id="contentModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h5 id="contentModalLabel">Conteúdo</h5>
+                <button type="button" class="custom-modal-close" onclick="closeCustomModal();">&times;</button>
+            </div>
+            <div class="custom-modal-body" id="contentModalBody">
+                <div class="text-center py-5">
+                    <div class="spinner-border"></div>
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <a id="modal-open-full" href="#" target="_blank" class="btn btn-outline-primary btn-sm">Abrir em nova aba</a>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="closeCustomModal();">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" id="navbar">
+        <a href="https://www.fapespa.pa.gov.br/" target="_blank" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-3">FAPESPA</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto p-4 p-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#radar">Radar</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#contato">Contato</a></li>
+                <li class="nav-item position-relative">
+                    <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+                        ♿ <span class="d-none d-lg-inline">Acessibilidade</span>
+                    </button>
+                    <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+                        <div class="acess-section-title">Visão</div>
+                        <div class="acess-row">
+                            <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+                            <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+                        </div>
+                        <div class="acess-section-title">Cores</div>
+                        <div class="acess-row">
+                            <button id="acess-grayscale" class="acess-control" type="button">Escala em Cinza</button>
+                        </div>
+                        <div class="acess-section-title">Tamanho da Fonte</div>
+                        <div class="acess-row">
+                            <button id="font-dec" class="acess-control" type="button">A-</button>
+                            <button id="font-reset" class="acess-control" type="button">A</button>
+                            <button id="font-inc" class="acess-control" type="button">A+</button>
+                        </div>
+                        <div class="acess-section-title">Daltonismo</div>
+                        <div class="acess-row">
+                            <button id="dalton-prot" class="acess-control" type="button">Protanopia</button>
+                            <button id="dalton-deut" class="acess-control" type="button">Deuteranopia</button>
+                            <button id="dalton-trit" class="acess-control" type="button">Tritanopia</button>
+                            <button id="dalton-off" class="acess-control" type="button">Normal</button>
+                        </div>
+                        <div class="acess-section-title">Leitura &amp; Legibilidade</div>
+                        <div class="acess-row">
+                            <button id="acess-dislexia" class="acess-control" type="button">Modo Dislexia</button>
+                            <button id="acess-reading" class="acess-control" type="button">Modo Leitura</button>
+                            <button id="acess-links" class="acess-control" type="button">Destacar Links</button>
+                        </div>
+                        <div class="acess-section-title">Movimento</div>
+                        <div class="acess-row">
+                            <button id="reduce-motion" class="acess-control" type="button">Reduzir Animações</button>
+                        </div>
+                        <div class="acess-section-title">Geral</div>
+                        <div class="acess-row">
+                            <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- 404 Start (Modified with Left Alignment) -->
+    <div class="container-xxl wow fadeInUp" style="padding-top: 2rem; padding-bottom: 1rem;" data-wow-delay="0.1s">
+        <div class="container text-start"> <!-- Alinhamento à esquerda -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- <h1 class="display-3">EXPEDIENTE RADAR 2024</h1> -->
+                    <img src="img/logoexp.png" alt="Logo Fapespa" class="img-fluid mb-4" style="width: 450px;">
+
+                    <p class="mb-4">
+                        <!-- <span style="font-size: 24px;">GOVERNO DO ESTADO DO PARÁ</span><br> -->
+                    <h2>GOVERNO DO ESTADO DO PARÁ</h2>
+                    <strong>Helder Zahluth Barbalho</strong> - Governador do Estado do Pará<br>
+                    <br>
+                    <h5>Secretaria de Estado de Ciência, Tecnologia, Educação Técnica e Tecnológica –
+                        Sectet</h5>
+                    <!-- <strong>Secretaria de Estado de Ciência, Tecnologia, Educação Técnica e Tecnológica –
+                        Sectet</strong><br> -->
+                    <strong>Victor Orengel Dias</strong> – Secretário da Sectet
+                    </p>
+
+
+                    <h3 class="mb-4">EXPEDIENTE</h3>
+                    <p class="mb-4">
+                        Publicação Oficial:<br>
+                        © 2025 Fundação Amazônia de Amparo a Estudos e Pesquisas – Fapespa<br>
+                        Todos os direitos reservados. É permitida a reprodução parcial ou total desta obra desde que
+                        citada a fonte e que não seja para venda ou qualquer fim comercial.
+                    </p>
+
+                    <p class="mb-4">
+                        <strong>10ª edição - 2025</strong><br>
+                        Elaboração, edição e distribuição: Fundação Amazônia de Amparo a Estudos e Pesquisas –
+                        Fapespa<br>
+                        Endereço: Avenida Presidente Vargas n. 670, Bairro: Campina – Belém – PA CEP: 66.017-000<br>
+                        Disponível em: <a href="https://www.fapespa.pa.gov.br" target="_blank">www.fapespa.pa.gov.br</a>
+                    </p>
+
+                    <h3 class="mb-4">Direção</h3>
+                    <p class="mb-4">
+                        <strong>Diretor-Presidente:</strong> Marcel do Nascimento Botelho<br>
+                        <strong>Diretora de Estatística e de Tecnologia e Gestão da Informação:</strong> Atyliana do
+                        Socorro Leão Dias dos Santos<br>
+                    </p>
+
+                    <h3 class="mb-4">Coordenação</h3>
+                    <p class="mb-4">
+                        <strong>Coordenador de Estatística e Disseminação da Informação:</strong> Paulo Gilberto
+                        Pinheiro Góes<br>
+
+                    </p>
+                    <h3 class="mb-4">Equipe Técnica</h3>
+                    <p class="mb-4">
+                        <!-- <strong>Equipe Técnica Coordenadoria de Estatística e Disseminação da Informação:</strong><br> -->
+                        Gabriel Carvalho Fernandes<br>
+                        Gilson Pereira Prata<br>
+                        John Assunção de Souza<br>
+                        Raymundo Nonnato da Frota Costa Junior<br>
+                        Sâmia Mota da Silva<br>
+                        Silvia Caroline Salgado Pena <br>
+                        Anderson Fabrício Pereira de Araújo
+                    </p>
+
+                    <strong>Elaboração de Mapas</strong>
+                    <p class="mb-4">
+                        Rudilea Ramos Cavalcante da Silva
+                    </p>
+
+                    <strong>Equipe de Desenvolvimento</strong>
+                    <p class="mb-4">
+                        Romildo Francelino de Oliveira<br>
+                        Marlon George da Costa Palheta Junior
+                        
+                    </p>
+
+                    <!-- Exemplo de imagem adicionada -->
+                    <!-- <img src="img/logo.png" alt="Logo Fapespa" class="img-fluid mb-4"> -->
+
+                    <!-- <a class="btn btn-primary py-3 px-4" href="index.html">Voltar para a Home</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 404 End -->
+
+    <!-- RODAPÉ PRINCIPAL -->
+    <footer class="footer-main" id="contato">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Sobre FAPESPA</h5>
+                    <p class="small text-light">Fundação Amazônia de Amparo a Estudos e Pesquisas, promovendo ciência, tecnologia e inovação para o desenvolvimento do estado.</p>
+                    <div class="social-icons mt-4">
+                        <a href="https://www.instagram.com/fapespa/" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/FapespaPA" target="_blank" rel="noopener noreferrer" class="social-link" title="Facebook" aria-label="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://x.com/fapespa" target="_blank" rel="noopener noreferrer" class="social-link" title="Twitter" aria-label="Twitter">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Contato</h5>
+                    <ul class="list-unstyled small text-light">
+                        <li class="mb-3"><i class="bi bi-geo-alt me-2 text-primary"></i><span>Av. Presidente Vargas, 670</span></li>
+                        <li class="mb-3"><i class="bi bi-telephone me-2 text-primary"></i><span>+55 (91) 3323-2550</span></li>
+                        <li class="mb-3"><i class="bi bi-clock me-2 text-primary"></i><span>Seg-Sex: 8h às 14h</span></li>
+                        <li><i class="bi bi-envelope me-2 text-primary"></i><a href="mailto:contato@fapespa.pa.gov.br" class="text-light text-decoration-none">contato@fapespa.pa.gov.br</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Produtos</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/anuario-estatistico-do-para-2/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Anuário Estatístico</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/radar-de-indicadores-das-ri/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Radar de Indicadores</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/para-no-contexto-nacional-2/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Pará no Contexto Nacional</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/estatistica-municipal/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Estatística Municipal</a></li>
+                        <li class="mb-2"><a href="https://www.fapespa.pa.gov.br/para-em-numeros/" target="_blank" rel="noopener noreferrer" class="text-light text-decoration-none">Pará em Números</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title mb-4">Localização</h5>
+                    <div class="map-embed rounded">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.61483842183!2d-48.4907923!3d-1.4589201!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a488a1b633b497%3A0xf63d2e2601a4e1e8!2sFundação%20Amazônia%20de%20Amparo%20a%20Estudos%20e%20Pesquisas%20-%20FAPESPA!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização FAPESPA"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COPYRIGHT -->
+    <div class="footer-copyright text-center py-4">
+        <div class="container">
+            <small class="text-muted">© Radar de Indicadores das Regiões de Integração, Todos os direitos reservados. <a href="https://www.fapespa.pa.gov.br/" class="text-muted text-decoration-none">FAPESPA</a></small>
+        </div>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <button id="btnTop" title="Voltar ao topo" aria-label="Voltar ao topo" type="button">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <div id="virtual-keyboard" class="keyboard-container" hidden>
+        <div class="keyboard-keys"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 39 Participação do VA dos Setores e da Administração Pública em relação ao Município 2021 ri guama | Radar 2024</title>
+    <meta name="description" content="Tabela 39 Participação do VA dos Setores e da Administração Pública em relação ao Município 2021 ri guama">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --primary-purple: #7c3aed;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container-table {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 18px;
+            margin: 20px auto;
+            max-width: 98%;
+        }
+        
+        .table-header {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .table-header h1 {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .table-header .subtitle {
+            color: #e0e7ff;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .btn-export {
+            background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: white;
+        }
+        
+        .table-responsive {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table.dataTable {
+            width: 100% !important;
+            border-collapse: collapse;
+        }
+        
+        table.dataTable thead {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+        }
+        
+        table.dataTable thead th {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            padding: 10px 8px !important;
+            text-align: center !important;
+            font-size: 12px !important;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            border: none !important;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
+        }
+        
+        table.dataTable tbody td {
+            padding: 8px !important;
+            border-bottom: 1px solid #e5e7eb;
+            color: #111827;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center !important;
+        }
+        
+        table.dataTable tbody td:first-child {
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        table.dataTable tbody tr:first-child {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            font-weight: 700;
+        }
+        
+        table.dataTable tbody tr:first-child td {
+            color: #1e40af;
+            font-weight: 800;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            transition: all 0.2s ease;
+        }
+        
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        #tableNotes {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .table-header h1 {
+                font-size: 18px;
+            }
+            
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            table.dataTable thead th,
+            table.dataTable tbody td {
+                font-size: 11px !important;
+                padding: 8px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table">
+        <div class="table-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1><i class="bi bi-table"></i> Tabela 39 Participação do VA dos Setores e da Administração Pública em relação ao Município 2021 ri guama</h1>
+                <a href="../../index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="btn-export" onclick="exportToExcel()">
+                <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+            </button>
+            <div style="font-size: 12px; color: #999;">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr id="tableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="tableNotes" class="mt-3" style="font-size: 12px; color: #6c757d;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        const tabelaDados = [
+  {
+    "col0": "Pará",
+    "col1": 10.119479036388217,
+    "col2": 46.36501845251364,
+    "col3": 26.96548223760274,
+    "col4": 16.550020275994406,
+    "col5": 100.0
+  },
+  {
+    "col0": "RI Guamá",
+    "col1": 18.48211944396685,
+    "col2": 10.57559973493665,
+    "col3": 37.4732014752134,
+    "col4": 33.469079345883074,
+    "col5": 100.0
+  },
+  {
+    "col0": "Castanhal",
+    "col1": 3.6401105176061592,
+    "col2": 16.611650092660792,
+    "col3": 56.73297534111775,
+    "col4": 23.015264048615293,
+    "col5": 100.0
+  },
+  {
+    "col0": "Colares",
+    "col1": 21.064684247060477,
+    "col2": 2.8798947131480066,
+    "col3": 17.131154723755376,
+    "col4": 58.92426529838644,
+    "col5": 100.0
+  },
+  {
+    "col0": "Curuçá",
+    "col1": 29.12866090024218,
+    "col2": 3.8500175114957726,
+    "col3": 16.942420383350104,
+    "col4": 50.07890120491194,
+    "col5": 100.0
+  },
+  {
+    "col0": "Igarapé-Açu",
+    "col1": 21.676078226115056,
+    "col2": 7.91877517020471,
+    "col3": 28.447395810309157,
+    "col4": 41.957751055630375,
+    "col5": 100.0
+  },
+  {
+    "col0": "Inhangapi",
+    "col1": 47.154898887454365,
+    "col2": 11.928980288437172,
+    "col3": 10.461223691737874,
+    "col4": 30.45489713237059,
+    "col5": 100.0
+  },
+  {
+    "col0": "Magalhães Barata",
+    "col1": 38.40197873682718,
+    "col2": 3.0312044155432694,
+    "col3": 13.82175661420029,
+    "col4": 44.74506023342927,
+    "col5": 100.0
+  },
+  {
+    "col0": "Maracanã",
+    "col1": 26.50264490144581,
+    "col2": 3.4324372016474145,
+    "col3": 15.794071931693082,
+    "col4": 54.27084596521369,
+    "col5": 100.0
+  },
+  {
+    "col0": "Marapanim",
+    "col1": 20.58568179863975,
+    "col2": 3.312044089687189,
+    "col3": 21.00716545807583,
+    "col4": 55.095109045400235,
+    "col5": 100.0
+  },
+  {
+    "col0": "Santa Izabel do Pará",
+    "col1": 14.478691926748336,
+    "col2": 8.516441084392628,
+    "col3": 40.416855734792755,
+    "col4": 36.588011131180394,
+    "col5": 100.0
+  },
+  {
+    "col0": "Santa Maria do Pará",
+    "col1": 30.75468402711921,
+    "col2": 8.079136979258308,
+    "col3": 31.009546049441827,
+    "col4": 30.15663294418065,
+    "col5": 100.0
+  },
+  {
+    "col0": "Santo Antônio do Tauá",
+    "col1": 36.62462677930806,
+    "col2": 12.542040636246998,
+    "col3": 17.28022164590306,
+    "col4": 33.55311071045405,
+    "col5": 100.0
+  },
+  {
+    "col0": "São Caetano de Odivelas",
+    "col1": 32.93140015412207,
+    "col2": 3.0575936709473046,
+    "col3": 16.28539141828651,
+    "col4": 47.72561531954842,
+    "col5": 100.0
+  },
+  {
+    "col0": "São Domingos do Capim",
+    "col1": 47.673084836752366,
+    "col2": 3.363513181216102,
+    "col3": 11.832889339158683,
+    "col4": 37.13051240943374,
+    "col5": 100.0
+  },
+  {
+    "col0": "São Francisco do Pará",
+    "col1": 43.62762603612796,
+    "col2": 4.803310628218472,
+    "col3": 21.10702279427865,
+    "col4": 30.462040942441508,
+    "col5": 100.0
+  },
+  {
+    "col0": "São João da Ponta",
+    "col1": 29.660238729709153,
+    "col2": 3.103012818992059,
+    "col3": 11.06132409789157,
+    "col4": 56.17542435340722,
+    "col5": 100.0
+  },
+  {
+    "col0": "São Miguel do Guamá",
+    "col1": 33.46691548269959,
+    "col2": 6.365883226673865,
+    "col3": 23.447320839661458,
+    "col4": 36.71988058587484,
+    "col5": 100.0
+  },
+  {
+    "col0": "Terra Alta",
+    "col1": 10.706010554716567,
+    "col2": 3.345216957414236,
+    "col3": 18.29008435761262,
+    "col4": 67.65868813025658,
+    "col5": 100.0
+  },
+  {
+    "col0": "Vigia",
+    "col1": 21.788211609736045,
+    "col2": 3.4499764466190035,
+    "col3": 28.680253121853504,
+    "col4": 46.08155859752052,
+    "col5": 100.0
+  }
+];
+        const colunas = ["Estado/Municípios", "% Participação VA Agropecuária", "% Participação VA Indústria", "% Participação VA Serviços, exclusive Administração Pública", "% Participação VA Administração Pública", "% Participação VA Total"];
+        const notas = [
+  "Fonte: FAPESPA/IBGE",
+  "Elaboração: FAPESPA"
+];
+        const regiaoAtual = "Guamá";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reordenar dados para colocar a região principal primeiro
+            if (regiaoAtual && regiaoAtual.trim() !== "") {
+                const regiaoDados = regiaoAtual.toLowerCase().replace(/ri\s*/, '').trim();
+                
+                tabelaDados.sort((a, b) => {
+                    const aText = a.col0 ? a.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    const bText = b.col0 ? b.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    
+                    // Verifica correspondência exata
+                    if (aText === regiaoDados) return -1;
+                    if (bText === regiaoDados) return 1;
+                    
+                    // Verifica correspondência parcial (para casos como "RI Araguaia" vs "Araguaia")
+                    if (aText.includes(regiaoDados)) return -1;
+                    if (bText.includes(regiaoDados)) return 1;
+                    
+                    return 0;
+                });
+            }
+            const thead = document.querySelector('#tableHeader');
+            const tbody = document.querySelector('#tabelaDados tbody');
+            const notesEl = document.querySelector('#tableNotes');
+
+            colunas.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = col || '';
+                thead.appendChild(th);
+            });
+            
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colunas.length; i++) {
+                    const td = document.createElement('td');
+                    const valor = row[`col${i}`];
+                    
+                    if (typeof valor === 'number') {
+                        if (Number.isInteger(valor) && valor > 1000) {
+                            td.textContent = new Intl.NumberFormat('pt-BR').format(valor);
+                        } else {
+                            td.textContent = new Intl.NumberFormat('pt-BR', {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 4
+                            }).format(valor);
+                        }
+                    } else {
+                        td.textContent = valor || '';
+                        if (i === 0) td.style.textAlign = 'left';
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+
+            $('#tabelaDados').DataTable({
+                language: {
+                    emptyTable: "Nenhum dado disponível na tabela",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "(filtrado de _MAX_ registros)",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    loadingRecords: "Carregando...",
+                    processing: "Processando...",
+                    search: "Buscar:",
+                    zeroRecords: "Nenhum registro encontrado",
+                    paginate: {
+                        first: "Primeiro",
+                        last: "Último",
+                        next: "Próximo",
+                        previous: "Anterior"
+                    }
+                },
+                paging: true,
+                pageLength: 25,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+
+            if (notas.length) {
+                notesEl.innerHTML = notas.map(nota => `<div>${nota}</div>`).join('');
+            }
+        });
+
+        function exportToExcel() {
+            const ws_data = [colunas];
+            
+            tabelaDados.forEach(row => {
+                const rowData = [];
+                for (let i = 0; i < colunas.length; i++) {
+                    rowData.push(row[`col${i}`]);
+                }
+                ws_data.push(rowData);
+            });
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            
+            const colWidths = colunas.map(() => ({ wch: 20 }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Dados');
+            
+            const nomeArquivo = 'tabela-39-particip-do-va-dos-setores-e-da-admin-publica-em-relacao-ao-municipio-2021-ri-guama.xlsx';
+            XLSX.writeFile(wb, nomeArquivo);
+            
+            const btn = document.querySelector('.btn-export');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Download Concluído!';
+            btn.style.backgroundColor = '#198754';
+            setTimeout(() => {
+                btn.innerHTML = textoOriginal;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Generate Power BI CSVs",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"tools\\powerbi_prepare_excel.py",
+				"--input",
+				"..\\..\\Desktop\\tabelas-powerBI",
+				"--output",
+				"tabelas-powerBI_cleaned",
+				"--long"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate Power BI CSVs (log)",
+			"type": "shell",
+			"command": "python tools\\powerbi_prepare_excel.py --input \"..\\..\\Desktop\\tabelas-powerBI\" --output \"tabelas-powerBI_cleaned\" --long 1> tools\\powerbi_prepare_excel.log 2> tools\\powerbi_prepare_excel.err",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate Power BI CSVs (v2)",
+			"type": "shell",
+			"command": "python tools\\powerbi_prepare_excel.py --input \"..\\..\\Desktop\\tabelas-powerBI\" --output \"tabelas-powerBI_cleaned_v2\" --long",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate Power BI CSVs (v3)",
+			"type": "shell",
+			"command": "python tools\\powerbi_prepare_excel.py --input \"..\\..\\Desktop\\tabelas-powerBI\" --output \"tabelas-powerBI_cleaned_v3\" --long 1> tools\\powerbi_prepare_excel_v3.log 2> tools\\powerbi_prepare_excel_v3.err",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Generate Power BI CSVs (v4)",
+			"type": "shell",
+			"command": "python tools\\powerbi_prepare_excel.py --input \"..\\..\\Desktop\\tabelas-powerBI\" --output \"tabelas-powerBI_cleaned_v4\" --long 1> tools\\powerbi_prepare_excel_v4.log 2> tools\\powerbi_prepare_excel_v4.err",
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Validate Power BI CSVs",
+			"type": "shell",
+			"command": "python",
+			"args": [
+				"c:\\Users\\marlon.junior\\OneDrive - Fapespa\\radar2024\\tools\\powerbi_validate.py",
+				"--input",
+				"c:\\Users\\marlon.junior\\OneDrive - Fapespa\\radar2024\\tabelas-powerBI_cleaned_v4\\_all_tables.csv",
+				"--output",
+				"c:\\Users\\marlon.junior\\OneDrive - Fapespa\\radar2024\\tools\\powerbi_validation_report.txt"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

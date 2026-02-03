@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 1 - População, Área Territorial e Densidade Demográfica | Radar 2024</title>
+    <meta name="description" content="Tabela 1 - População, Área Territorial (km²) e Densidade Demográfica dos municípios do Pará">
+    <meta name="keywords" content="População, Área Territorial, Densidade Demográfica, Radar, FAPESPA, Pará">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.bootstrap5.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff;
+            padding: 20px 0;
+        }
+
+        .container-table {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 20px auto;
+        }
+
+        .table-header {
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+
+        .table-header h1 {
+            color: #1a1a1a;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .table-header .subtitle {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-export {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-export:hover {
+            background-color: #157347;
+            color: white;
+            text-decoration: none;
+        }
+
+        .dataTables_wrapper {
+            margin-top: 20px;
+        }
+
+        .dataTables_filter {
+            margin-bottom: 15px;
+        }
+
+        .dataTables_filter input {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .dataTables_length {
+            margin-bottom: 15px;
+        }
+
+        table.dataTable thead {
+            background-color: var(--light-bg);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        table.dataTable thead th {
+            color: #1a1a1a;
+            font-weight: 600;
+            padding: 12px;
+            text-align: left;
+            border-right: 1px solid var(--border-color);
+        }
+
+        table.dataTable thead th:last-child {
+            border-right: none;
+        }
+
+        table.dataTable tbody td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: #333;
+            font-size: 14px;
+        }
+
+        table.dataTable tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+
+        /* Números com melhor visualização */
+        table.dataTable tbody td:nth-child(n+2) {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+        }
+
+        .dataTables_paginate {
+            margin-top: 20px;
+        }
+
+        .dataTables_paginate .pagination {
+            gap: 5px;
+        }
+
+        .dataTables_paginate .pagination .page-link {
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+
+        .dataTables_paginate .pagination .page-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .dataTables_paginate .pagination .active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .info-section {
+            background-color: var(--light-bg);
+            padding: 15px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .info-section strong {
+            color: #1a1a1a;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+            }
+
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+
+            table.dataTable {
+                font-size: 12px;
+            }
+
+            table.dataTable thead th,
+            table.dataTable tbody td {
+                padding: 8px 5px;
+            }
+        }
+
+        .text-muted-small {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table" style="max-width: 1200px;">
+        <div class="table-header">
+            <h1><i class="bi bi-table"></i> Tabela 1</h1>
+            <p class="subtitle">População Estimada Total, Área Territorial (km²) e Densidade Demográfica - 2025</p>
+        </div>
+
+        <div class="controls-section">
+            <div>
+                <button class="btn-export" id="btnExportExcel" onclick="exportToExcel()">
+                    <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+                </button>
+            </div>
+            <div class="text-muted-small">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Estado / Regiões de Integração</th>
+                        <th>População Estimada Total - 2025</th>
+                        <th>Área Territorial (km²) - 2024¹</th>
+                        <th>Densidade Demográfica (hab./km²)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-section">
+            <strong>¹ Fonte:</strong> Estimativas de população (IBGE 2025), Área Territorial (IBGE), Densidade Demográfica (cálculo próprio)
+        </div>
+    </div>
+
+    <!-- jQuery (necessário para DataTables) -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    
+    <!-- SheetJS para exportar em Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        // Dados da tabela (extraído do arquivo original)
+        const tabelaDados = [
+            {
+                "regiao": "Pará",
+                "populacao": 8711196,
+                "areaTerritorial": 1245828.8320,
+                "densidadeDemografica": 6.9922896117
+            },
+            {
+                "regiao": "Araguaia",
+                "populacao": 476299,
+                "areaTerritorial": 174174.482,
+                "densidadeDemografica": 2.7346083911
+            },
+            {
+                "regiao": "Baixo Amazonas",
+                "populacao": 847407,
+                "areaTerritorial": 315813.322,
+                "densidadeDemografica": 2.6832528616
+            },
+            {
+                "regiao": "Carajás",
+                "populacao": 843833,
+                "areaTerritorial": 44729.16,
+                "densidadeDemografica": 18.865388932
+            },
+            {
+                "regiao": "Guajará",
+                "populacao": 2117471,
+                "areaTerritorial": 1819.242,
+                "densidadeDemografica": 1163.9303622058
+            },
+            {
+                "regiao": "Guamá",
+                "populacao": 704891,
+                "areaTerritorial": 11524.933,
+                "densidadeDemografica": 61.1622644574
+            },
+            {
+                "regiao": "Lago de Tucuruí",
+                "populacao": 342618,
+                "areaTerritorial": 40417.688,
+                "densidadeDemografica": 8.4711342393
+            },
+            {
+                "regiao": "Marajó",
+                "populacao": 592857,
+                "areaTerritorial": 99544.833,
+                "densidadeDemografica": 5.9618719908
+            },
+            {
+                "regiao": "Rio Caeté",
+                "populacao": 285925,
+                "areaTerritorial": 10654.5,
+                "densidadeDemografica": 26.8317308471
+            },
+            {
+                "regiao": "Rio Capim",
+                "populacao": 294638,
+                "areaTerritorial": 23325.38,
+                "densidadeDemografica": 12.6268765629
+            },
+            {
+                "regiao": "Tapajós",
+                "populacao": 450637,
+                "areaTerritorial": 132175.94,
+                "densidadeDemografica": 3.4101814799
+            },
+            {
+                "regiao": "Tocantins",
+                "populacao": 318346,
+                "areaTerritorial": 164486.49,
+                "densidadeDemografica": 1.9352935815
+            },
+            {
+                "regiao": "Xingu",
+                "populacao": 378486,
+                "areaTerritorial": 161285.67,
+                "densidadeDemografica": 2.3458823529
+            }
+        ];
+
+        // Inicializa o DataTable
+        let table;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Popula a tabela com dados
+            const tbody = document.querySelector('#tabelaDados tbody');
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${row.regiao}</td>
+                    <td>${formatarNumero(row.populacao)}</td>
+                    <td>${formatarNumeroDecimal(row.areaTerritorial, 2)}</td>
+                    <td>${formatarNumeroDecimal(row.densidadeDemografica, 4)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Inicializa DataTable
+            table = $('#tabelaDados').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json'
+                },
+                paging: true,
+                pageLength: 10,
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: 'lfrtp'
+            });
+        });
+
+        // Formatação de números
+        function formatarNumero(num) {
+            return new Intl.NumberFormat('pt-BR').format(Math.round(num));
+        }
+
+        function formatarNumeroDecimal(num, casas = 2) {
+            return new Intl.NumberFormat('pt-BR', {
+                minimumFractionDigits: casas,
+                maximumFractionDigits: casas
+            }).format(num);
+        }
+
+        // Função para exportar para Excel
+        function exportToExcel() {
+            // Prepara os dados para exportação
+            const ws_data = [
+                ['Estado / Regiões de Integração', 'População Estimada Total - 2025', 'Área Territorial (km²) - 2024', 'Densidade Demográfica (hab./km²)']
+            ];
+
+            tabelaDados.forEach(row => {
+                ws_data.push([
+                    row.regiao,
+                    row.populacao,
+                    row.areaTerritorial,
+                    row.densidadeDemografica
+                ]);
+            });
+
+            // Cria workbook
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+            // Ajusta largura das colunas
+            ws['!cols'] = [
+                { wch: 35 },  // Região
+                { wch: 25 },  // População
+                { wch: 25 },  // Área
+                { wch: 30 }   // Densidade
+            ];
+
+            // Adiciona ao workbook
+            XLSX.utils.book_append_sheet(wb, ws, 'Tabela 1');
+
+            // Baixa o arquivo
+            const nomeArquivo = `Tabela_1_Populacao_Densidade_${new Date().getFullYear()}.xlsx`;
+            XLSX.writeFile(wb, nomeArquivo);
+
+            // Feedback visual
+            const btn = document.getElementById('btnExportExcel');
+            const textOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Baixado!';
+            setTimeout(() => {
+                btn.innerHTML = textOriginal;
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

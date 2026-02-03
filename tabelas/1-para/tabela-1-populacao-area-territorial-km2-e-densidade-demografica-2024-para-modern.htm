@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 1 População Área Territorial (km²) e Densidade Demográfica 2025 Pará | Radar 2024</title>
+    <meta name="description" content="Tabela 1 População Área Territorial (km²) e Densidade Demográfica 2025 Pará">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --success-color: #198754;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .container-table {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 95%;
+        }
+        .table-header {
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+        .table-header h1 {
+            color: #1a1a1a;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .table-header .subtitle {
+            color: #6c757d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .btn-export {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-export:hover {
+            background-color: #157347;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-back {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-back:hover {
+            background-color: #5a6268;
+            color: white;
+        }
+        table.dataTable thead {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+        table.dataTable thead th {
+            color: #1a1a1a;
+            font-weight: 600;
+            padding: 12px 8px;
+            text-align: left;
+            font-size: 13px;
+        }
+        table.dataTable tbody td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #dee2e6;
+            color: #333;
+            font-size: 13px;
+        }
+        table.dataTable tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #fafbfc;
+        }
+        table.dataTable tbody td:nth-child(n+2) {
+            text-align: right;
+            font-family: 'Courier New', monospace;
+        }
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+            }
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table">
+        <div class="table-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1><i class="bi bi-table"></i> Tabela 1 População Área Territorial (km²) e Densidade Demográfica 2025 Pará</h1>
+                <a href="../../index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="btn-export" onclick="exportToExcel()">
+                <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+            </button>
+            <div style="font-size: 12px; color: #999;">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr id="tableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="tableNotes" class="mt-3" style="font-size: 12px; color: #6c757d;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        const tabelaDados = [
+  {
+    "col0": "Pará",
+    "col1": 8711196.0,
+    "col2": 1245828.832,
+    "col3": 6.992289611740179
+  },
+  {
+    "col0": "Araguaia",
+    "col1": 476299.0,
+    "col2": 174174.482,
+    "col3": 2.7346083911419354
+  },
+  {
+    "col0": "Baixo Amazonas",
+    "col1": 847407.0,
+    "col2": 315813.322,
+    "col3": 2.683252861638307
+  },
+  {
+    "col0": "Carajás",
+    "col1": 843833.0,
+    "col2": 44729.16,
+    "col3": 18.86538893196295
+  },
+  {
+    "col0": "Guajará",
+    "col1": 2117471.0,
+    "col2": 1819.242,
+    "col3": 1163.9303622057978
+  },
+  {
+    "col0": "Guamá",
+    "col1": 704891.0,
+    "col2": 11524.933,
+    "col3": 61.16226445741593
+  },
+  {
+    "col0": "Lago de Tucuruí",
+    "col1": 338011.0,
+    "col2": 39901.504,
+    "col3": 8.471134321152405
+  },
+  {
+    "col0": "Marajó",
+    "col1": 635901.0,
+    "col2": 106661.294,
+    "col3": 5.961872167048714
+  },
+  {
+    "col0": "Rio Caeté",
+    "col1": 523445.0,
+    "col2": 16665.519,
+    "col3": 31.408862814293393
+  },
+  {
+    "col0": "Rio Capim",
+    "col1": 655013.0,
+    "col2": 62161.894,
+    "col3": 10.537211108786357
+  },
+  {
+    "col0": "Tapajós",
+    "col1": 271130.0,
+    "col2": 189595.497,
+    "col3": 1.4300445120803686
+  },
+  {
+    "col0": "Tocantins",
+    "col1": 873726.0,
+    "col2": 31989.499,
+    "col3": 27.31290039897155
+  },
+  {
+    "col0": "Xingu",
+    "col1": 424069.0,
+    "col2": 250792.486,
+    "col3": 1.6909158913158187
+  }
+];
+        const colunas = ["Estado/RIs", "População Estimada Total - 2025", "Área Territorial (km²) - 2024¹", "Densidade Demográfica (hab./km²)"];
+        const notas = [
+  "Fonte: IBGE",
+  "Elaboração: FAPESPA",
+  "Nota¹: Último ano de registro do dado."
+];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const thead = document.querySelector('#tableHeader');
+            const tbody = document.querySelector('#tabelaDados tbody');
+            const notesEl = document.querySelector('#tableNotes');
+
+            colunas.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = col || '';
+                thead.appendChild(th);
+            });
+            
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colunas.length; i++) {
+                    const td = document.createElement('td');
+                    const valor = row[`col${i}`];
+                    
+                    if (typeof valor === 'number') {
+                        if (Number.isInteger(valor) && valor > 1000) {
+                            td.textContent = new Intl.NumberFormat('pt-BR').format(valor);
+                        } else {
+                            td.textContent = new Intl.NumberFormat('pt-BR', {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 4
+                            }).format(valor);
+                        }
+                    } else {
+                        td.textContent = valor || '';
+                        if (i === 0) td.style.textAlign = 'left';
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+
+            $('#tabelaDados').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json'
+                },
+                paging: true,
+                pageLength: 25,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+
+            if (notas.length) {
+                notesEl.innerHTML = notas.map(nota => `<div>${nota}</div>`).join('');
+            }
+        });
+
+        function exportToExcel() {
+            const ws_data = [colunas];
+            
+            tabelaDados.forEach(row => {
+                const rowData = [];
+                for (let i = 0; i < colunas.length; i++) {
+                    rowData.push(row[`col${i}`]);
+                }
+                ws_data.push(rowData);
+            });
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            
+            const colWidths = colunas.map(() => ({ wch: 20 }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Dados');
+            
+            const nomeArquivo = 'tabela-1-populacao-area-territorial-km2-e-densidade-demografica-2024-para-modern.xlsx';
+            XLSX.writeFile(wb, nomeArquivo);
+            
+            const btn = document.querySelector('.btn-export');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Download Concluído!';
+            btn.style.backgroundColor = '#198754';
+            setTimeout(() => {
+                btn.innerHTML = textoOriginal;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

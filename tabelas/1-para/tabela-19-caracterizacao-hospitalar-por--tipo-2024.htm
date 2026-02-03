@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 19 Caracterização Hospitalar por Tipo 2025 para | Radar 2024</title>
+    <meta name="description" content="Tabela 19 Caracterização Hospitalar por Tipo 2025 para">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --primary-purple: #7c3aed;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container-table {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 18px;
+            margin: 20px auto;
+            max-width: 98%;
+        }
+        
+        .table-header {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .table-header h1 {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .table-header .subtitle {
+            color: #e0e7ff;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .btn-export {
+            background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: white;
+        }
+        
+        .table-responsive {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table.dataTable {
+            width: 100% !important;
+            border-collapse: collapse;
+        }
+        
+        table.dataTable thead {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+        }
+        
+        table.dataTable thead th {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            padding: 10px 8px !important;
+            text-align: center !important;
+            font-size: 12px !important;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            border: none !important;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
+        }
+        
+        table.dataTable tbody td {
+            padding: 8px !important;
+            border-bottom: 1px solid #e5e7eb;
+            color: #111827;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center !important;
+        }
+        
+        table.dataTable tbody td:first-child {
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        table.dataTable tbody tr:first-child {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            font-weight: 700;
+        }
+        
+        table.dataTable tbody tr:first-child td {
+            color: #1e40af;
+            font-weight: 800;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            transition: all 0.2s ease;
+        }
+        
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        #tableNotes {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .table-header h1 {
+                font-size: 18px;
+            }
+            
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            table.dataTable thead th,
+            table.dataTable tbody td {
+                font-size: 11px !important;
+                padding: 8px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table">
+        <div class="table-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1><i class="bi bi-table"></i> Tabela 19 Caracterização Hospitalar por Tipo 2025 para</h1>
+                <a href="../../index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="btn-export" onclick="exportToExcel()">
+                <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+            </button>
+            <div style="font-size: 12px; color: #999;">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr id="tableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="tableNotes" class="mt-3" style="font-size: 12px; color: #6c757d;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        const tabelaDados = [
+  {
+    "col0": "RI Araguaia",
+    "col1": "Água Azul do Norte",
+    "col2": "HOSPITAL MUNICIPAL DE AGUA AZUL DO NORTE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Bannach",
+    "col2": "HOSPITAL MUNICIPAL JOSE VIEIRA DOS SANTOS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Conceição do Araguaia",
+    "col2": "HOSPITAL REGIONAL DE CONCEICAO DO ARAGUAIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO LUCAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Cumaru do Norte",
+    "col2": "HOSPITAL MUNICIPAL JOAO VIEIRA DA CUNHA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Floresta do Araguaia",
+    "col2": "HOSPITAL MUNICIPAL CECILIA ARRAES SOUZA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Ourilândia do Norte",
+    "col2": "HOSPITAL MUNICIPAL JADSON PESCONI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL DA PA 279",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTA LUCIA LTDA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Pau D'Arco",
+    "col2": "HOSPITAL MUNICIPAL ENFERMEIRA ANTONIA PINHEIRO CAVALCANTE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Redenção",
+    "col2": "HOSPITAL MUNICIPAL DR IRACI MACHADO DE ARAUJO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DR PEDRO PAULO BARCAUI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DO ARAGUAIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTA MONICA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO LUCAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO VICENTE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "INSTITUTO SINAI SERVICOS MEDICOS S A",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "ARUS DAY HOSPITAL",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "Rio Maria",
+    "col2": "CLINICA BELLA PLASTICA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE RIO MARIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL DE RIO MARIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Santa Maria das Barreiras",
+    "col2": "HOSPITAL DISTRITAL DE CASA DE TABUA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE SANTA MARIA DAS BARREIRAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Santana do Araguaia",
+    "col2": "MATERNIDADE MUNICIPAL DR JOAO CARLOS FERREIRA REIS",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL SAO FRANCISCO DE ASSIS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "São Félix do Xingu",
+    "col2": "COMPLEXO HOSPITALAR XINGU",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E MATERNIDADE SAO LUCAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL ORZEU JONAS GUIDA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "UNIDADE MUNICIPAL MATERNO INFANTIL NS DAS MERCES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA VIVER",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "Sapucaia",
+    "col2": "HOSPITAL MUNICIPAL DE SAPUCAIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Tucumã",
+    "col2": "HOSPITAL E MATERNIDADE NOSSA SENHORA DE NAZARE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E MATERNIDADE SANTO AGOSTINHO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE TUCUMA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Xinguara",
+    "col2": "HOSPITAL E MATERNIDADE SANTA LUZIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E MATERNIDADE SAO SALVADOR",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE XINGUARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Baixo Amazonas",
+    "col1": "Alenquer",
+    "col2": "HOSPITAL SANTO ANTONIO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Almeirim",
+    "col2": "HOSPITAL MUNICIPAL DE ALMEIRIM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE MONTE DOURADO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Belterra",
+    "col2": "HOSPITAL MUNICIPAL DR IVALDO MORAES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Juruti",
+    "col2": "HOSPITAL MUNICIPAL DE JURUTI FRANCISCO RODRIGUES BARROS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL NOVE DE ABRIL NA PROVIDENCIA DE DEUS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Monte Alegre",
+    "col2": "CLINICA MEDICO CIRURGICA MARIA FILOMENA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DR EDWARD CATTETE PINHEIRO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Óbidos",
+    "col2": "HOSPITAL SANTA CASA DE MISERICORDIA DE OBIDOS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Oriximiná",
+    "col2": "HOSPITAL MATERNIDADE SAO DOMINGOS SAVIO",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DE PORTO TROMBETAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE ORIXIMINA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL MENINO JESUS HRMJ",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Santarém",
+    "col2": "HOSPITAL REGIONAL DO BAIXO AMAZONAS DO PA DR WALDEMAR PENNA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E MATERNIDADE JOAO XXIII",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E MATERNIDADE SAGRADA FAMILIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE SANTAREM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL UNIMED",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "UNIMED OESTE DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Terra Santa",
+    "col2": "HOSPITAL FREI ELIZEU EISMANN",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Carajás",
+    "col1": "Bom Jesus do Tocantins",
+    "col2": "HOSPITAL E MATERNIDADE POPULAR",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Brejo Grande do Araguaia",
+    "col2": "HOSPITAL MUNICIPAL DE BREJO GRANDE DO ARAGUAIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Canaã dos Carajás",
+    "col2": "HOSPITAL 05 DE OUTUBRO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DANIEL GONCALVES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "MEDVIDA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "REDE PRIME SAUDE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Curionópolis",
+    "col2": "HOSPITAL E MATERNIDADE ELCIONE BARBALHO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Eldorado do Carajás",
+    "col2": "HOSPITAL MUNICIPAL DE ELDORADO DO CARAJAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Marabá",
+    "col2": "HOSPITAL MATERNO INFANTIL DE MARABA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL DO SUDESTE DO PARA DR GERALDO VELOSO",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HCMB HOSPITAL CENTRAL MARABA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DE GUARNICAO DE MARABA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE MARABA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTA TEREZINHA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "MED LAB MEDICINA E LABORATORIO DE CONFIANCA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Palestina do Pará",
+    "col2": "HOSPITAL MUNICIPAL JOSE HOMOBONO PAES ANDRADE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Parauapebas",
+    "col2": "C O T",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "INSTITUTO DE TERAPIA INTENSIVA DOS CARAJAS",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA POPULAR",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA SANTA TEREZINHA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "DERMOPLASTICA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL CRISTO REI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DAS CLINICAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL GERAL DE PARAUAPEBAS MANOEL EVALDO BENEVIDES ALVES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL RAFAH",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO SEBASTIAO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL YUTAKA TAKEDA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "ISEP",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "ISEP",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "São Domingos do Araguaia",
+    "col2": "HOSPITAL MUNICIPAL DE SAO DOMINGOS DO ARAGUAIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "São João do Araguaia",
+    "col2": "HOSPITAL MUNICIPAL MARIO MARTINS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Guajará",
+    "col1": "Ananindeua",
+    "col2": "HOSPITAL OFTALMOLOGICO DO PARA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "MATERNIDADE SAGRADA FAMILIA DE ANANINDEUA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA SANTA EDWIGES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL ANITA GEROSA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DAS CLINICAS DE ANANINDEUA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E PRONTO SOCORRO MUNICIPAL DE ANANINDEUA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MODELO DE ANANINDEUA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTA MARIA DE ANANINDEUA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Belém",
+    "col2": "CAES",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA MEDICA VOO DE LIBERDADE UNIDADE O DE ALMEIDA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA PSIQUIATRICA NEW LIFE",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DE REFERENCIA EM OFTALMOLOGIA RODRIGUES LANDIM",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DO CORACAO",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MARADEI",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL ONCOLOGICO INFANTIL OCTAVIO LOBO",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PEDIATRICO UNIMED",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PIO XII",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PRO INFANTIL",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL RIO MAR",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "MATERNIDADE DO POVO MATRIZ",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "PSIQUE CLINICA DE REABILITACAO PSIQUIATRICA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "VOO DE LIBERDADE",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CENTROCARDIO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL ADVENTISTA DE BELEM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL AMAZONIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL CION",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL D LUIZ I",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DE AERONAUTICA DE BELEM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DE CLINICAS GASPAR VIANA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DE RETAGUARDA DOM VICENTE ZICO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL GUADALUPE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL HSM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL JEAN BITAR",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL LAYR MAIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE MOSQUEIRO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL NAVAL DE BELEM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL OPHIR LOYOLA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL ORDEM TERCEIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PORTO DIAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PRONTO SOCORRO DO BENGUI DR ROBERTO MACEDO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PRONTO SOCORRO MUNICIPAL MARIO PINOTTI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PUBLICO DA MULHER SENHORA DE NAZARE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL PUBLICO ESTADUAL GALILEU",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DR ABELARDO SANTOS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTA TERESINHA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL UNIMED PRIME",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL UNIVERSITARIO JOAO DE BARROS BARRETO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HPSM DR HUMBERTO MARADEI PEREIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "SANTA CASA DE MISERICORDIA DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "SAUDE HOSPITAL E MATERNIDADE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CASA DIA CENTRO DE ATS EM DOENCAS INFECCIOSAS ADQUIRIDAS",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA OFTALMO SENIOR",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "COB",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOF HOSPITAL OFTALMOLOGICO DRA CYNTHIA CHARONE",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL NIPO BRASILEIRO DE OLHOS",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL UNIVERSITARIO BETTINA FERRO DE SOUZA",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "I O B",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "INSTITUTO DE CIRURGIAS DA FACE",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "RHINO S",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "URE DIPE",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "Marituba",
+    "col2": "HOSPITAL DA DIVINA PROVIDENCIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DR AUGUSTO CHAVES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Guamá",
+    "col1": "Castanhal",
+    "col2": "CLINICA DE ACIDENT SAO FRANCISCO",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "ABSJ",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MAGALHAES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE URGENCIA E EMERGEN MARIA LAISE PEREIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DE CASTANHAL",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Curuçá",
+    "col2": "HOSPITAL MUNICIPAL DE CURUCA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Igarapé-Açu",
+    "col2": "HOSPITAL MATERNIDADE JOSE BERNARDO DA SILVEIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Inhangapi",
+    "col2": "HOSPITAL MUNICIPAL DE INHANGAPI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Maracanã",
+    "col2": "HOSPITAL MUNICIPAL DE MARACANA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Marapanim",
+    "col2": "HOSPITAL MUNICIPAL DE MARAPANIM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Santa Izabel do Pará",
+    "col2": "HOSPITAL MUNICIPAL DR EDILSON ABREU",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Santa Maria do Pará",
+    "col2": "HOSPITAL DA ORDEM TERCEIRA UNIDADE DE SANTA MARIA DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Santo Antônio do Tauá",
+    "col2": "HOSPITAL E MATERNIDADE SANTO ANTONIO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "São Domingos do Capim",
+    "col2": "HOSPITAL MUNICIPAL DE SAO DOMINGOS DO CAPIM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "São Miguel do Guamá",
+    "col2": "HOSPITAL MUNICIPAL DE SAO MIGUEL DO GUAMA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Vigia",
+    "col2": "HOSPITAL MUNICIPAL DE VIGIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Lago de Tucuruí",
+    "col1": "Breu Branco",
+    "col2": "UNIDADE MISTA DE SAUDE DR INACIO GABRIEL",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Itupiranga",
+    "col2": "HOSPITAL MUNICIPAL DE ITUPIRANGA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Jacundá",
+    "col2": "HOSPITAL MUNICIPAL E MATERNIDADE MARIA CECILIA DE OLIVEIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAMARITANO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Nova Ipixuna",
+    "col2": "HOSPITAL MUNICIPAL DE NOVA IPIXUNA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Novo Repartimento",
+    "col2": "HOSPITAL MUNICIPAL SAO FRANCISCO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Tucuruí",
+    "col2": "CLINICA TUCURUI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE TUCURUI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL DE TUCURUI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTA ANGELICA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "IMIMI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Marajó",
+    "col1": "Anajás",
+    "col2": "HMA TEONILA SOARES ALVES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Bagre",
+    "col2": "HOSPITAL MUNICIPAL DE BAGRE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Breves",
+    "col2": "HOSPITAL MUNICIPAL MARIA SANTANA ROCHA FRANCO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DO MARAJO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Cachoeira do Arari",
+    "col2": "HOSPITAL MUNICIPAL SOCORRO DE FATIMA FIGUEIREDO ATHAR",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Chaves",
+    "col2": "HOSPITAL MUNICIPAL DE CHAVES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Curralinho",
+    "col2": "HOSPITAL MUNICIPAL DE CURRALINHO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Gurupá",
+    "col2": "HOSPITAL MUNICIPAL DE GURUPA JAIME ABENATHAR",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Muaná",
+    "col2": "HOSPITAL MUNICIPAL DE MUANA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Oeiras do Pará",
+    "col2": "HOSPITAL DE PEQUENO PORTE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Portel",
+    "col2": "HOSPITAL GERAL DE PORTEL DR WILSON DA MOTTA SILVEIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Salvaterra",
+    "col2": "HOSPITAL MUNICIPAL DE PEQUENO PORTE DR ALMIR GABRIEL",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "São Sebastião da Boa Vista",
+    "col2": "HOSPITAL MUNICIPAL DE SAO SEBASTIAO DA BOA VISTA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Soure",
+    "col2": "HOSPITAL MUNICIPAL MENINO DEUS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Rio Caeté",
+    "col1": "Augusto Corrêa",
+    "col2": "ASSOCIACAO SAO MIGUEL",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Bragança",
+    "col2": "HOSPITAL DAS CLINICAS DE BRAGANCA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL GERAL DE BRAGANCA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTO ANTONIO MARIA ZACCARIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Capanema",
+    "col2": "ASSOCIACAO CENAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "ASSOCIACAO GUIOMAR JESUS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DOS CAETES DR JORGE NETO DA COSTA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Salinópolis",
+    "col2": "HOSPITAL REGIONAL DR OLIMPIO CARDOSO DA SILVEIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Santa Luzia do Pará",
+    "col2": "HOSPITAL MUNICIPAL JOSE LUIZ DE LIMA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "São João de Pirabas",
+    "col2": "HOSPITAL MUNICIPAL BOSCO MOISES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Tracuateua",
+    "col2": "HOSPITAL MUNICIPAL DE TRACUATEUA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Viseu",
+    "col2": "HOSPITAL DAS BEM AVENTURANCAS HBA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Rio Capim",
+    "col1": "Abel Figueiredo",
+    "col2": "HOSPITAL MUNICIPAL DE ABEL FIGUEIREDO ALTAIR ATAIDE MATEUS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Aurora do Pará",
+    "col2": "HOSPITAL MUNICIPAL DE AURORA DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Bujaru",
+    "col2": "HOSPITAL SAO JOAQUIM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Capitão Poço",
+    "col2": "CLINICA CIRURGICA E GENECOLOGICA DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DR ALDOMAR AARAO MONTEIRO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Concórdia do Pará",
+    "col2": "HOSPITAL E MATERNIDADE JOAO LINS DE OLIVEIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Dom Eliseu",
+    "col2": "HOSPITAL BETESDA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DAS CLINICAS DE DOM ELISEU",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE DOM ELISEU PAULO VIDAL",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Garrafão do Norte",
+    "col2": "HOSPITAL E MATERNIDADE MUNICIPAL MANOEL GONCALVES EUFRASIO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Ipixuna do Pará",
+    "col2": "HOSPITAL GERAL DE IPIXUNA DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTA CLARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Irituia",
+    "col2": "HOSPITAL MUNICIPAL DE IRITUIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Mãe do Rio",
+    "col2": "HOSPITAL MUNICIPAL DR SILAS FREITAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Nova Esperança do Piriá",
+    "col2": "HOSPITAL E MATERNIDADE MUNICIPAL RUBEN ALFREDO TUTAYA MENESE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Ourém",
+    "col2": "HOSPITAL MUNICIPAL LUIZ CARLOS DE SOUSA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Paragominas",
+    "col2": "CASA DE SAUDE DE PARAGOMINAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "DIAGNOSE CENTRO MEDICO E DIAGNOSTICO LTDA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL GERAL DE PARAGOMINAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE PARAGOMINAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DO LESTE DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO PAULO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Rondon do Pará",
+    "col2": "HOSPITAL MUNICIPAL DE RONDON DO PARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO JOSE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Tomé-Açu",
+    "col2": "HOSPITAL AMAZONIA DE QUATRO BOCAS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE TOME ACU",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "INSTITUTO SOL NASCENTE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Ulianópolis",
+    "col2": "HOSPITAL MUNICIPAL DE ULIANOPOLIS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO FRANCISCO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Tapajós",
+    "col1": "Aveiro",
+    "col2": "HOSPITAL MUNICIPAL DE AVEIRO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Itaituba",
+    "col2": "CASA DE SAUDE E MATERNIDADE SANTO ANTONIO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DOM BOSCO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E MATERNIDADE CRISTO SALVADOR",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE ITAITUBA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DO TAPAJOS ITAITUBA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SAO VICENTE",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Novo Progresso",
+    "col2": "CLINICA DA MULHER",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA SINHA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE NOVO PROGRESSO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Rurópolis",
+    "col2": "MATERNIDADE MUNICIPAL",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DE RUROPOLIS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Trairão",
+    "col2": "HOSPITAL MUNICIPAL DE TRAIRAO DR SERGIO CORREA SANTOS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Tocantins",
+    "col1": "Abaetetuba",
+    "col2": "HOSPITAL JULIA SEFER",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL SAO BENTO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL DO BAIXO TOCANTINS HOSPITAL SANTA ROSA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA DR ALESSANDRO LOBATO",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "Acará",
+    "col2": "HOSPITAL MUNICIPAL DE ACARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Baião",
+    "col2": "HOSPITAL MUNICIPAL SAO JOAQUIM",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Barcarena",
+    "col2": "HOSPITAL REGIONAL PUBLICO MATERNO INFANTIL DE BARCARENA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CST CENTRO DE SAUDE TOP",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL ADVENTISTA DE BARCARENA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL DR AFONSO RODRIGUES ALMEIDA NEVES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL WANDICK GUTIERREZ",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Cametá",
+    "col2": "HOEC HOSPITAL DE OLHOS E ESPECIALIDADES DE CAMETA",
+    "col3": "Hospital Especializado"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DE CAMETA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL DE CAMETA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Igarapé-Miri",
+    "col2": "HOSPITAL DR AFONSO RODRIGUES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL E MATERNIDADE SANTANA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "CLINICA DR ALESSANDRO LOBATO",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "Limoeiro do Ajuru",
+    "col2": "HOSPITAL MUNICIPAL DE LIMOEIRO DO AJURU",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Mocajuba",
+    "col2": "HOSPITAL MUNICIPAL MARIA DO CARMO GOMES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Moju",
+    "col2": "HOSPITAL E MATERNIDADE DIVINO ESPIRITO SANTO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Tailândia",
+    "col2": "HOSPITAL GERAL DE TAILANDIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "RI Xingu",
+    "col1": "Altamira",
+    "col2": "HOSPITAL CIRURGICO DE ALTAMIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL DO OLHO DE ALTAMIRA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL GERAL DE ALTAMIRA SAO RAFAEL HGA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL GERAL PUBLICO CASTELO DOS SONHOS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL REGIONAL PUBLICO DA TRANSAMAZONICA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL SANTO AGOSTINHO",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "LABOCLIN",
+    "col3": "Hospital/Dia"
+  },
+  {
+    "col0": "",
+    "col1": "Anapu",
+    "col2": "HOSPITAL MUNICIPAL OSCAR DE DEA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Brasil Novo",
+    "col2": "HOSPITAL MUNICIPAL MARIA JOSE BIANCARDI",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Medicilândia",
+    "col2": "HOSPITAL MUNICIPAL DE MEDICILANDIA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Pacajá",
+    "col2": "H C P",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "",
+    "col2": "HOSPITAL MUNICIPAL MARIA MAURA RODRIGUES DE JESUS",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Placas",
+    "col2": "HOSPITAL MUNICIPAL OLIVIO ALVES",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Porto de Moz",
+    "col2": "HOSPITAL MUNICIPAL ANA NERY",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Uruará",
+    "col2": "HOSPITAL MUNICIPAL DE URUARA",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "",
+    "col1": "Vitória do Xingu",
+    "col2": "HOSPITAL MUNICIPAL DE VITORIA DO XINGU",
+    "col3": "Hospital Geral"
+  },
+  {
+    "col0": "*Nota: Dados referentes a Novembro/2025.",
+    "col1": "",
+    "col2": "",
+    "col3": ""
+  }
+];
+        const colunas = ["Região de Integração", "Municípios", "Nome do Hospital", "Tipo"];
+        const notas = [
+  "Fonte: DATASUS",
+  "Elaboração: FAPESPA"
+];
+        const regiaoAtual = "Pará";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reordenar dados para colocar a região principal primeiro
+            if (regiaoAtual && regiaoAtual.trim() !== "") {
+                const regiaoDados = regiaoAtual.toLowerCase().replace(/ri\s*/, '').trim();
+                
+                tabelaDados.sort((a, b) => {
+                    const aText = a.col0 ? a.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    const bText = b.col0 ? b.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    
+                    // Verifica correspondência exata
+                    if (aText === regiaoDados) return -1;
+                    if (bText === regiaoDados) return 1;
+                    
+                    // Verifica correspondência parcial (para casos como "RI Araguaia" vs "Araguaia")
+                    if (aText.includes(regiaoDados)) return -1;
+                    if (bText.includes(regiaoDados)) return 1;
+                    
+                    return 0;
+                });
+            }
+            const thead = document.querySelector('#tableHeader');
+            const tbody = document.querySelector('#tabelaDados tbody');
+            const notesEl = document.querySelector('#tableNotes');
+
+            colunas.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = col || '';
+                thead.appendChild(th);
+            });
+            
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colunas.length; i++) {
+                    const td = document.createElement('td');
+                    const valor = row[`col${i}`];
+                    
+                    if (typeof valor === 'number') {
+                        if (Number.isInteger(valor) && valor > 1000) {
+                            td.textContent = new Intl.NumberFormat('pt-BR').format(valor);
+                        } else {
+                            td.textContent = new Intl.NumberFormat('pt-BR', {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 4
+                            }).format(valor);
+                        }
+                    } else {
+                        td.textContent = valor || '';
+                        if (i === 0) td.style.textAlign = 'left';
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+
+            $('#tabelaDados').DataTable({
+                language: {
+                    emptyTable: "Nenhum dado disponível na tabela",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "(filtrado de _MAX_ registros)",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    loadingRecords: "Carregando...",
+                    processing: "Processando...",
+                    search: "Buscar:",
+                    zeroRecords: "Nenhum registro encontrado",
+                    paginate: {
+                        first: "Primeiro",
+                        last: "Último",
+                        next: "Próximo",
+                        previous: "Anterior"
+                    }
+                },
+                paging: true,
+                pageLength: 25,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+
+            if (notas.length) {
+                notesEl.innerHTML = notas.map(nota => `<div>${nota}</div>`).join('');
+            }
+        });
+
+        function exportToExcel() {
+            const ws_data = [colunas];
+            
+            tabelaDados.forEach(row => {
+                const rowData = [];
+                for (let i = 0; i < colunas.length; i++) {
+                    rowData.push(row[`col${i}`]);
+                }
+                ws_data.push(rowData);
+            });
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            
+            const colWidths = colunas.map(() => ({ wch: 20 }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Dados');
+            
+            const nomeArquivo = 'tabela-19-caracterizacao-hospitalar-por--tipo-2024.xlsx';
+            XLSX.writeFile(wb, nomeArquivo);
+            
+            const btn = document.querySelector('.btn-export');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Download Concluído!';
+            btn.style.backgroundColor = '#198754';
+            setTimeout(() => {
+                btn.innerHTML = textoOriginal;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

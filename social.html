@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social - Radar de Indicadores | FAPESPA</title>
+  <meta name="description" content="Indicadores Sociais do Radar 2024">
+  <meta name="keywords" content="Social, Indicadores, Radar, FAPESPA">
+
+  <!-- Favicon -->
+  <link href="img/fapespa2.png" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <h5 class="m-0 text-primary fw-bold">Radar 2024</h5>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ms-auto p-4 p-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#indicadores">Indicadores</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#footer">Contato</a></li>
+        <li class="nav-item">
+          <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+            ♿ Acessibilidade
+          </button>
+          <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+            <div class="acess-section-title">Visão</div>
+            <div class="acess-row">
+              <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+              <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+            </div>
+            <div class="acess-section-title">Tamanho da Fonte</div>
+            <div class="acess-row">
+              <button id="font-dec" class="acess-control" type="button">A-</button>
+              <button id="font-reset" class="acess-control" type="button">A</button>
+              <button id="font-inc" class="acess-control" type="button">A+</button>
+            </div>
+            <div class="acess-section-title">Geral</div>
+            <div class="acess-row">
+              <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Main Content Start -->
+  <div id="indicadores" class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+      <h1 class="display-5 mb-4">Social</h1>
+                        <!-- secao texto -->
+                        <!-- <h2>Social</h2>titulo -->
+                        <!-- <p>
+                    &emsp;&emsp;&emsp;&emsp;O tópico Social abordará investigações e indicadores de seis grandes subtemas: Educação, Inclusão Social, Mercado de Trabalho, Previdência Social, Saúde e Segurança, observando os cinco últimos anos dos elementos de estudo.<br>
+                    &emsp;&emsp;&emsp;&emsp;Para o âmbito Educacional exibe informações sobre sua infraestrutura e resultados na educação por município do estado, com destaque para as Notas IDEB (Índice de Desenvolvimento da Educação Básica), avaliada a cada 2 anos e as Taxas de Rendimento Escolar dos alunos para os ensinos fundamental e médio.<br>
+                    &emsp;&emsp;&emsp;&emsp;Dando seguimento, a área da Inclusão Social apresenta conteúdos sobre o perfil da população inscrita no CadÚnico com 1.641.249 famílias atendidas e no Programa Bolsa Família indicando um valor aplicado de R$ 710.491.114,00 (MI Vetor/MDS, 2020). Em Mercado de Trabalho, destaca-se uma queda do número de vínculos empregatícios no emprego formal de 2015 para 2016 com relação a novos postos de trabalho. Foi verificado um aumento na remuneração média, passando de R$ 2.273,01 em 2015 para R$ 2.666,00 em 2019.<br>
+                    &emsp;&emsp;&emsp;&emsp;No eixo Previdência Social ressalta-se o aumento na quantidade de benefícios emitidos em 2019 com relação a 2020, passando de 905.785 para 922.901. Na área da Saúde, evidencia-se o avanço das taxas de mortalidade geral atingindo 5,89%, possivelmente em consequência da pandemia de COVID-19 que alcançou o estado do Pará. Além disso, o tópico da Segurança atesta redução nas taxas dos casos de homicídios de jovens por 100 mil habitantes, decorrendo de 101,37% em 2017 e resultando em 58,91% para o ano de 2020.<br>
+           
+                </p>paragrafo -->
+
+                        </p><!-- paragrafo -->
+                </section><!-- fim secao texto -->
+                <nav id="item">
+                        <!-- menu de links -->
+                        <div>
+                                <!-- secao sub menu -->
+                                <input type="radio" name="nome" id="check1" onclick="mudar()" /><!-- radio -->
+                                <label for="check1">Educação</label><!-- titulo sub menu -->
+                                <ul>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.1-taxa-de-aprovaçao-no-ensino-fundamental-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Aprovação no Ensino Fundamental por
+                                                        Esfera Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.2-taxa-de-aprovaçao-no-ensino-medio-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Aprovação no Ensino Médio por Esfera
+                                                        Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.3-taxa-de-reprovaçao-no-ensino-fundamental-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Reprovação no Ensino Fundamental por
+                                                        Esfera Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.4-taxa-de-reprovaçao-no-ensino-medio-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Reprovação no Ensino Médio por Esfera
+                                                        Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.5-taxa-de-abandono-no-ensino-fundamental-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Abandono no Ensino Fundamental por
+                                                        Esfera Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.6-taxa-de-abandono-no-ensino-medio-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Abandono no Ensino Médio por Esfera
+                                                        Administrativa - 2018 a
+                                                        2022</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.7-distorçao-idadeserie-total-por-nivel-de-ensino-2018-a-2022.htm"
+                                                        target="_blank">Distorção Idade-Série Total por Nível de Ensino
+                                                        - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.8-indice-de-desenv-da-educ-basica-ideb-esc-publica-5-ano-series-iniciais-2013_2015_2017_2019_2021.htm"
+                                                        target="_blank">IDEB - Escola pública - 5ª ano (séries iniciais)
+                                                        -
+                                                        2011/2013/2015/2017/2019/2021</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.9-indice-de-desenv-da-educ-basica-ideb-esc-publica-9-ano-series-finais-2013_2015_2017_2019_2021.htm"
+                                                        target="_blank">IDEB - Escola pública - 9ª ano (séries finais) -
+                                                        2011/2013/2015/2017/2019/2021</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.10-numero-de-matriculas-no-ensino-preescolar-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Número de Matrículas no Ensino Pré-escolar por
+                                                        Esfera Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.11-numero-de-matriculas-no-ensino-fundamental-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Número de Matrículas no Ensino Fundamental por
+                                                        Esfera Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.12-numero-de-matriculas-no-ensino-medio-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Número de Matrículas no Ensino Médio por Esfera
+                                                        Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.14-media-de-alunos-por-turma-por-nivel-de-ensino-2018-a-2022.htm"
+                                                        target="_blank">Média de Alunos por Turma por Nível de Ensino -
+                                                        2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.15-numero-de-docentes-no-ensino-preescolar-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Número de Docentes no Ensino Pré-escolar por
+                                                        Esfera Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.16-numero-de-docentes-no-ensino-fundamental-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Número de Docentes no Ensino Fundamental por
+                                                        Esfera Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.17-numero-de-docentes-no-ensino-medio-por-esfera-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Número de Docentes no Ensino Médio por Esfera
+                                                        Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.20-estabelecimentos-de-preescola-por-dependencia-administrativa-2017-a-2021.htm"
+                                                        target="_blank">Estabelecimentos de Pré-Escola por Dependência
+                                                        Administrativa - 2017 a
+                                                        2021</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.18-estabelecimentos-de-ensino-fundamental-por-dependencia-administrativa-2018-a-2022.htm"
+                                                        target="_blank">Estabelecimentos de Ensino Fundamental por
+                                                        Dependência Administrativa - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.1-educacao/tab-5.1.19-estabelecimentos-de-ensino-medio-por-dependencia-administrativa-2017-a-2021.htm"
+                                                        target="_blank">Estabelecimentos de Ensino Médio por Dependência
+                                                        Administrativa - 2018 a
+                                                        2022</a></li>
+                                </ul>
+                        </div><!-- fim secao sub menu -->
+                        <div class="espaco"></div><!-- intervalo entre links -->
+                        <div>
+                                <!-- secao sub menu -->
+                                <input type="radio" name="nome" id="check2" onclick="mudar()" /><!-- radio -->
+                                <label for="check2">Inclusão Social</label><!-- titulo sub menu -->
+                                <ul>
+                                        <li><a href="tabelas/social/5.2-inclusao-social/tab-5.2.1-familias-atendidas-e-valor-total-empregado-no-programa-bolsa-familia-2017-a-2021.htm"
+                                                        target="_blank">Famílias Atendidas e Valor Total Empregado no
+                                                        Programa Bolsa Família - 2017
+                                                        a 2021</a></li>
+                                        <li><a href="tabelas/social/5.2-inclusao-social/tab-5.2.2-total-de-familias-inscritas-no-cadastro-unico-para-programas-sociais-cadunico-2019-a-2023.htm"
+                                                        target="_blank">Total de Famílias Inscritas no Cadastro Único
+                                                        para Programas Sociais
+                                                        (CadÚnico) - 2019 a 2023</a></li>
+                                        <li><a href="tabelas/social/5.2-inclusao-social/tab-5.2.3-total-de-fam-insc-no-cadunico-com-rend-familiar-per-capita-de-ate-meio-salario-minimo-2019-a-2023.htm"
+                                                        target="_blank">Total de Famílias Inscritas no Cadastro Único
+                                                        para Programas Sociais
+                                                        (CadÚnico) com Rendimento Familiar per Capita de até 1/2 Salário
+                                                        Mínimo - 2019 a 2023</a>
+                                        </li>
+                                </ul>
+                        </div><!-- fim secao sub menu -->
+                        <div class="espaco"></div><!-- intervalo entre links -->
+                        <div>
+                                <!-- secao sub menu -->
+                                <input type="radio" name="nome" id="check3" onclick="mudar()" /><!-- radio -->
+                                <label for="check3">Mercado de Trabalho</label><!-- titulo sub menu -->
+                                <ul>
+                                        <li><a href="tabelas/social/5.3-mercado-de-trabalho/tab-5.3.1-vinculos-empregaticios-total-no-emprego-formal-2017-a-2021.htm"
+                                                        target="_blank">Vínculos Empregatícios Total no Emprego Formal -
+                                                        2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.3-mercado-de-trabalho/tab-5.3.2-vinculos-empregaticios-no-emprego-formal-por-sexo-2017-a-2021.htm"
+                                                        target="_blank">Vínculos Empregatícios no Emprego Formal por
+                                                        Sexo - 2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.3-mercado-de-trabalho/tab-5.3.1-vinculos-empregaticios-total-no-emprego-formal-2017-a-2021.htm"
+                                                        target="_blank">Vínculos Empregatícios no Emprego Formal por
+                                                        Grande Setor (IBGE) - 2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.3-mercado-de-trabalho/tab-5.3.4-vinculos-empregaticios-no-emprego-formal-por-setor-economico-2017-a-2021.htm"
+                                                        target="_blank">Vínculos Empregatícios no Emprego Formal por
+                                                        Setor Econômico - 2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.3-mercado-de-trabalho/tab-5.3.5-vinculos-empregaticios-por-escolaridade-do-trabalhador-formal-2017-a-2021.htm"
+                                                        target="_blank">Vínculos Empregatícios por Escolaridade do
+                                                        Trabalhador Formal - 2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.3-mercado-de-trabalho/tab-5.3.6-remuneraçao-media-rs-do-trabalhador-formal-2017-a-2021.htm"
+                                                        target="_blank">Remuneração Média (R$) do Trabalhador Formal -
+                                                        2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.3-mercado-de-trabalho/tab-5.3.7-remuneraçao-media-rs-do-trabalhador-formal-por-sexo-2017-a-2021.htm"
+                                                        target="_blank">Remuneração Média (R$) do Trabalhador Formal por
+                                                        Sexo - 2017 a 2021</a></li>
+                                </ul>
+                        </div><!-- fim secao sub menu -->
+                        <div class="espaco"></div><!-- intervalo entre links -->
+                        <div>
+                                <!-- secao sub menu -->
+                                <input type="radio" name="nome" id="check4" onclick="mudar()" /><!-- radio -->
+                                <label for="check4">Previdência Social</label><!-- titulo sub menu -->
+                                <ul>
+                                        <li><a href="tabelas/social/5.4-previdencia-social/tab-5.4.1-quantidade-de-beneficios-emitidos-em-dezembro-2018-a-2022.htm"
+                                                        target="_blank">Quantidade de Benefícios Emitidos em Dezembro -
+                                                        2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.4-previdencia-social/tab-5.4.2-valor-dos-beneficios-emitidos-em-dezembro-2018-a-2022.htm"
+                                                        target="_blank">Valor dos Benefícios Emitidos em Dezembro - 2017
+                                                        a 2022</a></li>
+                                        <li><a href="tabelas/social/5.4-previdencia-social/tab-5.4.3-valor-dos-beneficios-emitidos-2018-a-2022.htm"
+                                                        target="_blank">Valor dos Benefícios Emitidos - 2018 a 2022</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.4-previdencia-social/tab-5.4.4-beneficios-emitidos-pela-previdencia-social-2022.htm"
+                                                        target="_blank">Arrecadação e Benefícios Emitidos pela
+                                                        Previdência Social - 2022</a></li>
+                                </ul>
+                        </div><!-- fim secao sub menu -->
+                        <div class="espaco"></div><!-- intervalo entre links -->
+                        <div>
+                                <!-- secao sub menu -->
+                                <input type="radio" name="nome" id="check5" onclick="mudar()" /><!-- radio -->
+                                <label for="check5">Saúde</label><!-- titulo sub menu -->
+                                <ul>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.1-taxa-de-mortalidade-infantil-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Mortalidade Infantil - 2018 a 2022</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.2-taxa-de-mortalidade-na-infancia-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Mortalidade na Infância - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.3-taxa-de-mortalidade-materna-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Mortalidade Materna - 2018 a 2022</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.4-taxa-de-natalidade-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Natalidade - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.5-taxa-de-mortalidade-geral-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Mortalidade Geral - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.6-taxa-de-mortalidade-por-sexo-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Mortalidade por Sexo - 2018 a 2022</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.7-numero-de-hospitais-2019-a-2023.htm"
+                                                        target="_blank">Número de Hospitais - 2019 a 2023</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.8-postos-e-centros-de-saude-por-10.000-habitantes-2018-a-2022.htm"
+                                                        target="_blank">Número de Postos e Centros de Saúde por 10.000
+                                                        hab. - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.9-medicos-por-10-mil-habitantes-2018-a-2022.htm"
+                                                        target="_blank">Médicos por 10 mil hab. - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.10-leito-hospitalar-por-mil-habitantes-2018-a-2022.htm"
+                                                        target="_blank">Leito Hospitalar por mil habitantes- 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.11-percentual-de-nascidos-vivos-com-7-ou-mais-consultas-pre-natal-2018-a-2022.htm"
+                                                        target="_blank">Percentual de Nascidos Vivos com 7 ou Mais
+                                                        Consultas Pré-Natal - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.12-percentual-de-nascidos-vivos-por-parto-normal-2018-a-2022.htm"
+                                                        target="_blank">Percentual de Nascidos Vivos por Parto Normal -
+                                                        2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.5-taxa-de-mortalidade-geral-2018-a-2022.htm"
+                                                        target="_blank">Percentual de Nascidos Vivos por Parto Cesário -
+                                                        2018 a 2022 </a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.14-percentual-de-nascidos-vivos-de-maes-adolescentes-na-faixa-etaria-de-10-a-19-anos-2018-a-2022.htm"
+                                                        target="_blank">Percentual de Nascidos Vivos de Mães
+                                                        Adolescentes na Faixa Etária de 10 a 19
+                                                        anos - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.16-taxa-de-incidencia-da-hanseniase-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Incidência da Hanseníase - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.17-taxa-de-incidencia-da-tuberculose-2018-a-2022.htm"
+                                                        target="_blank">Taxa de Incidência da Tuberculose - 2018 a
+                                                        2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.19-proporcao-de-mulheres-de-25-a-64-anos-que-realizaram-exames-citopatologicos-do-colo-do-utero-2018-a-2022.htm"
+                                                        target="_blank">Proporção de Mulheres de 25 a 64 anos que
+                                                        Realizaram Exames Citopatológicos
+                                                        do Colo do Útero - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.20-obitos-por-residencia-neoplasias-tumores-2018-a-2022.htm"
+                                                        target="_blank">Óbitos por Residência Neoplasias (tumores) -
+                                                        2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.21-obitos-por-residencia-algumas-doencas-infecciosas-e-parasitarias-2018-a-2022.htm"
+                                                        target="_blank">Óbitos por Residência Algumas Doenças
+                                                        Infecciosas e Parasitárias - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.22-obitos-por-residencia-doencas-do-aparelho-circulatorio-2018-a-2022.htm"
+                                                        target="_blank">Óbitos por Residência Doenças do Aparelho
+                                                        Circulatório - 2018 a 2022</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.23-obitos-por-residencia-doencas-do-aparelho-digestivo-2018-a-2022.htm"
+                                                        target="_blank">Óbitos por Residência Doenças do Aparelho
+                                                        Digestivo - 2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.24-obitos-por-residencia-doencas-do-aparelho-respiratorio-2018-a-2022.htm"
+                                                        target="_blank">Óbitos por Residência Doenças do Aparelho
+                                                        Respiratório - 2018 a 2022</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.25-obitos-por-residencia-algumas-afeccoes-originadas-no-periodo-perinatal-2017-a-2021.htm"
+                                                        target="_blank">Óbitos por Residência Algumas Afecções
+                                                        Originadas no Período Perinatal -
+                                                        2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.26-percentual-de-obitos-por-infarto-agudo-do-miocardio-iam-2018-a-2022.htm"
+                                                        target="_blank">Percentual de Óbitos nas Internações por Infarto
+                                                        Agudo do Miocárdio (IAM) -
+                                                        2018 a 2022</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.27-taxa-de-cobertura-dos-acs-2016-a-2020-serie-encerrada.htm"
+                                                        target="_blank">Taxa de Proporção de Cobertura dos Agentes
+                                                        Comunitários de Saúde - 2016 a
+                                                        2020 (SERIE ENCERRADA)</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.27-taxa-de-cobertura-dos-acs-2016-a-2020-serie-encerrada.htm"
+                                                        target="_blank">Taxa de Proporção de Cobertura da Estratégia
+                                                        Saúde da Família - 2016 a 2020
+                                                        (SERIE ENCERRADA)</a></li>
+                                        <li><a href="tabelas/social/5.5-saude/tab-5.5.29-taxa-de-cobertura-da-aps-2021-a-2023.htm"
+                                                        target="_blank">Taxa de Cobertura da Atenção Primária à Saúde -
+                                                        2021 a 2023</a></li>
+                                </ul>
+                        </div><!-- fim secao sub menu -->
+                        <div class="espaco"></div><!-- intervalo entre links -->
+                        <div>
+                                <!-- secao sub menu -->
+                                <input type="radio" name="nome" id="check6" onclick="mudar()" /><!-- radio -->
+                                <label for="check6">Segurança</label><!-- titulo sub menu -->
+                                <ul>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.1-taxa-de-homicidios-total-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa de Homicídios Total (DATASUS) por 100.000
+                                                        habitantes - 2017 a 2021</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.2-taxa-de-homicidios-de-jovens-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa de Homicídios de Jovens (DATASUS) por
+                                                        100.000 habitantes - 2017 a
+                                                        2021</a></li>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.3-taxa-de-mortes-no-transito-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa de Mortes no Trânsito (DATASUS) por 100.000
+                                                        habitantes - 2017 a
+                                                        2021</a></li>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.4-taxa-do-crime-de-homicidio-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa do Crime de Homicídio (SEGUP) por 100.000
+                                                        habitantes - 2017 a 2021</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.5-taxa-do-crime-de-homicidio-no-transito-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa do Crime de Homicídio no Trânsito (SEGUP)
+                                                        por 100.000 habitantes - 2017
+                                                        a 2021</a></li>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.6-taxa-do-crime-de-roubo-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa do Crime de Roubo (SEGUP) por 100.000
+                                                        habitantes - 2017 a 2021</a></li>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.7-taxa-do-crime-de-latrocinio-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa do Crime de Latrocínio (SEGUP) por 100.000
+                                                        habitantes - 2017 a 2021</a>
+                                        </li>
+                                        <li><a href="tabelas/social/5.6-seguranca/tab-5.6.8-taxa-do-crime-de-lesao-corporal-seguida-de-morte-por-100.000-habitantes-2017-a-2021.htm"
+                                                        target="_blank">Taxa do Crime de Lesão Corporal Seguida de Morte
+                                                        (SEGUP) por 100.000
+                                                        habitantes - 2017 a 2021</a></li>
+      </div>
+    </div>
+  </div>
+  <!-- Main Content End -->
+
+  <!-- Footer Start -->
+  <footer id="footer" class="footer-main bg-dark text-light py-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Endereço</h5>
+          <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>Avenida Presidente Vargas, 670 Belém - PA</p>
+          <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Telefone:</strong> (91) 3323-2550</p>
+          <p class="mb-3"><i class="bi bi-clock me-2"></i><strong>Horário:</strong> 8h às 14h</p>
+          <div class="d-flex pt-2 gap-2">
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.instagram.com/fapespa/" target="_blank">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.facebook.com/fapespa/" target="_blank">
+              <i class="bi bi-facebook"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Produtos FAPESPA</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/anuario-estatistico-do-para-2/" target="_blank">Anuário Estatístico</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/radar-de-indicadores-das-ri/" target="_blank">Radar de Indicadores</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/" target="_blank">FAPESPA</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.pa.gov.br/" target="_blank">Governo do Estado do Pará</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="index.html">Home Radar</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">FAPESPA</h5>
+          <p class="text-light">Fundação Amazônia de Amparo a Estudos e Pesquisas</p>
+        </div>
+      </div>
+      <div class="border-top border-secondary mt-5 pt-4 text-center">
+        <p class="text-light mb-0">&copy; <strong>Radar 2024</strong> - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Back to Top Button -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" id="btnTop">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/parallax/parallax.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

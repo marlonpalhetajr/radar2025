@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossário - Radar 2024</title>
+  <meta name="description" content="Glossário de termos - Radar de Indicadores das Regiões de Integração">
+  <meta name="keywords" content="Glossário, Radar, FAPESPA">
+
+  <!-- Favicon -->
+  <link href="img/fapespa2.png" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <h5 class="m-0 text-primary fw-bold">Radar 2024</h5>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ms-auto p-4 p-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#indicadores">Indicadores</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#footer">Contato</a></li>
+        <li class="nav-item">
+          <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+            ♿ Acessibilidade
+          </button>
+          <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+            <div class="acess-section-title">Visão</div>
+            <div class="acess-row">
+              <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+              <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+            </div>
+            <div class="acess-section-title">Tamanho da Fonte</div>
+            <div class="acess-row">
+              <button id="font-dec" class="acess-control" type="button">A-</button>
+              <button id="font-reset" class="acess-control" type="button">A</button>
+              <button id="font-inc" class="acess-control" type="button">A+</button>
+            </div>
+            <div class="acess-section-title">Geral</div>
+            <div class="acess-row">
+              <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Main Content Start -->
+  <div id="indicadores" class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+      <h1 class="display-5 mb-4">Glossário</h1>
+      <div class="accordion" id="accordionExample">
+
+        <!-- ÁREAS PROTEGIDAS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <strong>ÁREAS PROTEGIDAS</strong>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Áreas naturais e semi-naturais definidas geograficamente, regulamentadas, administradas e/ou manejadas com objetivos de conservação e uso sustentável da biodiversidade.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BALANÇA COMERCIAL -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <strong>BALANÇA COMERCIAL</strong>
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Resulta da agregação da balança de bens e da balança de serviços, as duas componentes da balança corrente. A balança comercial registra, portanto, as importações e as exportações de bens e serviços.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- DISTORÇÃO IDADE-SÉRIE -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <strong>DISTORÇÃO IDADE-SÉRIE</strong>
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>É a proporção de alunos com mais de 2 anos de atraso escolar.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FUNDEB -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading4">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+              <strong>FUNDEB</strong>
+            </button>
+          </h2>
+          <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Fundo de Manutenção e Desenvolvimento da Educação Básica e de Valorização dos Profissionais da Educação.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ICMS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+              <strong>ICMS</strong>
+            </button>
+          </h2>
+          <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Imposto sobre operações relativas à circulação de mercadorias e sobre prestações de serviços de transporte interestadual e intermunicipal e de comunicação.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- INCREMENTO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading6">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+              <strong>INCREMENTO</strong>
+            </button>
+          </h2>
+          <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Crescimento/acréscimo em relação ao período anterior.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÍNDICE DE ENVELHECIMENTO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading7">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+              <strong>ÍNDICE DE ENVELHECIMENTO</strong>
+            </button>
+          </h2>
+          <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de pessoas de 60 e mais anos de idade, para cada 100 pessoas menores de 15 anos de idade, na população residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÍNDICES DE PARTICIPAÇÃO DOS MUNICÍPIOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading8">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+              <strong>ÍNDICES DE PARTICIPAÇÃO DOS MUNICÍPIOS</strong>
+            </button>
+          </h2>
+          <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>O índice de participação dos municípios representa um índice percentual, pertencente a cada município, a ser aplicado em 25% do montante da arrecadação do ICMS. É esse índice que permite ao Estado entregar as quotas-partes dos municípios referentes as receitas do ICMS, conforme está previsto na legislação vigente.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- IPI -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading9">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+              <strong>IPI</strong>
+            </button>
+          </h2>
+          <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Imposto sobre produtos industrializados.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- IPVA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading10">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+              <strong>IPVA</strong>
+            </button>
+          </h2>
+          <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Imposto sobre a propriedade de veículos automotores.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAVOURA PERMANENTE -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading11">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+              <strong>LAVOURA PERMANENTE</strong>
+            </button>
+          </h2>
+          <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="heading11"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Compreendeu a área plantada ou em preparo para o plantio de culturas de longa duração, que após a colheita não necessitassem de novo plantio, produzindo por vários anos sucessivos. Foram incluídas nesta categoria as áreas ocupadas por viveiros de mudas de culturas permanentes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAVOURA TEMPORÁRIA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading12">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+              <strong>LAVOURA TEMPORÁRIA</strong>
+            </button>
+          </h2>
+          <div id="collapse12" class="accordion-collapse collapse" aria-labelledby="heading12"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Abrangeu as áreas plantadas ou em preparo para o plantio de culturas de curta duração (via de regra, menor que um ano) e que necessitassem, geralmente de novo plantio após cada colheita, incluíram-se também nesta categoria as áreas das plantas forrageiras destinadas ao corte.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUTO INTERNO BRUTO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading13">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse13">
+              <strong>PRODUTO INTERNO BRUTO</strong>
+            </button>
+          </h2>
+          <div id="collapse13" class="accordion-collapse collapse" aria-labelledby="heading13"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Valor médio agregado por indivíduo, em moeda corrente e a preços de mercado, dos bens e serviços finais produzidos em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROPORÇÃO DE IDOSOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading14">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse14" aria-expanded="false" aria-controls="collapse14">
+              <strong>PROPORÇÃO DE IDOSOS</strong>
+            </button>
+          </h2>
+          <div id="collapse14" class="accordion-collapse collapse" aria-labelledby="heading14"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Percentual de pessoas com 60 e mais anos de idade, na população total residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RAZÃO DE DEPENDÊNCIA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading15">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse15" aria-expanded="false" aria-controls="collapse15">
+              <strong>RAZÃO DE DEPENDÊNCIA</strong>
+            </button>
+          </h2>
+          <div id="collapse15" class="accordion-collapse collapse" aria-labelledby="heading15"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Razão de dependência é medida pela razão entre o número de pessoas com 14 anos ou menos e de 65 anos ou mais de idade (população dependente) e o número de pessoas com idade de 15 a 64 anos (população potencialmente ativa) multiplicado por 100.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROPORÇÃO DE MULHERES DE 25 A 64 ANOS QUE REALIZARAM EXAMES CITOPATOLÓGICOS DO COLO DO ÚTERO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading16">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse16" aria-expanded="false" aria-controls="collapse16">
+              <strong>PROPORÇÃO DE MULHERES DE 25 A 64 ANOS QUE REALIZARAM EXAMES CITOPATOLÓGICOS DO COLO DO ÚTERO</strong>
+            </button>
+          </h2>
+          <div id="collapse16" class="accordion-collapse collapse" aria-labelledby="heading16"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Relação entre o número de exames citopatológicos do colo do útero, realizados e pagos pelo SUS, em mulheres de 25 a 64 anos residentes em um município; e a população feminina de mesma faixa etária, residente no mesmo município.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RAZÃO DE SEXOS -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading17">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse17" aria-expanded="false" aria-controls="collapse17">
+              <strong>RAZÃO DE SEXOS</strong>
+            </button>
+          </h2>
+          <div id="collapse17" class="accordion-collapse collapse" aria-labelledby="heading17"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de homens para cada grupo de 100 mulheres, na população residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECEITA CORRENTES -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading18">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse18" aria-expanded="false" aria-controls="collapse18">
+              <strong>RECEITA CORRENTES</strong>
+            </button>
+          </h2>
+          <div id="collapse18" class="accordion-collapse collapse" aria-labelledby="heading18"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Constituída pelas receitas tributária, de contribuições, patrimonial, agropecuária, industrial, de serviços e outras e, ainda, as provenientes de recursos financeiros recebidos de outras pessoas de direito público ou privado, quando destinadas a atender despesas classificáveis em Despesas Correntes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECEITA ORÇAMENTÁRIA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading19">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse19" aria-expanded="false" aria-controls="collapse19">
+              <strong>RECEITA ORÇAMENTÁRIA</strong>
+            </button>
+          </h2>
+          <div id="collapse19" class="accordion-collapse collapse" aria-labelledby="heading19"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>É a receita total dos municípios.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECEITA TRIBUTÁRIA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading20">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse20" aria-expanded="false" aria-controls="collapse20">
+              <strong>RECEITA TRIBUTÁRIA</strong>
+            </button>
+          </h2>
+          <div id="collapse20" class="accordion-collapse collapse" aria-labelledby="heading20"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>São os ingressos provenientes da arrecadação de impostos, taxas e contribuições de melhoria. É receita privativa das entidades investidas do poder de tributar: União, Estados, Distrito Federal e Municípios.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SALDO DA BALANÇA COMERCIAL -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading21">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse21" aria-expanded="false" aria-controls="collapse21">
+              <strong>SALDO DA BALANÇA COMERCIAL</strong>
+            </button>
+          </h2>
+          <div id="collapse21" class="accordion-collapse collapse" aria-labelledby="heading21"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>É a diferença entre o total de exportações e importações de bens e serviços em um determinado período.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE APROVAÇÃO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading22">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse22" aria-expanded="false" aria-controls="collapse22">
+              <strong>TAXA DE APROVAÇÃO</strong>
+            </button>
+          </h2>
+          <div id="collapse22" class="accordion-collapse collapse" aria-labelledby="heading22"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>É o percentual de alunos por nível de ensino que preencheram os requisitos mínimos em aproveitamento e frequência, previstos em legislação, em relação ao total de alunos matriculados nesse nível de ensino no final do ano letivo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE ABANDONO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading23">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse23" aria-expanded="false" aria-controls="collapse23">
+              <strong>TAXA DE ABANDONO</strong>
+            </button>
+          </h2>
+          <div id="collapse23" class="accordion-collapse collapse" aria-labelledby="heading23"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>É a proporção de alunos por nível de ensino que abandonaram os estudos em relação ao total de alunos matriculados nesse nível de ensino no fim do ano letivo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE FECUNDIDADE TOTAL -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading24">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse24" aria-expanded="false" aria-controls="collapse24">
+              <strong>TAXA DE FECUNDIDADE TOTAL</strong>
+            </button>
+          </h2>
+          <div id="collapse24" class="accordion-collapse collapse" aria-labelledby="heading24"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número médio de filhos nascidos vivos, tidos por uma mulher ao final do seu período reprodutivo, na população residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE HOMICÍDIO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading25">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse25" aria-expanded="false" aria-controls="collapse25">
+              <strong>TAXA DE HOMICÍDIO</strong>
+            </button>
+          </h2>
+          <div id="collapse25" class="accordion-collapse collapse" aria-labelledby="heading25"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de óbitos por homicídio, pela população residente em determinado espaço geográfico, no ano considerado. Divido por cem mil.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE INCIDÊNCIA DA HANSENÍASE -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading26">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse26" aria-expanded="false" aria-controls="collapse26">
+              <strong>TAXA DE INCIDÊNCIA DA HANSENÍASE</strong>
+            </button>
+          </h2>
+          <div id="collapse26" class="accordion-collapse collapse" aria-labelledby="heading26"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de casos novos diagnosticado de hanseníase (código A30 da CID-10), por 10 mil habitantes, na população residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE INCIDÊNCIA DA TUBERCULOSE -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading27">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse27" aria-expanded="false" aria-controls="collapse27">
+              <strong>TAXA DE INCIDÊNCIA DA TUBERCULOSE</strong>
+            </button>
+          </h2>
+          <div id="collapse27" class="accordion-collapse collapse" aria-labelledby="heading27"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de casos confirmados de tuberculose (todas as formas), por 100 mil habitantes, em determinado espaço geográfico e no ano considerado (códigos A15 a A19 da CID-10).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE MORTALIDADE GERAL -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading28">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse28" aria-expanded="false" aria-controls="collapse28">
+              <strong>TAXA DE MORTALIDADE GERAL</strong>
+            </button>
+          </h2>
+          <div id="collapse28" class="accordion-collapse collapse" aria-labelledby="heading28"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Definido pelo número do total de óbitos ocorridos em todas as idades pela população de uma dada área e multiplicando-se por mil.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE MORTALIDADE INFANTIL -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading29">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse29" aria-expanded="false" aria-controls="collapse29">
+              <strong>TAXA DE MORTALIDADE INFANTIL</strong>
+            </button>
+          </h2>
+          <div id="collapse29" class="accordion-collapse collapse" aria-labelledby="heading29"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de óbitos de crianças menores de um ano pelo número de nascidos vivos e multiplicando-se por mil.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE MORTALIDADE MATERNA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading30">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse30" aria-expanded="false" aria-controls="collapse30">
+              <strong>TAXA DE MORTALIDADE MATERNA</strong>
+            </button>
+          </h2>
+          <div id="collapse30" class="accordion-collapse collapse" aria-labelledby="heading30"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Definida pelo número de óbitos de mulheres residentes, por condições consideradas de morte materna, pelo número de nascidos vivos e multiplicando-se por cem mil.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE MORTALIDADE NA INFÂNCIA -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading31">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse31" aria-expanded="false" aria-controls="collapse31">
+              <strong>TAXA DE MORTALIDADE NA INFÂNCIA</strong>
+            </button>
+          </h2>
+          <div id="collapse31" class="accordion-collapse collapse" aria-labelledby="heading31"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de óbitos de menores de cinco anos de idade, por mil nascidos vivos, na população residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE MORTALIDADE POR SEXO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading32">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse32" aria-expanded="false" aria-controls="collapse32">
+              <strong>TAXA DE MORTALIDADE POR SEXO</strong>
+            </button>
+          </h2>
+          <div id="collapse32" class="accordion-collapse collapse" aria-labelledby="heading32"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de óbitos em um determinado sexo pela população total do mesmo determinado sexo, multiplicando-se por mil.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE NATALIDADE -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading33">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse33" aria-expanded="false" aria-controls="collapse33">
+              <strong>TAXA DE NATALIDADE</strong>
+            </button>
+          </h2>
+          <div id="collapse33" class="accordion-collapse collapse" aria-labelledby="heading33"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número de nascidos vivos, por mil habitantes, na população residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA DE REPROVAÇÃO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading34">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse34" aria-expanded="false" aria-controls="collapse34">
+              <strong>TAXA DE REPROVAÇÃO</strong>
+            </button>
+          </h2>
+          <div id="collapse34" class="accordion-collapse collapse" aria-labelledby="heading34"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>É a proporção de alunos por nível de ensino que não preencheram os requisitos mínimos em aproveitamento e frequência, previstos em legislação, em relação ao total de alunos matriculados nesse nível de ensino no fim do ano letivo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAXA ESPECÍFICA DE FECUNDIDADE -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading35">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse35" aria-expanded="false" aria-controls="collapse35">
+              <strong>TAXA ESPECÍFICA DE FECUNDIDADE</strong>
+            </button>
+          </h2>
+          <div id="collapse35" class="accordion-collapse collapse" aria-labelledby="heading35"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>Número médio de filhos nascidos vivos, tidos por uma mulher, por faixa etária específica do período reprodutivo, na população residente em determinado espaço geográfico, no ano considerado.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNIDADES DE CONSERVAÇÃO -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading36">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse36" aria-expanded="false" aria-controls="collapse36">
+              <strong>UNIDADES DE CONSERVAÇÃO</strong>
+            </button>
+          </h2>
+          <div id="collapse36" class="accordion-collapse collapse" aria-labelledby="heading36"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <ul>
+                <li>É o espaço territorial e seus recursos ambientais, incluindo as águas jurisdicionais, com características naturais relevantes, legalmente instituído pelo Poder Público, nas três esferas (municipal, estadual e federal), com objetivos de conservação e limites definidos, sob regime especial de administração, ao qual se aplicam garantias adequadas de proteção.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Main Content End -->
+
+  <!-- Footer Start -->
+  <footer id="footer" class="footer-main bg-dark text-light py-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Endereço</h5>
+          <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>Avenida Presidente Vargas, 670 Belém - PA</p>
+          <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Telefone:</strong> (91) 3323-2550</p>
+          <p class="mb-3"><i class="bi bi-clock me-2"></i><strong>Horário:</strong> 8h às 14h</p>
+          <div class="d-flex pt-2 gap-2">
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.instagram.com/fapespa/" target="_blank">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.facebook.com/fapespa/" target="_blank">
+              <i class="bi bi-facebook"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Produtos FAPESPA</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/anuario-estatistico-do-para-2/" target="_blank">Anuário Estatístico</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/radar-de-indicadores-das-ri/" target="_blank">Radar de Indicadores</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/" target="_blank">FAPESPA</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.pa.gov.br/" target="_blank">Governo do Estado do Pará</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="index.html">Home Radar</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">FAPESPA</h5>
+          <p class="text-light">Fundação Amazônia de Amparo a Estudos e Pesquisas</p>
+        </div>
+      </div>
+      <div class="border-top border-secondary mt-5 pt-4 text-center">
+        <p class="text-light mb-0">&copy; <strong>Radar 2024</strong> - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Back to Top Button -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" id="btnTop">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/parallax/parallax.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

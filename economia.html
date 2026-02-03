@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Economia - Radar de Indicadores | FAPESPA</title>
+  <meta name="description" content="Indicadores de Economia do Radar 2024">
+  <meta name="keywords" content="Economia, Indicadores, Radar, FAPESPA">
+
+  <!-- Favicon -->
+  <link href="img/fapespa2.png" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <h5 class="m-0 text-primary fw-bold">Radar 2024</h5>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ms-auto p-4 p-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#indicadores">Indicadores</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#footer">Contato</a></li>
+        <li class="nav-item">
+          <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+            ♿ Acessibilidade
+          </button>
+          <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+            <div class="acess-section-title">Visão</div>
+            <div class="acess-row">
+              <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+              <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+            </div>
+            <div class="acess-section-title">Tamanho da Fonte</div>
+            <div class="acess-row">
+              <button id="font-dec" class="acess-control" type="button">A-</button>
+              <button id="font-reset" class="acess-control" type="button">A</button>
+              <button id="font-inc" class="acess-control" type="button">A+</button>
+            </div>
+            <div class="acess-section-title">Geral</div>
+            <div class="acess-row">
+              <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Main Content Start -->
+  <div id="indicadores" class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+      <h1 class="display-5 mb-4">Economia</h1>
+      <!-- secao texto -->
+
+      <!-- <p>
+          &emsp;&emsp;&emsp;&emsp;A temática Economia discorrerá acerca dos
+          indicadores: Agricultura (lavouras temporária e permanente), Pecuária,
+          Extração Vegetal, Produto Interno Bruto – PIB, Balança Comercial e
+          Finanças Públicas.<br />
+          &emsp;&emsp;&emsp;&emsp;Os dados na Agricultura (lavouras temporária e
+          permanente) e na Extração Vegetal mostrarão os insumos produzidos,
+          assim como esclarecimentos sobre área plantada e colhida, valor de
+          produção, quantidade produzida, e rendimento médio. O Pará lidera na
+          produção de açaí, cacau, dendê, mandioca e abacaxi. Na Pecuária,
+          destaca-se por possuir o maior rebanho bubalino entre as Unidades
+          Federativas com cerca de 547 mil cabeças, e detém o 4º maior rebanho
+          bovino do Brasil (PPM – IBGE, 2019).<br />
+          &emsp;&emsp;&emsp;&emsp;No subtema PIB são explicitados os resultados
+          do Valor Adicionado Total e segundo os três setores econômicos
+          (Agropecuária, Indústria, Serviços) e para a Administração pública, os
+          Impostos e o PIB per capita, desagregados a nível municipal. Em 2018,
+          o Pará registrou um crescimento real do PIB de 3%, cujo valor foi R$
+          161,3 bilhões representando 2,3% do PIB Nacional. Além disso, é
+          responsável por 42% do PIB da Região Norte ocupando o 1º lugar, e um
+          PIB per capita de R$ 18.952,00. Belém e Parauapebas foram os
+          municípios que mais contribuíram com o PIB Estadual durante o período
+          observado.<br />
+          &emsp;&emsp;&emsp;&emsp;A Balança Comercial exibe dados sobre
+          exportações, importações e saldo, observando a série dos últimos cinco
+          anos, o Pará manteve saldo positivo em sua balança comercial e ocupou
+          o 1º lugar no ranking brasileiro contribuindo com R$ 19,4 bilhões para
+          a economia nacional (MDIC - Alice Web, 2020). E na área de Finanças
+          Públicas, o Anuário destaca referências a respeito das Receitas
+          municipais, Impostos e Repasses de ICMS, IPI, IPVA, FUNDEB e FPM.<br />
+        </p> -->
+      <!-- paragrafo -->
+    </section>
+    <!-- fim secao texto -->
+    <nav id="item">
+      <!-- menu de links -->
+      <div>
+        <!-- secao sub menu -->
+        <input type="radio" name="nome" id="check1" onclick="mudar()" /><!-- radio -->
+        <label for="check1">Agricultura - Lavoura Permanente</label><!-- titulo sub menu -->
+        <ul>
+          <li>
+            <a href="tabelas/economia/2.1.1-lavoura-permanente/tab-2.1.1.1-area-destinada-a-colheita-hectares-da-lavoura-permanente-2018-a-2022.htm"
+              target="_blank">Área Destinada à Colheita (Hectares) da Lavoura Permanente -
+              2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.1-lavoura-permanente/tab-2.1.1.2-area-colhida-hectares-da-lavoura-permanente-2018-a-2022.htm"
+              target="_blank">Área Colhida (Hectares) da Lavoura Permanente - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.1-lavoura-permanente/tab-2.1.1.3-quantidade-produzida-por-tipo-de-lavoura-permanente-2018-a-2022.htm"
+              target="_blank">Quantidade Produzida por Tipo de Lavoura Permanente - 2018 a
+              2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.1-lavoura-permanente/tab-2.1.1.4-valor-da-producao-em-mil-reais-por-tipo-de-lavoura-permanente-2018-a-2022.htm"
+              target="_blank">Valor da Produção (em mil reais) por Tipo de Lavoura Permanente
+              - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.1-lavoura-permanente/tab-2.1.1.5-rendimento-medio-da-producao-da-lavoura-permanente-2018-a-2022.htm"
+              target="_blank">Rendimento Médio da Produção da Lavoura Permanente - 2018 a
+              2022</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fim secao sub menu -->
+      <div class="espaco"></div>
+      <!-- intervalo entre links -->
+      <div>
+        <!-- secao sub menu -->
+        <input type="radio" name="nome" id="check2" onclick="mudar()" /><!-- radio -->
+        <label for="check2">Agricultura - Lavoura Temporária</label><!-- titulo sub menu -->
+        <ul>
+          <li>
+            <a href="tabelas/economia/2.1.2-lavoura-temporaria/tab-2.1.2.1-area-plantada-em-hectares-por-tipo-de-lavoura-temporaria-2018-a-2022.htm"
+              target="_blank">Área Plantada (em hectares) por Tipo de Lavoura Temporária -
+              2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.2-lavoura-temporaria/tab-2.1.2.2-area-colhida-em-hectares-por-tipo-de-lavoura-temporaria-2018-a-2022.htm"
+              target="_blank">Área Colhida (em hectares) por Tipo de Lavoura Temporária -
+              2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.2-lavoura-temporaria/tab-2.1.2.3-quantidade-produzida-por-tipo-de-lavoura-temporaria-20178-a-2022.htm"
+              target="_blank">Quantidade Produzida por Tipo de Lavoura Temporária - 2018 a
+              2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.2-lavoura-temporaria/tab-2.1.2.4-valor-mil-reais-da-producao-por-tipo-de-lavoura-temporaria-2018-a-2022.htm"
+              target="_blank">Valor (Mil Reais) da Produção por Tipo de Lavoura Temporária -
+              2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.1.2-lavoura-temporaria/tab-2.1.2.5-rendimento-medio-da-producao-por-tipo-de-lavoura-temporaria-2018-a-2022.htm"
+              target="_blank">Rendimento Médio da Produção por Tipo de Lavoura Temporária -
+              2018 a 2022</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fim secao sub menu -->
+      <div class="espaco"></div>
+      <!-- intervalo entre links -->
+      <div>
+        <!-- secao sub menu -->
+        <input type="radio" name="nome" id="check3" onclick="mudar()" /><!-- radio -->
+        <label for="check3">Pecuária</label><!-- titulo sub menu -->
+        <ul>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.1-efetivo-de-rebanho-bovino-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho bovino, Pará e municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.2-efetivo-de-rebanho-bubalino-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Bubalino, Pará e municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.3-efetivo-de-rebanho-equino-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Equino, Pará e municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.4-efetivo-de-rebanho-suino-total-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Suíno (Total), Pará e municípios - 2018 a
+              2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.5-efetivo-de-rebanho-suinos-matrizes-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Suínos (Matrizes), Pará e municípios - 2018
+              a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.6-efetivo-de-rebanho-caprino-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Caprino, Pará e municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.7-efetivo-de-rebanho-ovino-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Ovino, Pará e municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.8-efetivo-de-rebanho-galinaceos-total-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Galináceos (Total), Pará e municípios - 2018
+              a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.9-efetivo-de-rebanho-galinaceos-galinhas-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Galináceos (Galinhas), Pará e municípios -
+              2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.10-efetivo-de-rebanho-codornas-2018-a-2022.htm"
+              target="_blank">Efetivo de Rebanho Codornas, Pará e municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.11-producao-de-origem-animal-leite-mil-litros-2018-a-2022.htm"
+              target="_blank">Produção de Origem Animal Leite (Mil litros), Pará e municípios
+              - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.12-producao-de-origem-animal-ovos-de-galinha-mil-duzias-2018-a-2022.htm"
+              target="_blank">Produção de Origem Animal Ovos de galinha (Mil dúzias), Pará e
+              municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.13-producao-de-origem-animal-ovos-de-codorna-mil-duzias-2018-a-2022.htm"
+              target="_blank">Produção de Origem Animal Ovos de codorna (Mil dúzias), Pará e
+              municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.2-pecuaria/tab-2.2.14-producao-de-origem-animal-mel-de-abelha-quilogramas-2018-a-2022.htm"
+              target="_blank">Produção de Origem Animal Mel de abelha (Quilogramas), Pará e
+              municípios - 2018 a 2022</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fim secao sub menu -->
+      <div class="espaco"></div>
+      <!-- intervalo entre links -->
+      <div>
+        <!-- secao sub menu -->
+        <input type="radio" name="nome" id="check4" onclick="mudar()" /><!-- radio -->
+        <label for="check4">Extração Vegetal</label><!-- titulo sub menu -->
+        <ul>
+          <li>
+            <a href="tabelas/economia/2.3-extracao-vegetal/tab-2.3.1-quantidade-produzida-na-extracao-vegetal-por-tipo-de-produto-extrativo-2018-a-2022.htm"
+              target="_blank">Quantidade Produzida na Extração Vegetal, por Tipo de Produto
+              Extrativo - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.3-extracao-vegetal/tab-2.3.2-valor-mil-reais-da-producao-na-extracao-vegetal-por-tipo-de-produto-extrativo-2018-a-2022.htm"
+              target="_blank">Valor (Mil Reais) da Produção na Extração Vegetal, por Tipo de
+              Produto Extrativo - 2018 a 2022</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fim secao sub menu -->
+      <div class="espaco"></div>
+      <!-- intervalo entre links -->
+      <div>
+        <!-- secao sub menu -->
+        <input type="radio" name="nome" id="check5" onclick="mudar()" /><!-- radio -->
+        <label for="check5">PIB</label><!-- titulo sub menu -->
+        <ul>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-1-produto-interno-bruto-a-precos-correntes-mil-reais-2016-a-2020.htm"
+              target="_blank">Produto Interno Bruto a Preços Correntes (Mil Reais) - 2016 a
+              2020</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-2-va-bruto-a-precos-correntes-total-mil-reais-2016-a-2020.htm"
+              target="_blank">Valor Adicionado Bruto a Preços Correntes Total (Mil Reais) -
+              2016 a 2020</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-3-va-bruto-a-precos-correntes-da-agropecuaria-mil-reais-2016-a-2020.htm"
+              target="_blank">Valor Adicionado Bruto a Preços Correntes da Agropecuária (Mil
+              Reais) - 2016 a 2020</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-4-va-bruto-a-precos-correntes-da-industria-mil-reais-2016-a-2020.htm"
+              target="_blank">Valor Adicionado Bruto a Preços Correntes da Indústria (Mil
+              Reais) - 2016 a 2020</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-5-va-bruto-a-precos-correntes-dos-serv-exclus-admin-saude-e-educ-pub-e-segur-soc-mil-reais-2016-a-2020.htm"
+              target="_blank">Valor Adicionado Bruto a Preços Correntes dos Serviços,
+              Exclusive Administração, Saúde e Educação Públicas e Seguridade
+              Social (Mil Reais) - 2016 a 2020</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-6-va-bruto-a-precos-correntes-da-admin-saude-e-educ-pub-e-segur-soc-mil-reais-2016-a-2020.htm"
+              target="_blank">Valor Adicionado Bruto a Preços Correntes da Administração,
+              Saúde e Educação Públicas e Seguridade Social (Mil Reais) - 2016
+              a 2020</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-7-impostos-liquidos-de-subsidios-sobre-produtos-a-precos-correntes-mil-reais-2016-a-2020.htm"
+              target="_blank">Impostos, Líquidos de Subsídios, sobre Produtos a Preços
+              Correntes (Mil Reais) - 2016 a 2020</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.4-pib/tab-2-4-8-evolucao-do-produto-interno-bruto-per-capita-dos-municipios-paraenses-2016-a-2020.htm"
+              target="_blank">Evolução do Produto Interno Bruto per Capita dos Municípios
+              Paraenses - 2016 a 2020</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fim secao sub menu -->
+      <div class="espaco"></div>
+      <!-- intervalo entre links -->
+      <div>
+        <!-- secao sub menu -->
+        <input type="radio" name="nome" id="check6" onclick="mudar()" /><!-- radio -->
+        <label for="check6">Balança Comercial</label><!-- titulo sub menu -->
+        <ul>
+          <li>
+            <a href="tabelas/economia/2.5-balanca-comercial/tab-2.5.1-balanca-comercial-exportacao-2018-a-2022.htm"
+              target="_blank">Balança Comercial - Exportação, Pará e municípios - 2018 a
+              2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.5-balanca-comercial/tab-2.5.2-balanca-comercial-importacao-2018-a-2022.htm"
+              target="_blank">Balança Comercial - Importação, Pará e municípios - 2018 a
+              2021</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.5-balanca-comercial/tab-2.5.3-saldo-da-balanca-comercial-2018-a-2022.htm"
+              target="_blank">Saldo da Balança Comercial, Pará e municípios - 2018 a 2022</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fim secao sub menu -->
+      <div class="espaco"></div>
+      <!-- intervalo entre links -->
+      <div>
+        <!-- secao sub menu -->
+        <input type="radio" name="nome" id="check7" onclick="mudar()" /><!-- radio -->
+        <label for="check7">Finanças Públicas</label><!-- titulo sub menu -->
+        <ul>
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.1-repasse-de-icms-dos-municipios-do-para-2018-a-2022.htm"
+              target="_blank">Repasse de ICMS dos Municípios do Pará - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.2-demonstrativo-dos-indices-de-participacao-na-arrecadacao-do-icms-2018-a-2022.htm"
+              target="_blank">Demonstrativo dos Índices de Participação na Arrecadação do
+              ICMS - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.3-repasse-de-ipi-dos-municipios -do-para-2018-a-2022.htm"
+              target="_blank">Repasse de IPI dos Municípios do Pará- 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.4-repasse-de-ipva--dos-municipios-do-para-2018-a-2022.htm"
+              target="_blank">Repasse de IPVA dos Municípios do Pará- 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.5-receita-orcamentaria-para-e-municipios-2018-a-2022.htm"
+              target="_blank">Receita Orçamentária, Pará e Municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.6-receitas-correntes-para-e-municipios-2018-a-2022.htm"
+              target="_blank">Receitas Correntes, Pará e Municípios - 2018 a 2022</a>
+          </li>
+          <!-- <li><a href="tabelas/economia/2.6-financas-publicas/tab-2.6.7-receita-tributaria-para-e-municipios-2015-a-2019.htm" target="_blank">Receita Tributária - 2015 a 2019</a></li> -->
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.8-impostos-para-e-municipios-2018-a-2022.htm"
+              target="_blank">Impostos, Pará e Municípios - 2018 a 2022</a>
+          </li>
+          <li>
+            <a href="tabelas/economia/2.6-financas-publicas/tab-2.6.9-receita-de-transferencias-correntes-para-e-municipios-2018-a-2022-ok.htm"
+              target="_blank">Receita de Transferências Correntes, Pará e Municípios - 2018 a
+              2022</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fim secao sub menu -->
+      </div>
+    </div>
+  </div>
+  <!-- Main Content End -->
+
+  <!-- Footer Start -->
+  <footer id="footer" class="footer-main bg-dark text-light py-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Endereço</h5>
+          <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>Avenida Presidente Vargas, 670 Belém - PA</p>
+          <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Telefone:</strong> (91) 3323-2550</p>
+          <p class="mb-3"><i class="bi bi-clock me-2"></i><strong>Horário:</strong> 8h às 14h</p>
+          <div class="d-flex pt-2 gap-2">
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.instagram.com/fapespa/" target="_blank">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.facebook.com/fapespa/" target="_blank">
+              <i class="bi bi-facebook"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Produtos FAPESPA</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/anuario-estatistico-do-para-2/" target="_blank">Anuário Estatístico</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/radar-de-indicadores-das-ri/" target="_blank">Radar de Indicadores</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/" target="_blank">FAPESPA</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.pa.gov.br/" target="_blank">Governo do Estado do Pará</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="index.html">Home Radar</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">FAPESPA</h5>
+          <p class="text-light">Fundação Amazônia de Amparo a Estudos e Pesquisas</p>
+        </div>
+      </div>
+      <div class="border-top border-secondary mt-5 pt-4 text-center">
+        <p class="text-light mb-0">&copy; <strong>Radar 2024</strong> - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Back to Top Button -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" id="btnTop">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/parallax/parallax.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

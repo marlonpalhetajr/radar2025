@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meio Ambiente - Radar de Indicadores | FAPESPA</title>
+  <meta name="description" content="Indicadores de Meio Ambiente do Radar 2024">
+  <meta name="keywords" content="Meio Ambiente, Indicadores, Radar, FAPESPA">
+
+  <!-- Favicon -->
+  <link href="img/fapespa2.png" rel="icon">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+      <h5 class="m-0 text-primary fw-bold">Radar 2024</h5>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ms-auto p-4 p-lg-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#indicadores">Indicadores</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#footer">Contato</a></li>
+        <li class="nav-item">
+          <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+            ♿ Acessibilidade
+          </button>
+          <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+            <div class="acess-section-title">Visão</div>
+            <div class="acess-row">
+              <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+              <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+            </div>
+            <div class="acess-section-title">Tamanho da Fonte</div>
+            <div class="acess-row">
+              <button id="font-dec" class="acess-control" type="button">A-</button>
+              <button id="font-reset" class="acess-control" type="button">A</button>
+              <button id="font-inc" class="acess-control" type="button">A+</button>
+            </div>
+            <div class="acess-section-title">Geral</div>
+            <div class="acess-row">
+              <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Main Content Start -->
+  <div id="indicadores" class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+      <h1 class="display-5 mb-4">Meio Ambiente</h1>
+                        <!-- secao texto -->
+                        <!-- <h2>Meio ambiente</h2>titulo -->
+                        <!-- <p>
+                    &emsp;&emsp;&emsp;&emsp;A temática de Meio Ambiente traz em sua composição dados relacionados a Desflorestamento, Área de Floresta, Hidrografia, Focos de Calor, Áreas Protegidas e Unidades de Conservação.<br>
+                    &emsp;&emsp;&emsp;&emsp;No estado do Pará, cerca de 262 mil km² de floresta primária foram derrubados no ano de 2016, este desflorestamento tem se elevado paulatinamente com o passar dos anos, e chegou a 276,5 mil km². Em 2016 a área de floresta era pouco mais de 792,5 mil km², atingindo em 2020 um valor próximo de 856 mil km² (INPE – PRODES, 2020).<br>
+                    &emsp;&emsp;&emsp;&emsp;A quantidade de focos de calor no estado do Pará, em 2017, foi da ordem de 49 mil. Em 2020, houve uma redução de 21,9% nesta quantidade, chegando a cerca de 38,6 mil focos de calor, total dos municípios do Pará. Em 2018 ocorreu queda acentuada neste número, aproximando-se de 55,3% em relação ao ano anterior (INPE Queimadas, 2020).<br>
+
+                </p>paragrafo -->
+                </section><!-- fim secao texto -->
+                <nav id="item">
+                        <!-- menu de links -->
+                        <label>Meio ambiente</label><!-- titulo -->
+                        <ul>
+                                <li><a href="tabelas/meio-ambiente/tab-4.1-desflorestamento-acumulado-km2-2018-a-2022.htm"
+                                                target="_blank">Desflorestamento Acumulado (km²) - 2018 a 2022</a></li>
+                                <li><a href="tabelas/meio-ambiente/tab-4.2-incremento-desflorestamento-km2-2018-a-2022.htm"
+                                                target="_blank">Incremento (Desflorestamento km²) - 2018 a 2022</a></li>
+                                <li><a href="tabelas/meio-ambiente/tab-4.3-area-de-floresta-km2-e-hidrografia-km2-2018-a-2022.htm"
+                                                target="_blank">Área de Floresta (km²) e Hidrografia (km²) - 2018 a
+                                                2022</a></li>
+                                <li><a href="tabelas/meio-ambiente/tab-4.4-focos-de-calor-2018-a-2022.htm"
+                                                target="_blank">Focos de
+                                                Calor - 2018 a 2022</a></li>
+                                <li><a href="tabelas/meio-ambiente/tab-4.5-areas-protegidas-no-estado-do-para-e-seus-municipios-2023.htm"
+                                                target="_blank">Áreas Protegidas do Estado do Pará e seus Municipios -
+                                                2023</a></li>
+                                <li><a href="tabelas/meio-ambiente/tab-4.6-unidades-de-conservação-do-estado-do-para-2021.htm"
+                                                target="_blank">Unidades de Conservação do Estado do Pará - 2021</a>
+                                </li>
+              </div>
+    </div>
+  </div>
+  <!-- Main Content End -->
+
+  <!-- Footer Start -->
+  <footer id="footer" class="footer-main bg-dark text-light py-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Endereço</h5>
+          <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>Avenida Presidente Vargas, 670 Belém - PA</p>
+          <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Telefone:</strong> (91) 3323-2550</p>
+          <p class="mb-3"><i class="bi bi-clock me-2"></i><strong>Horário:</strong> 8h às 14h</p>
+          <div class="d-flex pt-2 gap-2">
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.instagram.com/fapespa/" target="_blank">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.facebook.com/fapespa/" target="_blank">
+              <i class="bi bi-facebook"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Produtos FAPESPA</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/anuario-estatistico-do-para-2/" target="_blank">Anuário Estatístico</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/radar-de-indicadores-das-ri/" target="_blank">Radar de Indicadores</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.fapespa.pa.gov.br/" target="_blank">FAPESPA</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a class="text-light text-decoration-none" href="https://www.pa.gov.br/" target="_blank">Governo do Estado do Pará</a></li>
+            <li class="mb-2"><a class="text-light text-decoration-none" href="index.html">Home Radar</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">FAPESPA</h5>
+          <p class="text-light">Fundação Amazônia de Amparo a Estudos e Pesquisas</p>
+        </div>
+      </div>
+      <div class="border-top border-secondary mt-5 pt-4 text-center">
+        <p class="text-light mb-0">&copy; <strong>Radar 2024</strong> - Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Back to Top Button -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" id="btnTop">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/parallax/parallax.min.js"></script>
+
+  <!-- Template Javascript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

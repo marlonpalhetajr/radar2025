@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 44 Área colhida (Hectares) Quantidade Produzida (Toneladas) e Valor (Mil Reais) da Produção por Tipo de Lavoura Temporária 2024 ri tapajos | Radar 2024</title>
+    <meta name="description" content="Tabela 44 Área colhida (Hectares) Quantidade Produzida (Toneladas) e Valor (Mil Reais) da Produção por Tipo de Lavoura Temporária 2024 ri tapajos">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --primary-purple: #7c3aed;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container-table {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 18px;
+            margin: 20px auto;
+            max-width: 98%;
+        }
+        
+        .table-header {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .table-header h1 {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .table-header .subtitle {
+            color: #e0e7ff;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .btn-export {
+            background: linear-gradient(135deg, var(--success-green) 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-back {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            color: white;
+        }
+        
+        .table-responsive {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        table.dataTable {
+            width: 100% !important;
+            border-collapse: collapse;
+        }
+        
+        table.dataTable thead {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+        }
+        
+        table.dataTable thead th {
+            color: #ffffff !important;
+            font-weight: 800 !important;
+            padding: 10px 8px !important;
+            text-align: center !important;
+            font-size: 12px !important;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            border: none !important;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%) !important;
+        }
+        
+        table.dataTable tbody td {
+            padding: 8px !important;
+            border-bottom: 1px solid #e5e7eb;
+            color: #111827;
+            font-size: 11px;
+            font-weight: 500;
+            text-align: center !important;
+        }
+        
+        table.dataTable tbody td:first-child {
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        
+        table.dataTable tbody tr:first-child {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            font-weight: 700;
+        }
+        
+        table.dataTable tbody tr:first-child td {
+            color: #1e40af;
+            font-weight: 800;
+        }
+        
+        table.dataTable tbody tr:hover {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            transition: all 0.2s ease;
+        }
+        
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        #tableNotes {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .container-table {
+                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .table-header h1 {
+                font-size: 18px;
+            }
+            
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            table.dataTable thead th,
+            table.dataTable tbody td {
+                font-size: 11px !important;
+                padding: 8px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-table">
+        <div class="table-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1><i class="bi bi-table"></i> Tabela 44 Área colhida (Hectares) Quantidade Produzida (Toneladas) e Valor (Mil Reais) da Produção por Tipo de Lavoura Temporária 2024 ri tapajos</h1>
+                <a href="../../index.html" class="btn-back">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <button class="btn-export" onclick="exportToExcel()">
+                <i class="bi bi-file-earmark-excel"></i> Baixar Excel
+            </button>
+            <div style="font-size: 12px; color: #999;">
+                <i class="bi bi-info-circle"></i> Use a busca para filtrar dados
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="tabelaDados" class="table table-striped table-hover table-sm">
+                <thead>
+                    <tr id="tableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="tableNotes" class="mt-3" style="font-size: 12px; color: #6c757d;"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        const tabelaDados = [
+  {
+    "col0": "",
+    "col1": "Área Colhida",
+    "col2": "Área Colhida",
+    "col3": "Área Colhida",
+    "col4": "Área Colhida",
+    "col5": "Área Colhida",
+    "col6": "Área Colhida",
+    "col7": "Área Colhida",
+    "col8": "Área Colhida",
+    "col9": "Área Colhida"
+  },
+  {
+    "col0": "Pará",
+    "col1": 9274.0,
+    "col2": 45449.0,
+    "col3": 17516.0,
+    "col4": 21320.0,
+    "col5": 266576.0,
+    "col6": 4610.0,
+    "col7": 477562.0,
+    "col8": 1192224.0,
+    "col9": 127.0
+  },
+  {
+    "col0": "RI Tapajós",
+    "col1": 95.0,
+    "col2": 5250.0,
+    "col3": 77.0,
+    "col4": 2712.0,
+    "col5": 6250.0,
+    "col6": 578.0,
+    "col7": 9560.0,
+    "col8": 31992.0,
+    "col9": 3.0
+  },
+  {
+    "col0": "Aveiro",
+    "col1": 5.0,
+    "col2": 30.0,
+    "col3": 8.0,
+    "col4": 100.0,
+    "col5": 700.0,
+    "col6": 45.0,
+    "col7": 80.0,
+    "col8": "-",
+    "col9": "-"
+  },
+  {
+    "col0": "Itaituba",
+    "col1": 15.0,
+    "col2": 120.0,
+    "col3": 14.0,
+    "col4": 425.0,
+    "col5": 600.0,
+    "col6": 50.0,
+    "col7": 630.0,
+    "col8": "-",
+    "col9": 1.0
+  },
+  {
+    "col0": "Jacareacanga",
+    "col1": 20.0,
+    "col2": 800.0,
+    "col3": 30.0,
+    "col4": 170.0,
+    "col5": 2000.0,
+    "col6": 73.0,
+    "col7": 800.0,
+    "col8": 800.0,
+    "col9": "-"
+  },
+  {
+    "col0": "Novo Progresso",
+    "col1": 15.0,
+    "col2": 2000.0,
+    "col3": 5.0,
+    "col4": 7.0,
+    "col5": 1000.0,
+    "col6": 15.0,
+    "col7": 4000.0,
+    "col8": 28472.0,
+    "col9": "-"
+  },
+  {
+    "col0": "Rurópolis",
+    "col1": 10.0,
+    "col2": 200.0,
+    "col3": 10.0,
+    "col4": 560.0,
+    "col5": 950.0,
+    "col6": 195.0,
+    "col7": 1750.0,
+    "col8": 620.0,
+    "col9": "-"
+  },
+  {
+    "col0": "Trairão",
+    "col1": 30.0,
+    "col2": 2100.0,
+    "col3": 10.0,
+    "col4": 1450.0,
+    "col5": 1000.0,
+    "col6": 200.0,
+    "col7": 2300.0,
+    "col8": 2100.0,
+    "col9": 2.0
+  }
+];
+        const colunas = ["Estado/Municípios", "Abacaxi (Mil frutos)*", "Arroz (em casca) (Toneladas)", "Cana-de-açúcar (Toneladas)", "Feijão (em grão) (Toneladas)", "Mandioca (Toneladas)", "Melancia (Toneladas)", "Milho (em grão) (Toneladas)", "Soja (em grão) (Toneladas)", "Tomate (Toneladas)"];
+        const notas = [
+  "Fonte: IBGE/PAM",
+  "Elaboração: FAPESPA",
+  "Nota: A quantidade produzida de abacaxi é expressa em mil frutos"
+];
+        const regiaoAtual = "Tapajós";
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reordenar dados para colocar a região principal primeiro
+            if (regiaoAtual && regiaoAtual.trim() !== "") {
+                const regiaoDados = regiaoAtual.toLowerCase().replace(/ri\s*/, '').trim();
+                
+                tabelaDados.sort((a, b) => {
+                    const aText = a.col0 ? a.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    const bText = b.col0 ? b.col0.toLowerCase().replace(/ri\s*/, '').trim() : '';
+                    
+                    // Verifica correspondência exata
+                    if (aText === regiaoDados) return -1;
+                    if (bText === regiaoDados) return 1;
+                    
+                    // Verifica correspondência parcial (para casos como "RI Araguaia" vs "Araguaia")
+                    if (aText.includes(regiaoDados)) return -1;
+                    if (bText.includes(regiaoDados)) return 1;
+                    
+                    return 0;
+                });
+            }
+            const thead = document.querySelector('#tableHeader');
+            const tbody = document.querySelector('#tabelaDados tbody');
+            const notesEl = document.querySelector('#tableNotes');
+
+            colunas.forEach(col => {
+                const th = document.createElement('th');
+                th.textContent = col || '';
+                thead.appendChild(th);
+            });
+            
+            tabelaDados.forEach(row => {
+                const tr = document.createElement('tr');
+                for (let i = 0; i < colunas.length; i++) {
+                    const td = document.createElement('td');
+                    const valor = row[`col${i}`];
+                    
+                    if (typeof valor === 'number') {
+                        if (Number.isInteger(valor) && valor > 1000) {
+                            td.textContent = new Intl.NumberFormat('pt-BR').format(valor);
+                        } else {
+                            td.textContent = new Intl.NumberFormat('pt-BR', {
+                                minimumFractionDigits: 0,
+                                maximumFractionDigits: 4
+                            }).format(valor);
+                        }
+                    } else {
+                        td.textContent = valor || '';
+                        if (i === 0) td.style.textAlign = 'left';
+                    }
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+
+            $('#tabelaDados').DataTable({
+                language: {
+                    emptyTable: "Nenhum dado disponível na tabela",
+                    info: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                    infoEmpty: "Mostrando 0 a 0 de 0 registros",
+                    infoFiltered: "(filtrado de _MAX_ registros)",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    loadingRecords: "Carregando...",
+                    processing: "Processando...",
+                    search: "Buscar:",
+                    zeroRecords: "Nenhum registro encontrado",
+                    paginate: {
+                        first: "Primeiro",
+                        last: "Último",
+                        next: "Próximo",
+                        previous: "Anterior"
+                    }
+                },
+                paging: true,
+                pageLength: 25,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                searching: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                dom: '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>rt<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>'
+            });
+
+            if (notas.length) {
+                notesEl.innerHTML = notas.map(nota => `<div>${nota}</div>`).join('');
+            }
+        });
+
+        function exportToExcel() {
+            const ws_data = [colunas];
+            
+            tabelaDados.forEach(row => {
+                const rowData = [];
+                for (let i = 0; i < colunas.length; i++) {
+                    rowData.push(row[`col${i}`]);
+                }
+                ws_data.push(rowData);
+            });
+
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet(ws_data);
+            
+            const colWidths = colunas.map(() => ({ wch: 20 }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, 'Dados');
+            
+            const nomeArquivo = 'tabela-44-area-colhida-hectares-quantidade-produzida-toneladas-e-valor-mil-reais-da-producao-por-tipo-de-lavoura-temporaria-2023.xlsx';
+            XLSX.writeFile(wb, nomeArquivo);
+            
+            const btn = document.querySelector('.btn-export');
+            const textoOriginal = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check-circle"></i> Download Concluído!';
+            btn.style.backgroundColor = '#198754';
+            setTimeout(() => {
+                btn.innerHTML = textoOriginal;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

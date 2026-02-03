@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar de Indicadores das Regiões de Integração | FAPESPA</title>
+    <meta name="description" content="Radar de Indicadores das Regiões de Integração do Estado do Pará - FAPESPA">
+    <meta name="keywords" content="Radar, Indicadores, Regiões de Integração, Pará, FAPESPA, Estatística">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/fapespa2.png">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Accessibility Announcer -->
+    <div id="acess-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Modal Customizado -->
+    <div id="modalBackdrop" class="modal-backdrop-custom" onclick="closeCustomModal();"></div>
+    <div id="contentModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h5 id="contentModalLabel">Conteúdo</h5>
+                <button type="button" class="custom-modal-close" onclick="closeCustomModal();">&times;</button>
+            </div>
+            <div class="custom-modal-body" id="contentModalBody">
+                <div class="text-center py-5">
+                    <div class="spinner-border"></div>
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <a id="modal-open-full" href="#" target="_blank" class="btn btn-outline-primary btn-sm">Abrir em nova aba</a>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="closeCustomModal();">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h5 class="m-0 text-primary fw-bold">Radar 2024</h5>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto p-4 p-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#indicadores">Indicadores</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="#footer">Contato</a></li>
+                <li class="nav-item">
+                    <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+                        ♿ Acessibilidade
+                    </button>
+                    <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+                        <div class="acess-section-title">Visão</div>
+                        <div class="acess-row">
+                            <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+                            <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+                        </div>
+                        <div class="acess-section-title">Tamanho da Fonte</div>
+                        <div class="acess-row">
+                            <button id="font-dec" class="acess-control" type="button">A-</button>
+                            <button id="font-reset" class="acess-control" type="button">A</button>
+                            <button id="font-inc" class="acess-control" type="button">A+</button>
+                        </div>
+                        <div class="acess-section-title">Geral</div>
+                        <div class="acess-row">
+                            <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Hero Section Start -->
+    <section class="hero-section" id="hero" style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/radarindicadores.png'); background-size: cover; background-position: center; min-height: 500px; display: flex; align-items: center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 text-white wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="display-3 fw-bold mb-4">Radar de Indicadores</h1>
+                    <p class="fs-5 mb-4 lh-lg">Acompanhe a evolução de 120 indicadores socioeconômicos e ambientais nas 12 regiões de integração do Estado do Pará. Dados atualizados para subsidiar políticas públicas e tomada de decisão.</p>
+                    <div>
+                        <a class="btn btn-primary btn-lg me-3" data-bs-toggle="modal" data-bs-target="#ModalApresentacao">
+                            <i class="bi bi-play-circle me-2"></i>Apresentação
+                        </a>
+                        <a class="btn btn-outline-light btn-lg" href="#indicadores">
+                            <i class="bi bi-arrow-down me-2"></i>Explorar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Quick Access Cards Start -->
+    <section class="quick-access py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a href="sumario.html" class="card h-100 shadow-sm border-0 hover-effect">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                                <i class="bi bi-file-earmark-pdf text-primary" style="font-size: 2rem;"></i>
+                            </div>
+                            <div class="ps-4">
+                                <h5 class="card-title">Sumário</h5>
+                                <p class="card-text small text-muted">Visão geral dos indicadores</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <a href="glossario.html" class="card h-100 shadow-sm border-0 hover-effect">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                                <i class="bi bi-book text-primary" style="font-size: 2rem;"></i>
+                            </div>
+                            <div class="ps-4">
+                                <h5 class="card-title">Glossário</h5>
+                                <p class="card-text small text-muted">Definições e metodologias</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <a href="expediente.html" class="card h-100 shadow-sm border-0 hover-effect">
+                        <div class="card-body d-flex align-items-center">
+                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                                <i class="bi bi-people text-primary" style="font-size: 2rem;"></i>
+                            </div>
+                            <div class="ps-4">
+                                <h5 class="card-title">Expediente</h5>
+                                <p class="card-text small text-muted">Equipe DETGI/FAPESPA</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Quick Access Cards End -->
+
+    <!-- Indicators Section Start -->
+    <section id="indicadores" class="indicators-section py-5">
+        <div class="container-xxl">
+            <div class="container">
+                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px; margin-bottom: 3rem;">
+                    <h2 class="display-5 mb-4">Regiões de Integração do Pará</h2>
+                    <p class="fs-5 text-muted">Explore os indicadores socioeconômicos e ambientais de cada região. Clique no botão "Dados" para visualizar detalhes completos.</p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Para State -->
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-3">
+                                    <img src="img/slidePara/cirio.png" alt="Pará" class="img-fluid rounded" style="width: 100px; height: 100px; object-fit: cover; margin-right: 20px;">
+                                    <div>
+                                        <h3 class="card-title mb-2">Pará</h3>
+                                        <p class="card-text text-muted small">Estado do Pará e suas 12 regiões de integração</p>
+                                    </div>
+                                </div>
+                                <p class="card-text justify-text">Na temática Pará, encontramos o total do estado e de suas doze regiões de integração, trazendo uma síntese dos 120 indicadores abordados nesse sistema. Assim, a Fapespa contribui estrategicamente no planejamento e na elaboração de políticas públicas no Estado do Pará.</p>
+                                <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalPara">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>Visualizar Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Regional Cards Grid -->
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.15s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/Araguaia.png" alt="Araguaia" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Araguaia</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Araguaia</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalAraguaia">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/baiixoAmazonas.png" alt="Baixo Amazonas" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Baixo Amazonas</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Baixo Amazonas</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalBaixoAmazonas">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.25s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/Carajas.png" alt="Carajás" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Carajás</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Carajás</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalCarajas">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/Guajara.png" alt="Guajará" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Guajará</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Guajará</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalGuajara">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.35s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/guama.png" alt="Guamá" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Guamá</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Guamá</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalGuama">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/tucurui.png" alt="Lago de Tucuruí" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Lago de Tucuruí</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Lago de Tucuruí</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalLagoTucurui">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.45s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/marajo-breves.png" alt="Marajó" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Marajó</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Marajó</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalMarajo">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/riocaete.png" alt="Rio Caeté" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Rio Caeté</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Rio Caeté</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalRioCaete">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.55s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/rioCapim.png" alt="Rio Capim" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Rio Capim</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Rio Capim</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalRioCapim">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/Tapajos.png" alt="Tapajós" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Tapajós</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Tapajós</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalTapajos">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.65s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/Tocantins.png" alt="Tocantins" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Tocantins</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Tocantins</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalTocantins">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="region-card card h-100 shadow-sm border-0">
+                            <img src="img/regioes/Xingu.png" alt="Xingu" class="card-img-top" style="height: 150px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Xingu</h5>
+                                <p class="card-text text-muted small mb-3">Região de Integração Xingu</p>
+                                <a class="btn btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#ModalXingu">
+                                    <i class="bi bi-plus me-1"></i>Dados
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Indicators Section End -->
+
+    <!-- Maps Section Start -->
+    <section class="maps-section py-5 bg-light">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <h2 class="display-5 mb-4">Mapas Temáticos</h2>
+                    <p class="fs-5 text-muted mb-4">Este espaço apresenta os Mapas de Indicadores das Regiões de Integração, os quais fornecem uma visão detalhada sobre as dinâmicas territoriais e socioeconômicas do estado. Esses mapas permitem uma análise integrada que apoia o planejamento estratégico e a tomada de decisões no âmbito das políticas públicas.</p>
+                    <a class="btn btn-primary btn-lg" href="project.html" target="_blank">
+                        <i class="bi bi-map me-2"></i>Visualizar Mapas
+                    </a>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <img src="img/Mapa_Territorio_01.png" class="img-fluid rounded shadow" alt="Mapa de Territórios">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Maps Section End -->
+
+    <!-- Downloads Section Start -->
+    <section class="downloads-section py-5" style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/meio.png'); background-size: cover; background-position: center; color: white;">
+        <div class="container text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h2 class="display-5 mb-4">Downloads</h2>
+            <p class="fs-5 mb-5">O Radar de Indicadores das Regiões de Integração 2024 disponibiliza aos seus usuários um conjunto de planilhas e mapas temáticos com os principais indicadores.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a class="btn btn-light btn-lg" href="planilhas/planilhas_Radar2024.rar">
+                    <i class="bi bi-download me-2"></i>Baixar Tabelas
+                </a>
+                <a class="btn btn-light btn-lg" href="mapas/mapas_Radar2024.rar" target="_blank">
+                    <i class="bi bi-download me-2"></i>Baixar Mapas
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Downloads Section End -->
+
+    <!-- About Section Start -->
+    <section id="sobre" class="about-section py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px; margin-bottom: 3rem;">
+                <h2 class="display-5 mb-4">Sobre a DETGI</h2>
+                <p class="fs-5 text-muted">Conheça a Diretoria de Estatística e de Tecnologia e Gestão da Informação</p>
+            </div>
+
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <img src="img/equipe2.png" alt="Equipe DETGI" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="justify-text mb-4">A FAPESPA tem participação estratégica no modelo de planejamento e governança de políticas públicas do Estado do Pará, por meio de estudos nas áreas social, ambiental e econômica. Além disso, promove o progresso da ciência e tecnologia com o fomento e amparo à pesquisa, a formação de capital humano qualificado, executando parte da política estadual de Ciência, Tecnologia e Inovação (CT&I).</p>
+                    
+                    <p class="justify-text mb-4">A Diretoria de Estatística e de Tecnologia e Gestão da Informação (DETGI) elabora seus produtos em atenção ao Programa Temático Governança Pública, na Ação "Elaboração e Divulgação de Estudos e Pesquisa" do PPA 2020-2023. Esses estudos consideram a importância da geração de informações estatísticas consistentes e análises técnicas que subsidiam a gestão pública e a sociedade.</p>
+                    
+                    <a class="btn btn-primary btn-lg" href="#" data-bs-toggle="modal" data-bs-target="#Modaldetgi">
+                        <i class="bi bi-file-text me-2"></i>Leia Mais
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- Footer Start -->
+    <footer id="footer" class="footer-main bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="text-white mb-4">Endereço</h5>
+                    <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>Avenida Presidente Vargas, 670 Belém - PA</p>
+                    <p class="mb-2"><i class="bi bi-telephone me-2"></i><strong>Telefone:</strong> (91) 3323-2550</p>
+                    <p class="mb-3"><i class="bi bi-clock me-2"></i><strong>Horário:</strong> 8h às 14h</p>
+                    <div class="d-flex pt-2 gap-2">
+                        <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.instagram.com/fapespa/" target="_blank" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a class="btn btn-sm btn-outline-light rounded-circle d-flex align-items-center justify-content-center" href="https://www.facebook.com/fapespa/" target="_blank" title="Facebook">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <h5 class="text-white mb-4">Produtos FAPESPA</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a class="text-light text-decoration-none hover-link" href="https://www.fapespa.pa.gov.br/anuario-estatistico-do-para-2/" target="_blank">Anuário Estatístico</a></li>
+                        <li class="mb-2"><a class="text-light text-decoration-none hover-link" href="https://www.fapespa.pa.gov.br/radar-de-indicadores-das-ri/" target="_blank">Radar de Indicadores</a></li>
+                        <li class="mb-2"><a class="text-light text-decoration-none hover-link" href="https://www.fapespa.pa.gov.br/para-no-contexto-nacional-2/" target="_blank">Pará no Contexto Nacional</a></li>
+                        <li class="mb-2"><a class="text-light text-decoration-none hover-link" href="https://www.fapespa.pa.gov.br/estatistica-municipal/" target="_blank">Estatística Municipal</a></li>
+                        <li><a class="text-light text-decoration-none hover-link" href="https://www.fapespa.pa.gov.br/para-em-numeros/" target="_blank">Pará em Números</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h5 class="text-white mb-4">Links Úteis</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a class="text-light text-decoration-none hover-link" href="https://www.pa.gov.br/" target="_blank">Governo do Estado do Pará</a></li>
+                        <li class="mb-2"><a class="text-light text-decoration-none hover-link" href="https://www.fapespa.pa.gov.br/" target="_blank">FAPESPA</a></li>
+                        <li><a class="text-light text-decoration-none hover-link" href="index.html">Home</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <h5 class="text-white mb-4">FAPESPA</h5>
+                    <p class="text-light mb-3">Fundação Amazônia de Amparo a Estudos e Pesquisas</p>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.5362681158094!2d-48.498285788249284!3d-1.4525314985276918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a48f110f9ae615%3A0xcf262f614c25afcd!2sFAPESPA" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-top border-secondary mt-5 pt-4">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <p class="text-light mb-0">&copy; <strong>Radar 2024</strong> - Todos os direitos reservados.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <p class="text-light mb-0">Desenvolvido por <a href="https://www.fapespa.pa.gov.br/" target="_blank" class="text-light text-decoration-none">FAPESPA</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Back to Top Button -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" id="btnTop">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- MODALS -->
+    <!-- Modal DETGI -->
+    <div class="modal fade" id="Modaldetgi" tabindex="-1" role="dialog" aria-labelledby="ModaldetgiLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModaldetgiLabel">Sobre a DETGI</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="detgi.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Pará -->
+    <div class="modal fade" id="ModalPara" tabindex="-1" role="dialog" aria-labelledby="ModalParaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalParaLabel">Pará</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="01-para.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Regional Modals (Araguaia, BaixoAmazonas, etc.) -->
+    <div class="modal fade" id="ModalAraguaia" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Araguaia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="02-araguaia.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalBaixoAmazonas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Baixo Amazonas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="03-baixo-amazonas.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalCarajas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Carajás</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="04-carajas.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalGuajara" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Guajará</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="05-guajara.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalGuama" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Guamá</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="06-guama.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalLagoTucurui" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lago de Tucuruí</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="07-lago-de-tucurui.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalMarajo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Marajó</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="08-marajo.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalRioCaete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rio Caeté</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="09-rio-caete.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalRioCapim" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rio Capim</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="10-rio-capim.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalTapajos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tapajós</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="11-tapajos.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalTocantins" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tocantins</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="12-tocantins.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalXingu" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Xingu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="13-xingu.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Apresentação -->
+    <div class="modal fade" id="ModalApresentacao" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Apresentação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="apresentacao.html" style="width: 100%; height: 600px; border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/parallax/parallax.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
