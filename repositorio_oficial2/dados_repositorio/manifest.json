@@ -1,0 +1,74 @@
+[
+  {
+    "path": "../CSV Radar em atualização/tabs_01_demografia_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Demografia",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_02_educacao_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Educação",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_03_saude_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Saúde",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_04_trabalho_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Mercado de Trabalho",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_05_seguranca_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Segurança",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_06_meio_ambiente_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Meio Ambiente",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_07_economia_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Economia",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_08_financas_publicas_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Finanças Públicas",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  },
+  {
+    "path": "../CSV Radar em atualização/tabs_09_infraestrutura_radar.csv",
+    "delimiter": ";",
+    "valid": true,
+    "tema": "Infraestrutura",
+    "subtema": "-",
+    "fields": ["tema", "indicador", "ri", "localidade", "nivel1", "nivel2", "nivel3", "ano", "valor"]
+  }
+]

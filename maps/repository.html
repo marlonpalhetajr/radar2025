@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repositório de Mapas — Radar de Indicadores</title>
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #f2f7f3;
+      --bg-2: #e3eee5;
+      --surface: #ffffff;
+      --surface-soft: #f7faf8;
+      --text: #173127;
+      --muted: #5a6d63;
+      --line: #cfd9d2;
+      --primary: #1f5a3d;
+      --primary-dark: #163f2b;
+      --primary-soft: #e3f0e7;
+      --accent: #2e7d52;
+      --shadow: 0 16px 38px rgba(18, 49, 35, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(46, 125, 82, 0.14) 0%, rgba(46, 125, 82, 0.04) 28%, transparent 55%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
+      padding: 18px;
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(31, 90, 61, 0.12);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .institutional-bar {
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+      color: #ecf6ef;
+      padding: 13px 22px;
+      font-size: 0.78em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header {
+      position: relative;
+      background: linear-gradient(135deg, rgba(23, 49, 39, 0.98) 0%, rgba(31, 90, 61, 0.96) 56%, rgba(46, 125, 82, 0.92) 100%);
+      padding: 48px 38px 52px;
+      text-align: center;
+      margin-bottom: 18px;
+      color: #f4fbf6;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0.48), rgba(255,255,255,0.14));
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #eef8f1;
+      font-size: 0.76em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .header h1 {
+      font-size: clamp(1.65rem, 2.7vw, 2.45rem);
+      color: #ffffff;
+      margin-bottom: 12px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .header p {
+      font-size: 1.02em;
+      color: rgba(244, 251, 246, 0.88);
+      margin-bottom: 14px;
+      max-width: 56ch;
+    }
+
+    .header .subtitle {
+      font-size: 0.92em;
+      color: rgba(244, 251, 246, 0.74);
+      margin-bottom: 0;
+    }
+
+    .header-accent {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+      max-width: 680px;
+    }
+
+    .header-accent div {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 14px;
+      padding: 10px 12px;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.82em;
+      line-height: 1.25;
+    }
+
+    .header-accent strong {
+      display: block;
+      font-size: 1.03em;
+      margin-bottom: 2px;
+      color: #ffffff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+      padding: 8px 12px;
+      max-width: 100%;
+      margin: 0 auto 20px;
+    }
+
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,252,249,0.98) 100%);
+      border-radius: 20px;
+      padding: 18px 14px;
+      min-height: 200px;
+      width: 100%;
+      max-width: 100%;
+      box-shadow: 0 10px 24px rgba(18, 49, 35, 0.08);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--accent));
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 34px rgba(18, 49, 35, 0.16);
+      border-color: rgba(31, 90, 61, 0.35);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: transparent;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+      box-shadow: none;
+    }
+
+    .card h2 {
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      font-size: 1.24em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.9em;
+      line-height: 1.45;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .card-arrow {
+      color: var(--accent);
+      font-size: 1.55em;
+      margin-top: auto;
+    }
+
+    .section-title {
+      color: var(--primary-dark);
+      font-size: 1.05em;
+      margin-bottom: 12px;
+      margin-top: 8px;
+      text-align: center;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title:first-of-type { margin-top: 0; }
+
+    .footer {
+      text-align: center;
+      color: #5d6d65;
+      padding: 16px 18px 20px;
+      font-size: 0.84em;
+    }
+
+    .mapas-home-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 50px;
+      height: 50px;
+      background: #2f7f2f;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      z-index: 999999;
+    }
+
+    .mapas-home-btn:hover,
+    .mapas-home-btn:focus {
+      color: #ffffff;
+      background: #1a5f1a;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .mapas-home-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+
+      body { padding: 12px; }
+      .header { padding: 32px 18px 30px; min-height: auto; }
+      .header-accent { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 8px 6px; gap: 12px; }
+    }
+
+    @media (max-width: 576px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="institutional-bar">FAPESPA · Radar de Indicadores · Repositório de Mapas</div>
+
+    <header class="header">
+      <div class="header-badge">Repositório de Mapas</div>
+      <h1>Pacotes de mapas - Radar de Indicadores</h1>
+      <p>Baixe os mapas temáticos organizados por ano, de 2025 a 2017.</p>
+      <div class="header-accent">
+        <div><strong>Formato</strong> Arquivo compactado</div>
+        <div><strong>Acesso</strong> Download direto</div>
+        <div><strong>Período</strong> 2025 a 2017</div>
+      </div>
+    </header>
+
+    <section aria-labelledby="anos-mapas" class="section-title">Download por ano</section>
+
+    <section aria-labelledby="anos-mapas" class="grid" id="anos-mapas">
+      <a href="../mapas-zip-radar/mapas_Radar2025.rar" class="card" download aria-label="Baixar Mapas 2025">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2025</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+      <a href="../mapas-zip-radar/mapas_Radar2024.rar" class="card" download aria-label="Baixar Mapas 2024">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2024</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+      <a href="../mapas-zip-radar/mapas_Radar2023.rar" class="card" download aria-label="Baixar Mapas 2023">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2023</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+      <a href="../mapas-zip-radar/mapas_Radar2022.rar" class="card" download aria-label="Baixar Mapas 2022">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2022</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+      <a href="../mapas-zip-radar/mapas_Radar2021.rar" class="card" download aria-label="Baixar Mapas 2021">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2021</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+      <a href="../mapas-zip-radar/mapas_Radar2020.rar" class="card" download aria-label="Baixar Mapas 2020">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2020</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+      <a href="../mapas-zip-radar/mapas_Radar2018.rar" class="card" download aria-label="Baixar Mapas 2018">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2018</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+      <a href="../mapas-zip-radar/mapas_Radar2017.rar" class="card" download aria-label="Baixar Mapas 2017">
+        <span class="card-icon"><i class="bi bi-file-earmark-zip-fill"></i></span>
+        <h2>Mapas 2017</h2>
+        <p>Arquivo compactado • RAR</p>
+        <span class="card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+      </a>
+    </section>
+
+    <div class="footer">
+      <strong>Dica:</strong> clique em um ano para iniciar o download do pacote correspondente.
+    </div>
+  </div>
+
+  <a href="../index.html" class="mapas-home-btn" title="Início" aria-label="Ir para o início">
+    <i class="bi bi-house-door-fill"></i>
+  </a>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar Fapespa 2025 - Repositório de Dados</title>
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #f2f7f3;
+      --bg-2: #e3eee5;
+      --surface: #ffffff;
+      --surface-soft: #f7faf8;
+      --text: #173127;
+      --muted: #5a6d63;
+      --line: #cfd9d2;
+      --primary: #1f5a3d;
+      --primary-dark: #163f2b;
+      --primary-soft: #e3f0e7;
+      --accent: #2e7d52;
+      --shadow: 0 16px 38px rgba(18, 49, 35, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(46, 125, 82, 0.14) 0%, rgba(46, 125, 82, 0.04) 28%, transparent 55%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
+      padding: 18px;
+      color: var(--text);
+    }
+
+    .repo-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(31, 90, 61, 0.12);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .institutional-bar {
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+      color: #ecf6ef;
+      padding: 13px 22px;
+      font-size: 0.78em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .repo-header {
+      position: relative;
+      background: linear-gradient(135deg, rgba(23, 49, 39, 0.98) 0%, rgba(31, 90, 61, 0.96) 56%, rgba(46, 125, 82, 0.92) 100%);
+      padding: 42px 38px 40px;
+      text-align: center;
+      color: #f4fbf6;
+    }
+
+    .repo-header::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.14), rgba(255,255,255,0.48), rgba(255,255,255,0.14));
+    }
+
+    .repo-header-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #eef8f1;
+      font-size: 0.76em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .repo-header h1 {
+      font-size: clamp(1.65rem, 2.7vw, 2.35rem);
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .repo-header p {
+      color: rgba(244, 251, 246, 0.88);
+      margin-bottom: 0;
+      font-size: 1rem;
+    }
+
+    .repo-section {
+      padding: 24px 22px 30px;
+    }
+
+    .repo-section-title {
+      color: #163f2b;
+      font-size: 1.05em;
+      margin-bottom: 14px;
+      text-align: center;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .repo-grid {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .repo-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+      min-height: 154px;
+      padding: 1.15rem 1.15rem 1rem;
+      border-radius: 22px;
+      border: 1px solid rgba(31, 90, 61, 0.15);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(242,248,244,0.98) 100%);
+      text-decoration: none;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+      box-shadow: 0 14px 32px rgba(18, 49, 35, 0.10), inset 0 1px 0 rgba(255,255,255,0.88);
+    }
+
+    .repo-card::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--accent));
+    }
+
+    .repo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(46, 125, 82, 0.08) 0%, transparent 42%);
+      pointer-events: none;
+    }
+
+    .repo-card:hover {
+      transform: translateY(-8px);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(235,244,238,0.98) 100%);
+      border-color: rgba(31, 90, 61, 0.26);
+      box-shadow: 0 22px 42px rgba(18, 49, 35, 0.16), inset 0 1px 0 rgba(255,255,255,0.96);
+    }
+
+    .repo-card-main {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+      min-width: 0;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .repo-card-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(31, 90, 61, 0.12), rgba(46, 125, 82, 0.18));
+      color: var(--primary-dark);
+      font-size: 1.45rem;
+      flex: 0 0 auto;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
+    }
+
+    .repo-card-title {
+      display: block;
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #163f2b;
+      line-height: 1.15;
+    }
+
+    .repo-card-meta {
+      display: none;
+    }
+
+    .repo-card-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin: 0;
+      max-width: 22ch;
+    }
+
+    .repo-card-arrow {
+      color: var(--accent);
+      font-size: 1.8rem;
+      flex: 0 0 auto;
+      align-self: flex-end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .repo-card.destaque-1 .repo-card-icon { background: linear-gradient(135deg, rgba(31, 90, 61, 0.16), rgba(46, 125, 82, 0.28)); }
+    .repo-card.destaque-2 .repo-card-icon { background: linear-gradient(135deg, rgba(22, 63, 43, 0.14), rgba(31, 90, 61, 0.22)); }
+    .repo-card.destaque-3 .repo-card-icon { background: linear-gradient(135deg, rgba(46, 125, 82, 0.16), rgba(83, 170, 117, 0.24)); }
+    .repo-card.destaque-4 .repo-card-icon { background: linear-gradient(135deg, rgba(31, 90, 61, 0.12), rgba(90, 109, 99, 0.20)); }
+
+    .repo-footer {
+      text-align: center;
+      padding: 0 22px 24px;
+      color: #5d6d65;
+      font-size: 0.84rem;
+    }
+
+    .repo-home-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 50px;
+      height: 50px;
+      background: #2f7f2f;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      z-index: 999999;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .repo-home-btn.show {
+      opacity: 1;
+    }
+
+    .repo-home-btn:hover,
+    .repo-home-btn:focus {
+      color: #ffffff;
+      background: #1a5f1a;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 12px; }
+      .repo-header { padding: 32px 18px 30px; }
+      .repo-section { padding: 18px 16px 24px; }
+      .repo-home-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="repo-shell">
+    <div class="institutional-bar">FAPESPA · Radar de Indicadores · Repositório de Arquivos</div>
+    <header class="repo-header">
+      <div class="repo-header-badge">Radar 2025</div>
+      <h1>Repositório de Arquivos</h1>
+      <p>Selecione uma temática principal para visualizar e baixar as tabelas CSV disponíveis no Radar.</p>
+    </header>
+
+    <main class="repo-section" id="repositorio">
+      <h2 class="repo-section-title">Temáticas Principais</h2>
+      <div class="row g-4 repo-grid repo-grid-3 justify-content-center">
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-1" href="dados.html?tematica=Demografia" aria-label="Abrir Demografia">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-people-fill"></i></span>
+              <span>
+                <span class="repo-card-title">Demografia</span>
+                <p class="repo-card-desc">População, estrutura etária e indicadores básicos.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-2" href="dados.html?tematica=Educação" aria-label="Abrir Educação">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-mortarboard-fill"></i></span>
+              <span>
+                <span class="repo-card-title">Educação</span>
+                <p class="repo-card-desc">Matrículas, aprovação, abandono e IDEB.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-3" href="dados.html?tematica=Saúde" aria-label="Abrir Saúde">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-heart-pulse-fill"></i></span>
+              <span>
+                <span class="repo-card-title">Saúde</span>
+                <p class="repo-card-desc">Mortalidade, natalidade, cobertura e rede.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-4" href="dados.html?tematica=Mercado%20de%20Trabalho" aria-label="Abrir Mercado de Trabalho">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-briefcase-fill"></i></span>
+              <span>
+                <span class="repo-card-title">Mercado de Trabalho</span>
+                <p class="repo-card-desc">Vínculos, remuneração e dinâmica formal.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-1" href="dados.html?tematica=Segurança" aria-label="Abrir Segurança">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-shield-lock-fill"></i></span>
+              <span>
+                <span class="repo-card-title">Segurança</span>
+                <p class="repo-card-desc">Ocorrências e taxas de violência.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-2" href="dados.html?tematica=Meio%20Ambiente" aria-label="Abrir Meio Ambiente">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-tree-fill"></i></span>
+              <span>
+                <span class="repo-card-title">Meio Ambiente</span>
+                <p class="repo-card-desc">Desflorestamento, focos de calor e floresta.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-3" href="dados.html?tematica=Economia" aria-label="Abrir Economia">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-graph-up-arrow"></i></span>
+              <span>
+                <span class="repo-card-title">Economia</span>
+                <p class="repo-card-desc">PIB, PIB per capita, comércio e agro.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-4" href="dados.html?tematica=Finanças%20Públicas" aria-label="Abrir Finanças Públicas">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-cash-coin"></i></span>
+              <span>
+                <span class="repo-card-title">Finanças Públicas</span>
+                <p class="repo-card-desc">Receitas, transferências e participação.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 repo-col col-lg-4">
+          <a class="repo-card destaque-1" href="dados.html?tematica=Infraestrutura" aria-label="Abrir Infraestrutura">
+            <span class="repo-card-main">
+              <span class="repo-card-icon"><i class="bi bi-building-fill"></i></span>
+              <span>
+                <span class="repo-card-title">Infraestrutura</span>
+                <p class="repo-card-desc">Energia, frota, portos e abastecimento.</p>
+              </span>
+            </span>
+            <span class="repo-card-arrow"><i class="bi bi-arrow-right-circle"></i></span>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="repo-footer">
+      Clique em uma temática para abrir a tabela interativa com filtros e exportação.
+    </footer>
+  </div>
+
+  <a href="../index.html" class="repo-home-btn" id="repo-home-btn" title="Início" aria-label="Ir para o início">
+    <i class="bi bi-house-door-fill"></i>
+  </a>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('repo-home-btn');
+      if (!btn) return;
+      btn.classList.add('show');
+    })();
+  </script>
+</body>
+</html>

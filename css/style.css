@@ -1,5 +1,6 @@
 /* ====== ESTILO CONSOLIDADO E LIMPO - RADAR 2024 ====== */
 /* Baseado no template do ANUÁRIO 2024 - Adaptado para RADAR */
+/* COPILOT-FINGERPRINT: radar2025 css update 2026-05-27 v1 */
 /* VARIÁVEIS CSS (ROOT) */
 :root {
   --primary: #2f7f2f; /* Verde institucional - leve ajuste */
@@ -20,9 +21,11 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 17px; /* base maior para melhor leitura */
-  background: var(--background-color);
+  background: linear-gradient(to left, rgba(47, 127, 47, 0.25) 0%, rgba(47, 127, 47, 0.12) 25%, transparent 50%);
+  background-attachment: fixed;
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
+  min-height: 100vh;
 }
 
 /* NAVBAR */
@@ -66,6 +69,9 @@ body.dark-mode .navbar #darkModeToggleNav i {
   color: var(--secondary);
 }
 
+/* HERO SECTION */
+.hero-content{ position: relative; z-index: 3; }
+
 /* HERO SECTION MODERNO - estilos aplicados no .hero-title abaixo */
 
 /* TÍTULOS DE SEÇÕES */
@@ -85,22 +91,32 @@ body.dark-mode .navbar #darkModeToggleNav i {
   color: rgb(0,66,0) !important;
 }
 
-/* CARDS COM ANIMAÇÕES */
+/* CARDS COM ANIMAÇÕES - Refinado com Responsividade */
 .card-feature {
   position: relative;
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  transition: background-image 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-  border-radius: 20px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 .card-feature.card-animated {
-  min-height: 360px; /* cards maiores */
-  padding: 44px 32px; /* aumenta espaçamento interno */
+  min-height: 340px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-@media (min-width: 1000px) {
-  .card-feature.card-animated { min-height: 420px; }
+@media (min-width: 576px) {
+  .card-feature.card-animated { min-height: 360px; padding: 36px 28px; }
+}
+@media (min-width: 992px) {
+  .card-feature.card-animated { min-height: 400px; padding: 44px 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-feature { transition: none; }
 }
 .card-feature::before {
   content: '';
@@ -122,12 +138,17 @@ body.dark-mode .navbar #darkModeToggleNav i {
   transition: color 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .card-feature:hover {
-  transform: translateY(-6px) scale(1.015);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.16);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 .card-feature:hover h5,
 .card-feature:hover p,
-.card-feature:hover i { color: #fff !important; }
+.card-feature:hover i {
+  color: #fff !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-feature:hover { transform: none; }
+}
 
 /* IMAGENS DE FUNDO DOS CARDS */
 .card-demografia { background-image: url('../img/demografia.png'); }
@@ -235,6 +256,29 @@ body.dark-mode .modal-body .form-control {
     width: 90%;
   }
 }
+/* Custom modal header tweaks */
+#contentModal .custom-modal-header { position: relative; }
+/* Icon buttons in modal footer */
+#contentModal .modal-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+#contentModal .modal-icon-btn i { font-size: 1.1rem; line-height: 1; }
+#contentModal .modal-icon-btn:hover { background: rgba(0,0,0,0.75); color: #fff; }
+#contentModal .modal-icon-close { background: #6c757d; }
+#contentModal .modal-icon-close:hover { background: #5a6268; }
+/* Bottom bar that holds modal actions so they don't scroll with content */
+.modal-bottom-bar { z-index: 1051; position: absolute; left: 0; right: 0; bottom: 0; height: 48px; display:flex; justify-content:flex-end; align-items:center; padding:8px 12px; background: rgba(255,255,255,0.95); border-top:1px solid rgba(0,0,0,0.06); }
+.modal-bottom-bar .btn { margin-left: 8px; }
 
 /* Permite scroll interno confortável */
 #contentModal .modal-content {
@@ -800,7 +844,7 @@ html.a11y-night .product-card { background: #12151a !important; color: #e6eef8 !
 html.a11y-night .product-card h5 { color: #8ed0ff !important; }
 html.a11y-night .product-card p { color: #b8c5d6 !important; }
 html.a11y-night .hero-section-modern { background: #0f1720 !important; }
-html.a11y-night .hero-overlay { background: rgba(15, 23, 32, 0.85) !important; }
+html.a11y-night .hero-overlay { background: transparent !important; }
 html.a11y-night .navbar { background: #12151a !important; }
 html.a11y-night .footer-main { background: #0a0e14 !important; }
 html.a11y-night .footer-products { background: #12151a !important; }
@@ -1167,9 +1211,9 @@ html.a11y-plain-font, html.a11y-plain-font body {
 
 .hero-section-modern {
   position: relative;
-  min-height: 85vh;
+  min-height: 92vh;
   display: flex;
-    background-size: cover; /* Ensure background size is maintained */
+  align-items: center;
   justify-content: center;
   overflow: hidden;
 }
@@ -1181,70 +1225,437 @@ html.a11y-plain-font, html.a11y-plain-font body {
   width: 100%;
   height: 100%;
   z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
-  #principais-temas .card-feature::before {
-    background: linear-gradient(180deg, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.42) 60%, rgba(0,0,0,0.52) 100%);
+  #principais-temas .tema-card {
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
   }
 
-  #principais-temas .card-feature:hover::before {
-    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.6) 100%);
-  }
-
-  /* Botões outline brancos no Principais Temas */
-  #principais-temas .card-feature .btn {
+  #principais-temas .tema-card::before,
+  #principais-temas .tema-card:hover::before {
     background: transparent !important;
-    border: 2px solid rgba(255,255,255,0.9) !important;
-    color: #fff !important;
+  }
+
+  #principais-temas .tema-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+  }
+
+  #principais-temas .tema-card .card-body {
+    position: relative;
+    z-index: 2;
+  }
+
+  #principais-temas .tema-card h5,
+  #principais-temas .tema-card p {
+    color: #0f172a !important;
+    text-shadow: none;
+  }
+
+  #principais-temas .tema-card h5 {
+    font-weight: 800;
+  }
+
+  #principais-temas .tema-card p {
+    line-height: 1.5;
+  }
+
+  #principais-temas .tema-card .btn {
+    background: transparent !important;
+    border: 2px solid rgba(15, 23, 42, 0.35) !important;
+    color: #0f172a !important;
     box-shadow: none !important;
     padding: 10px 18px;
     border-radius: 40px;
     font-weight: 700;
-    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.25s ease;
   }
-  #principais-temas .card-feature .btn:hover {
-    background: #ffffff !important;
-    color: #1a1a1a !important;
+
+  #principais-temas .tema-card .btn:hover {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #0f172a !important;
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.18) !important;
   }
 
-  /* Micro-animação nos ícones */
-  #principais-temas .card-feature i {
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  #principais-temas .card-feature:hover i {
-    transform: translateY(-3px) scale(1.04);
+  #principais-temas .tema-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    font-size: 2rem;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    transition: transform 0.35s ease;
   }
 
-  /* Ajustes finos de tipografia e espaçamento */
-  #principais-temas .card-feature h5 { margin-bottom: 0.5rem; font-weight: 800; }
-  #principais-temas .card-feature p { margin-bottom: 1rem; line-height: 1.6; }
+  #principais-temas .tema-card-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.58);
+    transform: scale(1.02);
+    z-index: 0;
+  }
+
+  #principais-temas .tema-demografia .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-demografia .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-demografia .card-body .btn,
+  #principais-temas .tema-demografia .card-body .small,
+  #principais-temas .tema-demografia .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-demografia .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-demografia .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-demografia .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+  }
+
+  #principais-temas .tema-demografia .card-body .btn {
+    border-color: rgba(255,255,255,0.85);
+  }
+
+  #principais-temas .tema-card:hover .tema-icon {
+    transform: scale(1.04);
+  }
+
+  #principais-temas .tema-demografia { background: #0f172a; }
+  #principais-temas .tema-educacao { background: linear-gradient(135deg, #dcfce7 0%, #86efac 100%); }
+  #principais-temas .tema-saude { background: linear-gradient(135deg, #ffe4e6 0%, #fb7185 100%); }
+  #principais-temas .tema-trabalho { background: linear-gradient(135deg, #dbeafe 0%, #60a5fa 100%); }
+  #principais-temas .tema-seguranca { background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%); }
+  #principais-temas .tema-meio-ambiente { background: linear-gradient(135deg, #d1fae5 0%, #34d399 100%); }
+  #principais-temas .tema-economia { background: linear-gradient(135deg, #fef3c7 0%, #f59e0b 100%); }
+  #principais-temas .tema-financas { background: linear-gradient(135deg, #ede9fe 0%, #a78bfa 100%); }
+  #principais-temas .tema-infraestrutura { background: linear-gradient(135deg, #ffedd5 0%, #fb923c 100%); }
+
+  #principais-temas .tema-demografia .tema-icon {
+    background: rgba(255,255,255,0.9);
+    color: #0f172a;
+    border-color: rgba(255,255,255,0.9);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+  }
+  /* Make Educação card use same overlay/text treatment as Demografia when a background image is present */
+  #principais-temas .tema-educacao .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-educacao .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-educacao .card-body .btn,
+  #principais-temas .tema-educacao .card-body .small,
+  #principais-temas .tema-educacao .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-educacao .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-educacao .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-educacao .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
+  #principais-temas .tema-educacao .tema-icon { background: rgba(255,255,255,0.95); color: #16a34a; }
+  #principais-temas .tema-saude .tema-icon { background: rgba(255,255,255,0.95); color: #e11d48; }
+  /* Ensure Saúde card text and controls are readable over a background image */
+  #principais-temas .tema-saude .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-saude .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-saude .card-body .btn,
+  #principais-temas .tema-saude .card-body .small,
+  #principais-temas .tema-saude .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-saude .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-saude .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-saude .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
+  #principais-temas .tema-trabalho .tema-icon { background: rgba(255,255,255,0.95); color: #1d4ed8; }
+  /* Ensure Mercado de Trabalho card text and controls are readable over a background image */
+  #principais-temas .tema-trabalho .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-trabalho .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-trabalho .card-body .btn,
+  #principais-temas .tema-trabalho .card-body .small,
+  #principais-temas .tema-trabalho .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-trabalho .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-trabalho .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-trabalho .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
+  #principais-temas .tema-seguranca .tema-icon { background: rgba(255,255,255,0.95); color: #334155; }
+  /* Ensure Segurança card text and controls are readable over a background image */
+  #principais-temas .tema-seguranca .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-seguranca .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-seguranca .card-body .btn,
+  #principais-temas .tema-seguranca .card-body .small,
+  #principais-temas .tema-seguranca .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-seguranca .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-seguranca .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-seguranca .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
+
+  /* Ensure Meio Ambiente card text and controls are readable over a background image */
+  #principais-temas .tema-meio-ambiente .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-meio-ambiente .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-meio-ambiente .card-body .btn,
+  #principais-temas .tema-meio-ambiente .card-body .small,
+  #principais-temas .tema-meio-ambiente .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-meio-ambiente .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-meio-ambiente .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-meio-ambiente .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
+  #principais-temas .tema-meio-ambiente .tema-icon { background: rgba(255,255,255,0.95); color: #15803d; }
+  #principais-temas .tema-economia .tema-icon { background: rgba(255,255,255,0.95); color: #b45309; }
+  /* Ensure Economia card text and controls are readable over a background image */
+  #principais-temas .tema-economia .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-economia .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-economia .card-body .btn,
+  #principais-temas .tema-economia .card-body .small,
+  #principais-temas .tema-economia .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-economia .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-economia .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-economia .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
+
+  /* Ensure Finanças Públicas card text and controls are readable over a background image */
+  #principais-temas .tema-financas .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-financas .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-financas .card-body .btn,
+  #principais-temas .tema-financas .card-body .small,
+  #principais-temas .tema-financas .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-financas .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-financas .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-financas .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
+  #principais-temas .tema-financas .tema-icon { background: rgba(255,255,255,0.95); color: #7c3aed; }
+  #principais-temas .tema-infraestrutura .tema-icon { background: rgba(255,255,255,0.95); color: #ea580c; }
+  /* Ensure Infraestrutura card text and controls are readable over a background image */
+  #principais-temas .tema-infraestrutura .card-body {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  #principais-temas .tema-infraestrutura .card-body > * {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
+  }
+
+  #principais-temas .tema-infraestrutura .card-body .btn,
+  #principais-temas .tema-infraestrutura .card-body .small,
+  #principais-temas .tema-infraestrutura .card-body h5 {
+    color: #fff !important;
+  }
+
+  #principais-temas .tema-infraestrutura .card-body h5 {
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-infraestrutura .card-body .small {
+    opacity: 0.98;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.98);
+  }
+
+  #principais-temas .tema-infraestrutura .card-body .btn {
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+    border-color: rgba(255,255,255,0.85);
+  }
 
   /* Responsivo: reduzir altura e padding em telas pequenas */
   @media (max-width: 576px) {
-    #principais-temas .card-feature.card-animated { min-height: 340px; padding: 36px 24px; }
-  }
-
-  #principais-temas .card-feature h5,
-  #principais-temas .card-feature p,
-  #principais-temas .card-feature i {
-    color: #ffffff !important;
-  }
-
-  #principais-temas .card-feature h5,
-  #principais-temas .card-feature p {
-    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
-  }
-
-  #principais-temas .card-feature p {
-    font-weight: 500;
+    #principais-temas .card-feature.card-animated { min-height: 320px; padding: 28px 20px; }
+    #principais-temas .tema-icon { width: 64px; height: 64px; font-size: 1.7rem; }
   }
 
 .hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
+  display: block;
+  position: relative;
+  z-index: 1;
+  transform: scale(1.08);
+  transform-origin: center center;
 }
 
 .hero-overlay {
@@ -1253,21 +1664,25 @@ html.a11y-plain-font, html.a11y-plain-font body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: transparent !important;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   text-align: center;
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 12rem;
+  padding-top: 0;
+  transform: translateY(6rem);
+  width: 100%;
 }
 
 .hero-text-wrapper {
-  animation: fadeInUp 1s ease-out;
+  animation: none !important;
 }
 
 .hero-title {
@@ -1281,10 +1696,15 @@ html.a11y-plain-font, html.a11y-plain-font body {
   background-clip: initial !important;
   border: none !important;
   -webkit-text-stroke: 0 !important;
-  margin-top: 15rem;
+  margin-top: 0;
   margin-bottom: 1.5rem;
+  transform: none;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25) !important;
   line-height: 1.2;
+}
+
+@media (min-width: 769px) {
+  .hero-title { transform: translateY(1.6rem) !important; }
 }
 
 .hero-year {
@@ -1317,7 +1737,7 @@ html.a11y-plain-font, html.a11y-plain-font body {
 }
 
 .hero-cta-single {
-  margin-top: 9rem;
+  margin-top: 21rem;
 }
 
 .btn-hero {
@@ -1419,13 +1839,61 @@ html.a11y-plain-font, html.a11y-plain-font body {
   }
 }
 
+/* Reveal transitions powered by IntersectionObserver (added to match anuario2024)
+   Uses opacity + transform with a smooth cubic-bezier for fluid motion */
+html.js .js-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.48s ease-out, transform 0.56s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+html.js .js-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.36s ease-out, transform 0.48s ease-out;
+}
+
+html.js .js-reveal.is-visible .reveal-stagger > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js .js-reveal.is-visible .reveal-stagger > *:nth-child(1) { transition-delay: 0.08s; }
+html.js .js-reveal.is-visible .reveal-stagger > *:nth-child(2) { transition-delay: 0.16s; }
+html.js .js-reveal.is-visible .reveal-stagger > *:nth-child(3) { transition-delay: 0.24s; }
+html.js .js-reveal.is-visible .reveal-stagger > *:nth-child(4) { transition-delay: 0.32s; }
+html.js .js-reveal.is-visible .reveal-stagger > *:nth-child(5) { transition-delay: 0.40s; }
+html.js .js-reveal.is-visible .reveal-stagger > *:nth-child(6) { transition-delay: 0.48s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .js-reveal,
+  html.js .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+html.a11y-reduced-motion .js-reveal,
+html.a11y-reduced-motion .reveal-stagger > * {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
 /* ============================================
    CARDS MODERNOS (Sumário, Glossário, Expediente)
    ============================================ */
 
 .quick-access-section {
   padding: 4rem 0;
-  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+  background: transparent;
 }
 
 .card-modern {
@@ -1524,6 +1992,10 @@ html.a11y-plain-font, html.a11y-plain-font body {
   
   .scroll-indicator {
     display: none;
+  }
+  
+  .hero-title {
+    margin-top: 10rem;
   }
   
   .quick-access-section {
@@ -1671,6 +2143,14 @@ html.a11y-plain-font, html.a11y-plain-font body {
 
 @media (max-width: 576px) {
   .downloads-section .btn { width: 90%; max-width: 320px; }
+  
+  .hero-title {
+    margin-top: 8rem;
+  }
+  
+  .hero-section-modern {
+    min-height: 60vh;
+  }
 }
 /* ===========================
  PRODUTOS CARDS (FOOTER SECTION)

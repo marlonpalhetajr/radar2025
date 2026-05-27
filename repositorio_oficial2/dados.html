@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Radar Fapespa 2025</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-1: #f2f7f3;
+      --bg-2: #e3eee5;
+      --text: #173127;
+      --muted: #5a6d63;
+      --line: #cfd9d2;
+      --primary: #1f5a3d;
+      --primary-dark: #163f2b;
+      --panel-soft: #f7fbf8;
+      --panel-tint: #eaf3ed;
+      --shadow: 0 16px 38px rgba(18, 49, 35, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(46, 125, 82, 0.14) 0%, rgba(46, 125, 82, 0.04) 28%, transparent 55%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
+      padding: 12px;
+      color: var(--text);
+    }
+
+    .container-shell {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(31, 90, 61, 0.12);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .institutional-bar {
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+      color: #ecf6ef;
+      padding: 12px 20px;
+      font-size: 0.8em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .header {
+      background: linear-gradient(135deg, rgba(23, 49, 39, 0.98) 0%, rgba(31, 90, 61, 0.96) 56%, rgba(46, 125, 82, 0.92) 100%);
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .header-content h1 {
+      font-size: 1.65rem;
+      margin-bottom: 5px;
+      line-height: 1.15;
+    }
+
+    .header-content p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .btn-back {
+      background: rgba(255,255,255,0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-back:hover {
+      background: #ffffff;
+      color: var(--primary-dark);
+    }
+
+    .content {
+      display: flex;
+      min-height: calc(100vh - 134px);
+    }
+
+    .sidebar {
+      width: 280px;
+      background: var(--panel-soft);
+      border-right: 1px solid var(--line);
+      padding: 16px 15px;
+      overflow: auto;
+      max-height: calc(100vh - 134px);
+    }
+
+    .main {
+      flex: 1;
+      padding: 16px 18px;
+      overflow: auto;
+      max-height: calc(100vh - 134px);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .filter-section { margin-bottom: 12px; }
+    .filter-section h3 {
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .filter-select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 0.85em;
+      cursor: pointer;
+      background: white;
+    }
+
+    .filter-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(31, 90, 61, 0.14);
+    }
+
+    .filter-select:disabled {
+      background: #f1f5f2;
+      color: #809089;
+      cursor: not-allowed;
+      opacity: 0.95;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .btn {
+      padding: 9px 13px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      grid-column: 1 / -1;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(31, 90, 61, 0.25);
+    }
+
+    .btn-download { background: #2a6f4b; color: white; }
+    .btn-download:hover { background: #1f5a3d; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(31, 90, 61, 0.22); }
+    .btn-download.csv { background: #6b7280; }
+    .btn-download.csv:hover { background: #4b5563; }
+
+    .stats {
+      background: var(--panel-tint);
+      padding: 11px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 0.8em;
+      border: 1px solid var(--line);
+    }
+
+    .stats p { margin: 5px 0; color: #555; }
+    .stats strong { color: var(--primary-dark); }
+
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      flex: 1;
+      min-height: 0;
+      background: #ffffff;
+    }
+
+    table { width: 100%; border-collapse: collapse; background: white; }
+    thead { background: #eff6f1; border-bottom: 2px solid var(--primary); }
+    th {
+      padding: 9px 11px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--primary-dark);
+      white-space: nowrap;
+      font-size: 0.8em;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    td { padding: 8px 11px; border-bottom: 1px solid #ececec; font-size: 0.83em; white-space: nowrap; }
+    tr:nth-child(even) { background: #fafafa; }
+    tr:hover { background: #f3f9f4; }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 0 4px;
+      font-size: 0.9em;
+      color: #555;
+      flex-wrap: wrap;
+    }
+
+    .pagination button {
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--primary-dark);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .pagination button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .loading, .no-data {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 45vh;
+      font-size: 1.05em;
+      color: #4f5f57;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .loading .spinner-border { width: 3rem; height: 3rem; margin-right: 12px; }
+
+    .footer-note {
+      text-align: center;
+      color: #5d6d65;
+      padding: 14px 18px 18px;
+      font-size: 0.84rem;
+    }
+
+    .ui-hidden {
+      display: none !important;
+    }
+
+    .repo-home-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 50px;
+      height: 50px;
+      background: #2f7f2f;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      z-index: 999999;
+    }
+
+    .repo-home-btn.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .repo-home-btn:hover,
+    .repo-home-btn:focus {
+      color: #ffffff;
+      background: #1a5f1a;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    @media (max-width: 992px) {
+      .content { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        max-height: none;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .main { max-height: none; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 8px; }
+      .header { padding: 14px 14px; }
+      .header-content h1 { font-size: 1.25rem; }
+      .repo-home-btn { bottom: 20px; right: 20px; width: 45px; height: 45px; font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container-shell">
+    <div class="institutional-bar">Radar de Indicadores · Dados Interativos</div>
+    <div class="header">
+      <div class="header-content">
+        <h1 id="headerTitle">Dados do Radar</h1>
+        <p id="headerSubtitle">Selecione os filtros e exporte os dados em XLSX ou CSV.</p>
+      </div>
+      <a href="index.html" class="btn-back">Voltar ao Repositório</a>
+    </div>
+
+    <div class="content">
+      <aside class="sidebar">
+        <div class="stats">
+          <p><strong>Total de registros:</strong> <span id="totalRows">0</span></p>
+          <p><strong>Após filtro:</strong> <span id="filteredRows">0</span></p>
+        </div>
+
+        <div class="filter-section">
+          <h3>Indicador</h3>
+          <select id="indicador" class="filter-select">
+            <option value="">Todos os indicadores</option>
+          </select>
+        </div>
+
+        <div class="filter-section">
+          <h3>RI</h3>
+          <select id="ri" class="filter-select">
+            <option value="">Todas as regiões</option>
+          </select>
+        </div>
+
+        <div class="filter-section">
+          <h3>Localidade</h3>
+          <select id="localidade" class="filter-select">
+            <option value="">Todas as localidades</option>
+          </select>
+        </div>
+
+        <div class="filter-section" id="nivel1Section">
+          <h3>Nível 1</h3>
+          <select id="nivel1" class="filter-select" disabled>
+            <option value="">Selecione um indicador primeiro</option>
+          </select>
+        </div>
+
+        <div class="filter-section ui-hidden">
+          <h3>Nível 2</h3>
+          <select id="nivel2" class="filter-select">
+            <option value="">Todos os níveis</option>
+          </select>
+        </div>
+
+        <div class="filter-section ui-hidden">
+          <h3>Nível 3</h3>
+          <select id="nivel3" class="filter-select">
+            <option value="">Todos os níveis</option>
+          </select>
+        </div>
+
+        <div class="filter-section">
+          <h3>Ano</h3>
+          <select id="ano" class="filter-select">
+            <option value="">Todos os anos</option>
+          </select>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="resetFilters()">Limpar</button>
+          <button class="btn btn-download" onclick="downloadXLSXData()">XLSX</button>
+          <button class="btn btn-download csv" onclick="downloadCSVData()">CSV</button>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div id="loading" class="loading">
+          <div class="spinner-border text-success" role="status" aria-hidden="true"></div>
+          <span>Carregando dados...</span>
+        </div>
+
+        <div id="content" style="display:none; flex:1; min-height:0; flex-direction:column;">
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tema</th>
+                  <th>Indicador</th>
+                  <th>RI</th>
+                  <th>Localidade</th>
+                  <th>Nível 1</th>
+                  <th class="ui-hidden">Nível 2</th>
+                  <th class="ui-hidden">Nível 3</th>
+                  <th>Ano</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <button id="prevBtn" onclick="previousPage()">Anterior</button>
+            <span>Página <strong id="currentPage">1</strong> de <strong id="totalPages">1</strong></span>
+            <button id="nextBtn" onclick="nextPage()">Próxima</button>
+          </div>
+        </div>
+
+        <div id="noData" class="no-data" style="display:none;">
+          Nenhum dado encontrado para a temática selecionada.
+        </div>
+      </main>
+    </div>
+
+    <div class="footer-note">Dados carregados a partir dos CSVs da pasta <strong>CSV Radar em atualização</strong>.</div>
+  </div>
+
+  <a href="../index.html" class="repo-home-btn" id="repo-home-btn" title="Início" aria-label="Ir para o início">
+    <i class="bi bi-house-door-fill"></i>
+  </a>
+
+  <script src="functions.js"></script>
+  <script>
+    let allData = [];
+    let filteredData = [];
+    let currentPage = 1;
+    const rowsPerPage = 15;
+
+    const params = new URLSearchParams(window.location.search);
+    const tematica = params.get('tematica') || params.get('tema') || '';
+
+    const titleMap = {
+      'Demografia': 'Demografia',
+      'Educação': 'Educação',
+      'Saúde': 'Saúde',
+      'Mercado de Trabalho': 'Mercado de Trabalho',
+      'Segurança': 'Segurança',
+      'Meio Ambiente': 'Meio Ambiente',
+      'Economia': 'Economia',
+      'Finanças Públicas': 'Finanças Públicas',
+      'Infraestrutura': 'Infraestrutura'
+    };
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (!tematica) {
+        window.location.href = 'index.html';
+        return;
+      }
+      await loadData();
+    });
+
+    async function loadData() {
+      document.getElementById('loading').style.display = 'flex';
+      document.getElementById('content').style.display = 'none';
+      document.getElementById('noData').style.display = 'none';
+
+      document.getElementById('pageTitle').textContent = `${titleMap[tematica] || tematica} | Radar Fapespa 2025`;
+      document.getElementById('headerTitle').textContent = titleMap[tematica] || tematica;
+      document.getElementById('headerSubtitle').textContent = `Dados da temática ${titleMap[tematica] || tematica} com filtros e exportação.`;
+
+      try {
+        allData = await loadDataByTematica(tematica);
+        filteredData = [...allData];
+
+        if (allData.length === 0) {
+          throw new Error('Nenhum dado encontrado');
+        }
+
+        populateFilters();
+        updateStats();
+        renderTable();
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('content').style.display = 'flex';
+      } catch (error) {
+        console.error('Erro:', error);
+        document.getElementById('loading').innerHTML = '❌ Erro ao carregar dados: ' + error.message;
+      }
+    }
+
+    function populateFilters() {
+      const indicadores = getUniqueValues(allData, 'indicador').filter(v => v && v !== '-');
+      const ris = getUniqueValues(allData, 'ri').filter(v => v && v !== '-');
+      const nivel2 = getUniqueValues(allData, 'nivel2').filter(v => v && v !== '-');
+      const nivel3 = getUniqueValues(allData, 'nivel3').filter(v => v && v !== '-');
+      const anos = getUniqueValues(allData, 'ano').sort((a, b) => parseInt(a) - parseInt(b));
+
+      populateSelect('indicador', indicadores);
+      populateSelect('ri', ris);
+      setNivel1State('disabled');
+      populateSelect('nivel2', nivel2);
+      populateSelect('nivel3', nivel3);
+      populateSelect('ano', anos);
+
+      populateLocalidadesByRI('');
+
+      ['localidade', 'nivel1', 'nivel2', 'nivel3', 'ano'].forEach(id => {
+        document.getElementById(id).addEventListener('change', applyFilters);
+      });
+
+      document.getElementById('ri').addEventListener('change', onRIChange);
+      document.getElementById('indicador').addEventListener('change', onIndicadorChange);
+    }
+
+    function populateSelect(id, values) {
+      const select = document.getElementById(id);
+      const placeholders = {
+        indicador: 'Todos os indicadores',
+        ri: 'Todas as regiões',
+        localidade: 'Todas as localidades',
+        nivel1: 'Todos os níveis',
+        nivel2: 'Todos os níveis',
+        nivel3: 'Todos os níveis',
+        ano: 'Todos os anos'
+      };
+
+      select.innerHTML = `<option value="">${placeholders[id] || 'Todos'}</option>`;
+      values.forEach(value => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = id === 'indicador' ? cleanIndicatorLabel(value) : value;
+        select.appendChild(option);
+      });
+    }
+
+    function cleanIndicatorLabel(value) {
+      return String(value || '').replace(/^Tabela\s*\d+\s*-\s*/i, '').trim();
+    }
+
+    function setNivel1State(state) {
+      const nivel1Select = document.getElementById('nivel1');
+
+      if (state === 'disabled') {
+        nivel1Select.innerHTML = '<option value="">Selecione um indicador primeiro</option>';
+        nivel1Select.disabled = true;
+        return;
+      }
+
+      nivel1Select.disabled = false;
+    }
+
+    function populateLocalidadesByRI(selectedRI) {
+      const localidadeSelect = document.getElementById('localidade');
+      const localidades = getUniqueValues(
+        allData.filter(row => !selectedRI || row.ri === selectedRI),
+        'localidade'
+      ).filter(v => v && v !== '-');
+
+      localidadeSelect.innerHTML = '<option value="">Todas as localidades</option>';
+      localidades.forEach(value => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+        localidadeSelect.appendChild(option);
+      });
+    }
+
+    function onRIChange() {
+      const ri = document.getElementById('ri').value;
+      populateLocalidadesByRI(ri);
+      document.getElementById('localidade').value = '';
+      applyFilters();
+    }
+
+    function onIndicadorChange() {
+      const indicador = document.getElementById('indicador').value;
+
+      if (!indicador) {
+        setNivel1State('disabled');
+        document.getElementById('nivel1').value = '';
+        applyFilters();
+        return;
+      }
+
+      const nivel1Options = getUniqueValues(
+        allData.filter(row => row.indicador === indicador),
+        'nivel1'
+      ).filter(v => v && v !== '-');
+
+      const nivel1Select = document.getElementById('nivel1');
+      nivel1Select.disabled = false;
+      nivel1Select.innerHTML = '<option value="">Todas as faixas etárias</option>';
+      nivel1Options.forEach(value => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+        nivel1Select.appendChild(option);
+      });
+
+      document.getElementById('nivel1').value = '';
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const indicador = document.getElementById('indicador').value;
+      const ri = document.getElementById('ri').value;
+      const localidade = document.getElementById('localidade').value;
+      const nivel1 = document.getElementById('nivel1').value;
+      const nivel2 = document.getElementById('nivel2').value;
+      const nivel3 = document.getElementById('nivel3').value;
+      const ano = document.getElementById('ano').value;
+
+      filteredData = allData.filter(row => {
+        return (!indicador || row.indicador === indicador) &&
+               (!ri || row.ri === ri) &&
+               (!localidade || row.localidade === localidade) &&
+               (!nivel1 || row.nivel1 === nivel1) &&
+               (!nivel2 || row.nivel2 === nivel2) &&
+               (!nivel3 || row.nivel3 === nivel3) &&
+               (!ano || row.ano === ano);
+      });
+
+      currentPage = 1;
+      updateStats();
+      renderTable();
+    }
+
+    function updateStats() {
+      document.getElementById('totalRows').textContent = allData.length.toLocaleString('pt-BR');
+      document.getElementById('filteredRows').textContent = filteredData.length.toLocaleString('pt-BR');
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      if (filteredData.length === 0) {
+        document.getElementById('content').style.display = 'none';
+        document.getElementById('noData').style.display = 'flex';
+        return;
+      }
+
+      document.getElementById('content').style.display = 'flex';
+      document.getElementById('noData').style.display = 'none';
+
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      const pageData = filteredData.slice(start, end);
+
+      pageData.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.tema || '-'}</td>
+          <td>${cleanIndicatorLabel(row.indicador) || '-'}</td>
+          <td>${row.ri || '-'}</td>
+          <td>${row.localidade || '-'}</td>
+          <td>${row.nivel1 || '-'}</td>
+          <td class="ui-hidden">${row.nivel2 || '-'}</td>
+          <td class="ui-hidden">${row.nivel3 || '-'}</td>
+          <td><strong>${row.ano || '-'}</strong></td>
+          <td><strong>${formatNumber(row.valor)}</strong></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      updatePagination();
+    }
+
+    function updatePagination() {
+      const totalPages = Math.max(1, Math.ceil(filteredData.length / rowsPerPage));
+      document.getElementById('currentPage').textContent = currentPage;
+      document.getElementById('totalPages').textContent = totalPages;
+      document.getElementById('prevBtn').disabled = currentPage === 1;
+      document.getElementById('nextBtn').disabled = currentPage === totalPages;
+    }
+
+    function nextPage() {
+      const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderTable();
+        document.querySelector('.main').scrollTop = 0;
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderTable();
+        document.querySelector('.main').scrollTop = 0;
+      }
+    }
+
+    function downloadXLSXData() {
+      downloadXLSX(filteredData, `Radar_${tematica}`);
+    }
+
+    function downloadCSVData() {
+      downloadCSV(filteredData, `Radar_${tematica}`);
+    }
+
+    function resetFilters() {
+      ['indicador', 'ri', 'localidade', 'nivel1', 'nivel2', 'nivel3', 'ano'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      setNivel1State('disabled');
+      populateLocalidadesByRI('');
+      currentPage = 1;
+      filteredData = [...allData];
+      updateStats();
+      renderTable();
+    }
+
+    (function () {
+      const btn = document.getElementById('repo-home-btn');
+      if (!btn) return;
+
+      function toggleHomeBtn() {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrolled > 200) btn.classList.add('show');
+        else btn.classList.remove('show');
+      }
+
+      window.addEventListener('scroll', toggleHomeBtn, { passive: true });
+      toggleHomeBtn();
+    })();
+  </script>
+</body>
+</html>

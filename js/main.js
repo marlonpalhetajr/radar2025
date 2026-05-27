@@ -1,4 +1,5 @@
 // O JQuery ready function garante que todo o DOM foi carregado antes de executar o script
+console.info('COPILOT-FINGERPRINT: radar2025 js main.js updated 2026-05-27 v1');
 $(document).ready(function() {
   const demFilter = $("[data-filter='.demografia']");
   if (demFilter.length) demFilter.click();
@@ -18,19 +19,60 @@ $(document).ready(function() {
   };
   spinner();
 
-  // Initiate the wowjs (somente se a lib estiver carregada para evitar quebra)
-  if (typeof WOW === 'function') {
-    new WOW().init();
-  }
-
-  // Sticky Navbar
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-      $('.sticky-top').addClass('shadow-sm').css('top', '0px');
-    } else {
-      $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
+  // Preferir IntersectionObserver-based reveals to avoid heavy scroll listeners
+  // If WOW is available we intentionally do not initialize it to prevent
+  // duplicated scroll listeners and potential jank.
+  (function() {
+    if (typeof WOW === 'function') {
+      console.info('WOW available but not initialized - using IntersectionObserver reveals');
     }
-  });
+
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: reveal all elements immediately
+      document.documentElement.classList.add('js');
+      document.querySelectorAll('.js-reveal').forEach(function(el) {
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+
+    document.documentElement.classList.add('js');
+
+    var io = new IntersectionObserver(function(entries, obs) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.js-reveal').forEach(function(el) {
+      io.observe(el);
+    });
+  })();
+
+  // Sticky Navbar: manter o cabeçalho visível sempre e apenas alternar a sombra ao rolar
+  (function () {
+    var navbar = document.querySelector('.sticky-top');
+    if (!navbar) return;
+
+    // Garante que o cabeçalho esteja sempre visível (sem translate que o escondia)
+    navbar.style.transform = 'translateY(0)';
+    navbar.style.transition = 'box-shadow 220ms ease';
+
+    function onScroll() {
+      var y = window.scrollY || window.pageYOffset;
+      if (y > 300) {
+        navbar.classList.add('shadow-sm');
+      } else {
+        navbar.classList.remove('shadow-sm');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
 
   // Facts counter (só se o plugin estiver disponível)
   if ($.fn.counterUp) {
@@ -153,6 +195,69 @@ $(document).ready(function() {
     if (title) title.textContent = modalTitle;
     if (openFull) openFull.href = url;
 
+    // Special case: load apresentacao.html or detgi.html content but apply Anuário layout/CSS
+    if (url && (url.indexOf('apresentacao.html') !== -1 || url.indexOf('detgi.html') !== -1)) {
+      // CSS copied from anuario2024/css/apresentacao.css
+      const apresentacaoLayoutCSS = `
+/* Anuário apresentação layout */
+body { font-family: "Open Sans", sans-serif; background-color: #f9fafb; color: #333; margin: 0; padding: 0; }
+#cabecalho { background-color: #0056b3; color: #fff; text-align: center; padding: 18px 0; border-bottom: 6px solid #0d6efd; }
+#cabecalho h2 { font-weight: 600; letter-spacing: 1px; font-size: 1.5rem; margin: 0; line-height: 1.1; }
+#corpo { max-width: 900px; margin: 56px auto; padding: 0 24px; line-height: 1.8; font-size: 1.05rem; }
+#rodape { text-align: center; background-color: #e9ecef; padding: 20px; font-weight: 300; color: #555; border-top: 3px solid #0d6efd; }
+p { margin-bottom: 1.2em; }
+@media (max-width: 768px) { #corpo { padding: 0 15px; } #cabecalho h2 { font-size: 1.5rem; } }
+html, body { font-size: 17px; overflow-x: hidden; }
+ #corpo { font-size: 0.9rem; line-height: 1.6; }
+ #rodape { font-size: 0.85rem; }
+`;
+
+      // Fetch the original apresentacao content and extract title, body and signature
+      fetch(url).then(r => r.text()).then(pageHtml => {
+        try {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(pageHtml, 'text/html');
+
+          // Prefer container used in radar version
+          const container = doc.querySelector('#indicadores .container') || doc.querySelector('#indicadores') || doc.body;
+
+          // Extract title (h1/h2) and remove it from body copy
+          let titleText = modalTitle;
+          let bodyHtml = '';
+          let signatureHtml = '';
+
+          if (container) {
+            const clone = container.cloneNode(true);
+            const h = clone.querySelector('h1, h2');
+            if (h) { titleText = h.textContent.trim(); h.remove(); }
+
+            // Try to extract a signature (last paragraph) and remove it from body
+            const ps = clone.querySelectorAll('p');
+            if (ps && ps.length) {
+              const last = ps[ps.length - 1];
+              signatureHtml = last.outerHTML;
+              last.remove();
+            }
+
+            // Remaining inner HTML becomes the body
+            // If the clone contains a wrapper div, unwrap its inner content
+            bodyHtml = clone.innerHTML.trim();
+          }
+
+          body.innerHTML = `\n            <style>${apresentacaoLayoutCSS}</style>\n            <main><article>\n              <div id="cabecalho"><h2>${titleText}</h2></div>\n              <div id="corpo">${bodyHtml}</div>\n              <div id="rodape">${signatureHtml}</div>\n            </article></main>`;
+
+          modal.style.display = 'block';
+          backdrop.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        } catch (e) {
+          console.error('Erro ao processar apresentacao.html:', e);
+        }
+      }).catch(err => console.error('Falha ao buscar apresentacao.html:', err));
+
+      return;
+    }
+
+    // Default behavior: load url in iframe
     body.innerHTML = `
       <iframe src="${url}" title="${modalTitle}" style="width:100%;height:70vh;border:0;" loading="lazy"></iframe>
     `;
@@ -235,6 +340,70 @@ try {
     document.addEventListener('DOMContentLoaded', initBackToTop);
   } else {
     initBackToTop();
+  }
+})();
+
+// Desativar recursos pesados em dispositivos lentos/pequenos
+(function() {
+  'use strict';
+
+  function shouldReduce() {
+    try {
+      var smallScreen = window.innerWidth && window.innerWidth < 992;
+      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var slowConnection = conn && conn.effectiveType && (conn.effectiveType.indexOf('2g') === 0 || conn.effectiveType === 'slow-2g');
+      var lowMemory = navigator.deviceMemory && navigator.deviceMemory < 1.5;
+      return smallScreen || slowConnection || lowMemory;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function reduceAnimations() {
+    var style = document.createElement('style');
+    style.id = 'reduced-motion-overrides';
+    style.innerHTML = "\
+      .wow, .card-animated, .hero-overlay, .hero-image {\
+        animation-duration: 0.001s !important;\
+        transition-duration: 0.001s !important;\
+        will-change: auto !important;\
+      }\
+      .parallax-mirror, [data-parallax] { display: none !important; }\
+    ";
+    document.head.appendChild(style);
+    document.body.classList.add('reduced-motion');
+  }
+
+  function disableWaypoints() {
+    if (window.Waypoint && typeof Waypoint.disableAll === 'function') {
+      try { Waypoint.disableAll(); } catch (e) { /* ignore */ }
+    }
+  }
+
+  function destroyParallax() {
+    try {
+      if (window.jQuery && jQuery.fn && jQuery.fn.parallax) {
+        jQuery('[data-parallax="scroll"]').each(function() {
+          try { jQuery(this).parallax('destroy'); } catch (e) { /* ignore */ }
+        });
+      }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  function run() {
+    if (!shouldReduce()) return;
+    // Reduce animations and disable expensive libraries
+    reduceAnimations();
+    disableWaypoints();
+    destroyParallax();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
   }
 })();
 
