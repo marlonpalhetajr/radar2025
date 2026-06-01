@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interativo | Radar 2025 | FAPESPA</title>
+  <meta name="description" content="Mapa interativo do Radar 2025 com dados por Região de Integração do Pará.">
+  <link rel="icon" href="../img/fapespa2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=League+Spartan:wght@600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css">
+  <style>
+    :root {
+      --primary: #2f7f2f;
+      --primary-2: #3aa64a;
+      --secondary: #163b6b;
+      --bg: #f5f7fb;
+      --text: #1d2430;
+      --muted: #667085;
+      --card: rgba(255,255,255,0.92);
+      --border: rgba(16, 24, 40, 0.08);
+      --shadow: 0 16px 40px rgba(16, 24, 40, 0.10);
+      --radius: 18px;
+      --radius-sm: 14px;
+      --blue-1: #eef6ff;
+      --blue-2: #cfe6ff;
+      --blue-3: #8bc0ea;
+      --blue-4: #4f89c4;
+      --blue-5: #274f7c;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(58,166,74,0.12), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(22,59,107,0.10), transparent 28%),
+        linear-gradient(180deg, #f9fbff 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    .map-shell {
+      min-height: 100vh;
+      padding-bottom: 2rem;
+    }
+
+    .map-hero {
+      position: relative;
+      overflow: hidden;
+      margin: 1rem auto 0;
+      padding: 1.5rem 1.4rem;
+      background: linear-gradient(135deg, rgba(22,59,107,0.92), rgba(47,127,47,0.92));
+      color: #fff;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .map-hero::before,
+    .map-hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .map-hero::before {
+      width: 200px;
+      height: 200px;
+      top: -90px;
+      right: -40px;
+      background: radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%);
+    }
+
+    .map-hero::after {
+      width: 260px;
+      height: 260px;
+      bottom: -130px;
+      left: -70px;
+      background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 72%);
+    }
+
+    .map-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: end;
+    }
+
+    .map-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.42rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .map-title {
+      margin: 0.65rem 0 0.4rem;
+      font-family: 'League Spartan', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 3vw, 3.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .map-subtitle {
+      margin: 0;
+      max-width: 760px;
+      font-size: 1.02rem;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: 0.5rem;
+      justify-items: end;
+      align-self: start;
+      text-align: right;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .controls-card,
+    .panel-card,
+    .map-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .controls-card {
+      margin-top: 1rem;
+      padding: 1.2rem;
+    }
+
+    .controls-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+      font-size: 1.06rem;
+    }
+
+    .form-label {
+      font-weight: 700;
+      color: #364152;
+      margin-bottom: 0.45rem;
+    }
+
+    .form-select {
+      border-radius: 12px;
+      border: 1px solid rgba(16,24,40,0.12);
+      min-height: 48px;
+      box-shadow: none;
+    }
+
+    .form-select:focus {
+      border-color: rgba(47,127,47,0.45);
+      box-shadow: 0 0 0 0.2rem rgba(47,127,47,0.10);
+    }
+
+    .map-row {
+      margin-top: 1rem;
+      align-items: stretch;
+    }
+
+    .map-card {
+      overflow: hidden;
+      padding: 0.9rem;
+      height: 100%;
+    }
+
+    #map {
+      width: 100%;
+      height: 720px;
+      min-height: 640px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #edf4ff, #f9fbff);
+    }
+
+    .side-stack {
+      display: grid;
+      gap: 1rem;
+      height: 100%;
+    }
+
+    .panel-card {
+      padding: 1.05rem;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      color: var(--secondary);
+      margin-bottom: 0.9rem;
+      font-size: 1rem;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .info-item {
+      padding: 0.85rem;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(47,127,47,0.05), rgba(22,59,107,0.03));
+      border: 1px solid rgba(16,24,40,0.06);
+    }
+
+    .info-item label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .info-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .legend-list {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(16,24,40,0.06);
+    }
+
+    .legend-swatch {
+      width: 44px;
+      height: 20px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(16,24,40,0.08);
+    }
+
+    .legend-label {
+      font-size: 0.92rem;
+      color: #344054;
+      line-height: 1.2;
+    }
+
+    .legend-note {
+      margin-top: 0.85rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .selection-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(47,127,47,0.10);
+      color: #245f2d;
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.38rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(22,59,107,0.08);
+      color: var(--secondary);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245,247,251,0.82);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+    }
+
+    .loading-overlay.hidden { display: none; }
+
+    .loading-card {
+      display: grid;
+      gap: 0.85rem;
+      justify-items: center;
+      padding: 1.4rem 1.5rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      min-width: 280px;
+    }
+
+    .spinner-ring {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 6px solid rgba(47,127,47,0.14);
+      border-top-color: var(--primary);
+      animation: spin 0.95s linear infinite;
+    }
+
+    .loading-card p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .maplibregl-popup-content {
+      border-radius: 12px;
+      box-shadow: 0 10px 26px rgba(16,24,40,0.16);
+      padding: 0.85rem 0.95rem;
+      font-family: 'Open Sans', Arial, sans-serif;
+    }
+
+    .popup-title {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--secondary);
+    }
+
+    .popup-row {
+      margin: 0.25rem 0;
+      font-size: 0.9rem;
+      color: #475467;
+    }
+
+    .popup-row strong {
+      color: #101828;
+    }
+
+    .maplibregl-ctrl-group {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 22px rgba(16,24,40,0.14);
+    }
+
+    .maplibregl-ctrl-group button {
+      width: 40px;
+      height: 40px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 991.98px) {
+      .map-hero-inner {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .hero-meta {
+        justify-items: start;
+        text-align: left;
+      }
+
+      #map { height: 540px; min-height: 500px; }
+    }
+
+    @media (max-width: 767.98px) {
+      .map-shell { padding-left: 0.75rem; padding-right: 0.75rem; }
+      .controls-card, .panel-card, .map-card { border-radius: 16px; }
+      .map-title { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+      .info-grid { grid-template-columns: 1fr; }
+      #map { height: 460px; min-height: 420px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading" class="loading-overlay">
+    <div class="loading-card text-center">
+      <div class="spinner-ring"></div>
+      <p>Carregando o mapa interativo...</p>
+    </div>
+  </div>
+
+  <main class="map-shell container py-3 py-md-4">
+    <section class="map-hero">
+      <div class="map-hero-inner">
+        <div>
+          <span class="map-eyebrow"><i class="bi bi-map"></i> Radar 2025</span>
+          <h1 class="map-title">Mapa Interativo das Regiões de Integração</h1>
+          <p class="map-subtitle">Visualize a base cartográfica municipal do Pará filtrando por Região de Integração e indicador da Tabela 1. A estrutura foi preparada para receber novas tabelas depois.</p>
+        </div>
+        <div class="hero-meta">
+          <span class="hero-badge"><i class="bi bi-file-earmark-spreadsheet"></i> Base 2025</span>
+          <span class="hero-badge"><i class="bi bi-pin-map"></i> Municípios por RI</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls-card">
+      <div class="controls-title"><i class="bi bi-sliders2"></i> Controles do Mapa</div>
+      <div class="row g-3 align-items-end">
+        <div class="col-lg-4 col-md-6">
+          <label for="riSelect" class="form-label">Região de Integração</label>
+          <select id="riSelect" class="form-select"></select>
+        </div>
+        <div class="col-lg-5 col-md-6">
+          <label for="indicatorSelect" class="form-label">Indicador</label>
+          <select id="indicatorSelect" class="form-select"></select>
+        </div>
+        <div class="col-lg-3 col-md-12">
+          <div class="selection-pill w-100 justify-content-center"><i class="bi bi-calendar2-check"></i> Ano base: 2025</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row g-4 map-row">
+      <div class="col-lg-8">
+        <div class="map-card">
+          <div id="map"></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="side-stack">
+          <div class="panel-card">
+            <div class="panel-title"><i class="bi bi-info-circle"></i> Informações</div>
+            <div class="info-grid" id="infoGrid">
+              <div class="info-item">
+                <label>RI selecionada</label>
+                <strong id="infoRi">-</strong>
+              </div>
+              <div class="info-item">
+                <label>Indicador</label>
+                <strong id="infoIndicator">-</strong>
+              </div>
+              <div class="info-item">
+                <label>Municípios exibidos</label>
+                <strong id="infoMunicipalities">-</strong>
+              </div>
+              <div class="info-item">
+                <label>Valores válidos</label>
+                <strong id="infoValues">-</strong>
+              </div>
+              <div class="info-item">
+                <label>Menor valor</label>
+                <strong id="infoMin">-</strong>
+              </div>
+              <div class="info-item">
+                <label>Maior valor</label>
+                <strong id="infoMax">-</strong>
+              </div>
+            </div>
+            <div class="status-bar">
+              <span class="status-chip"><i class="bi bi-lightning-charge"></i> Mapa dinâmico</span>
+              <span class="status-chip"><i class="bi bi-bezier2"></i> Dados em tabela</span>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-title"><i class="bi bi-palette"></i> Legenda</div>
+            <div class="legend-list" id="legendList"></div>
+            <div class="legend-note" id="legendNote">Selecione uma Região de Integração e um indicador para montar a escala de cores.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+  <script>
+    const RI_SOURCES = [
+      { label: 'Araguaia', file: '../tabelas-powerBI_cleaned_v4/2 Araguaia/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_araguaia__Araguaia__long.csv' },
+      { label: 'Baixo Amazonas', file: '../tabelas-powerBI_cleaned_v4/3 Baixo Amazonas/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_baixo_amazonas__Baixo_Amazonas__long.csv' },
+      { label: 'Carajás', file: '../tabelas-powerBI_cleaned_v4/4 Carajás/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_carajs__Carajs__long.csv' },
+      { label: 'Guajará', file: '../tabelas-powerBI_cleaned_v4/5 Guajará/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_guajar__Guajar__long.csv' },
+      { label: 'Guamá', file: '../tabelas-powerBI_cleaned_v4/6 Guamá/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_guam__Guam__long.csv' },
+      { label: 'Lago de Tucuruí', file: '../tabelas-powerBI_cleaned_v4/7 Lago de Tucuruí/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_lago_de_tucuru__Lago_de_Tucuru__long.csv' },
+      { label: 'Marajó', file: '../tabelas-powerBI_cleaned_v4/8 Marajó/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_maraj__Maraj__long.csv' },
+      { label: 'Rio Caeté', file: '../tabelas-powerBI_cleaned_v4/9 Rio Caeté/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_rio_caet__Rio_Caet__long.csv' },
+      { label: 'Rio Capim', file: '../tabelas-powerBI_cleaned_v4/10 Rio Capim/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_rio_capim__Rio_Capim__long.csv' },
+      { label: 'Tapajós', file: '../tabelas-powerBI_cleaned_v4/11 Tapajós/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_tapajs__Tapajs__long.csv' },
+      { label: 'Tocantins', file: '../tabelas-powerBI_cleaned_v4/12 Tocantins/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_tocantins__Tocantins__long.csv' },
+      { label: 'Xingu', file: '../tabelas-powerBI_cleaned_v4/13 Xingu/Tabela_1_-_Populao_rea_Territorial_km_e_Densidade_Demogrfica_-_2025_ri_xingu__Xingu__long.csv' }
+    ];
+
+    const INDICATOR_LABELS = {
+      Populao_Estimada_Total__2025: 'População Estimada Total (2025)',
+      rea_Territorial_km__2024: 'Área Territorial (km²) - 2024',
+      Densidade_Demogrfica_habkm: 'Densidade Demográfica (hab./km²)'
+    };
+
+    const PALETTE = ['#eef6ff', '#cfe6ff', '#8bc0ea', '#4f89c4', '#274f7c'];
+
+    const STATE = {
+      map: null,
+      geojson: null,
+      riData: new Map(),
+      sourceRows: [],
+      currentRi: null,
+      currentIndicator: 'Populao_Estimada_Total__2025',
+      breaks: [],
+      popup: null,
+      hoverId: null
+    };
+
+    const el = {
+      loading: document.getElementById('loading'),
+      riSelect: document.getElementById('riSelect'),
+      indicatorSelect: document.getElementById('indicatorSelect'),
+      infoRi: document.getElementById('infoRi'),
+      infoIndicator: document.getElementById('infoIndicator'),
+      infoMunicipalities: document.getElementById('infoMunicipalities'),
+      infoValues: document.getElementById('infoValues'),
+      infoMin: document.getElementById('infoMin'),
+      infoMax: document.getElementById('infoMax'),
+      legendList: document.getElementById('legendList'),
+      legendNote: document.getElementById('legendNote')
+    };
+
+    function normalize(text) {
+      return String(text || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+    }
+
+    function formatNumber(value) {
+      if (value === null || value === undefined || Number.isNaN(value)) return '-';
+      return new Intl.NumberFormat('pt-BR', {
+        maximumFractionDigits: Number.isInteger(value) ? 0 : 2
+      }).format(value);
+    }
+
+    function parseNumber(value) {
+      if (value === null || value === undefined) return null;
+      const text = String(value).trim();
+      if (!text || text === '-' || text === 'null') return null;
+      const normalized = text.replace(/\./g, '').replace(',', '.');
+      const parsed = Number(normalized);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function parseDelimited(text, delimiter = ';') {
+      const rows = [];
+      let field = '';
+      let row = [];
+      let inQuotes = false;
+      let index = 0;
+      const source = text.replace(/^\uFEFF/, '');
+
+      while (index < source.length) {
+        const char = source[index];
+        const next = source[index + 1];
+
+        if (char === '"') {
+          if (inQuotes && next === '"') {
+            field += '"';
+            index += 2;
+            continue;
+          }
+          inQuotes = !inQuotes;
+          index += 1;
+          continue;
+        }
+
+        if (char === delimiter && !inQuotes) {
+          row.push(field);
+          field = '';
+          index += 1;
+          continue;
+        }
+
+        if ((char === '\n' || char === '\r') && !inQuotes) {
+          if (char === '\r' && next === '\n') index += 1;
+          row.push(field);
+          if (row.some(cell => String(cell).trim() !== '')) rows.push(row);
+          field = '';
+          row = [];
+          index += 1;
+          continue;
+        }
+
+        field += char;
+        index += 1;
+      }
+
+      if (field.length || row.length) {
+        row.push(field);
+        if (row.some(cell => String(cell).trim() !== '')) rows.push(row);
+      }
+
+      const header = rows.shift() || [];
+      return rows.map(values => {
+        const entry = {};
+        header.forEach((key, position) => {
+          entry[String(key || '').trim()] = values[position] ?? '';
+        });
+        return entry;
+      });
+    }
+
+    function quantile(sortedValues, q) {
+      if (!sortedValues.length) return null;
+      const position = (sortedValues.length - 1) * q;
+      const base = Math.floor(position);
+      const rest = position - base;
+      if (sortedValues[base + 1] !== undefined) {
+        return sortedValues[base] + rest * (sortedValues[base + 1] - sortedValues[base]);
+      }
+      return sortedValues[base];
+    }
+
+    function buildBreaks(values) {
+      const numeric = values.filter(value => Number.isFinite(value)).sort((a, b) => a - b);
+      if (!numeric.length) return [];
+      const min = numeric[0];
+      const max = numeric[numeric.length - 1];
+      if (min === max) {
+        return [min, min, min, min, max];
+      }
+      return [0, 0.25, 0.5, 0.75, 1].map(q => quantile(numeric, q));
+    }
+
+    function getColorByValue(value) {
+      if (!Number.isFinite(value) || !STATE.breaks.length) return '#e9eef5';
+      const [b1, b2, b3, b4] = STATE.breaks;
+      if (value <= b1) return PALETTE[0];
+      if (value <= b2) return PALETTE[1];
+      if (value <= b3) return PALETTE[2];
+      if (value <= b4) return PALETTE[3];
+      return PALETTE[4];
+    }
+
+    function buildLegend() {
+      const municipalityNames = new Set((STATE.geojson?.features || []).map(feature => normalize(feature.properties?.name || '')));
+      const values = Array.from((STATE.riData.get(STATE.currentRi) || [])
+        .filter(row => row.variavel === STATE.currentIndicator && Number.isFinite(row.valor) && municipalityNames.has(normalize(row.localidade)))
+        .map(row => row.valor));
+
+      STATE.breaks = buildBreaks(values);
+      el.legendList.innerHTML = '';
+
+      if (!values.length) {
+        el.legendNote.textContent = 'Sem dados disponíveis para essa combinação.';
+        return;
+      }
+
+      const [b1, b2, b3, b4] = STATE.breaks;
+      const items = [
+        { color: PALETTE[0], label: `até ${formatNumber(b1)}` },
+        { color: PALETTE[1], label: `${formatNumber(b1)} - ${formatNumber(b2)}` },
+        { color: PALETTE[2], label: `${formatNumber(b2)} - ${formatNumber(b3)}` },
+        { color: PALETTE[3], label: `${formatNumber(b3)} - ${formatNumber(b4)}` },
+        { color: PALETTE[4], label: `acima de ${formatNumber(b4)}` }
+      ];
+
+      items.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'legend-row';
+        row.innerHTML = `
+          <span class="legend-swatch" style="background:${item.color}"></span>
+          <span class="legend-label">${item.label}</span>
+        `;
+        el.legendList.appendChild(row);
+      });
+
+      el.legendNote.textContent = 'Escala calculada automaticamente para os municípios com dados na RI selecionada.';
+    }
+
+    function fitToRi() {
+      if (!STATE.map || !STATE.geojson) return;
+      const riRows = STATE.riData.get(STATE.currentRi) || [];
+      const municipalityNames = new Set(
+        riRows
+          .filter(row => row.variavel === STATE.currentIndicator && Number.isFinite(row.valor))
+          .map(row => normalize(row.localidade))
+      );
+
+      const bounds = new maplibregl.LngLatBounds();
+      let hasBounds = false;
+
+      STATE.geojson.features.forEach(feature => {
+        if (!municipalityNames.has(normalize(feature.properties?.name))) return;
+        const coords = feature.geometry?.coordinates || [];
+        const stack = Array.isArray(coords[0][0]) ? coords.flat(2) : coords.flat();
+        for (let i = 0; i < stack.length; i += 2) {
+          if (typeof stack[i] !== 'number' || typeof stack[i + 1] !== 'number') continue;
+          bounds.extend([stack[i], stack[i + 1]]);
+          hasBounds = true;
+        }
+      });
+
+      if (hasBounds) {
+        STATE.map.fitBounds(bounds, { padding: 28, duration: 900, maxZoom: 8.5 });
+      }
+    }
+
+    function renderInfoPanel() {
+      const municipalityNames = new Set((STATE.geojson?.features || []).map(feature => normalize(feature.properties?.name || '')));
+      const rows = STATE.riData.get(STATE.currentRi) || [];
+      const relevant = rows.filter(row => row.variavel === STATE.currentIndicator && Number.isFinite(row.valor) && municipalityNames.has(normalize(row.localidade)));
+      const values = relevant.map(row => row.valor);
+
+      el.infoRi.textContent = STATE.currentRi || '-';
+      el.infoIndicator.textContent = INDICATOR_LABELS[STATE.currentIndicator] || STATE.currentIndicator;
+      el.infoMunicipalities.textContent = relevant.length ? `${relevant.length} municípios` : '-';
+      el.infoValues.textContent = values.length ? `${values.length} registros` : '-';
+      el.infoMin.textContent = values.length ? formatNumber(Math.min(...values)) : '-';
+      el.infoMax.textContent = values.length ? formatNumber(Math.max(...values)) : '-';
+    }
+
+    function updateMapData() {
+      const rows = STATE.riData.get(STATE.currentRi) || [];
+      const municipalityNames = new Set((STATE.geojson?.features || []).map(feature => normalize(feature.properties?.name || '')));
+      const selectedRows = rows.filter(row => row.variavel === STATE.currentIndicator && row.localidade && Number.isFinite(row.valor) && municipalityNames.has(normalize(row.localidade)));
+      const valuesByMunicipality = new Map(
+        selectedRows.map(row => [normalize(row.localidade), row.valor])
+      );
+
+      const enriched = {
+        type: 'FeatureCollection',
+        features: STATE.geojson.features.map(feature => {
+          const name = feature.properties?.name || feature.properties?.description || '';
+          const key = normalize(name);
+          const value = valuesByMunicipality.has(key) ? valuesByMunicipality.get(key) : null;
+          const isInside = valuesByMunicipality.has(key);
+          return {
+            ...feature,
+            properties: {
+              ...feature.properties,
+              value,
+              isInside,
+              ri: STATE.currentRi,
+              indicator: STATE.currentIndicator
+            }
+          };
+        })
+      };
+
+      if (STATE.map.getSource('municipios')) {
+        STATE.map.getSource('municipios').setData(enriched);
+      } else {
+        STATE.map.addSource('municipios', { type: 'geojson', data: enriched });
+        STATE.map.addLayer({
+          id: 'municipios-fill',
+          type: 'fill',
+          source: 'municipios',
+          paint: {
+            'fill-color': ['match', ['get', 'valueClass'], 0, PALETTE[0], 1, PALETTE[1], 2, PALETTE[2], 3, PALETTE[3], 4, PALETTE[4], '#e9eef5'],
+            'fill-opacity': ['case', ['boolean', ['get', 'isInside'], false], 0.84, 0.18]
+          }
+        });
+        STATE.map.addLayer({
+          id: 'municipios-line',
+          type: 'line',
+          source: 'municipios',
+          paint: {
+            'line-color': ['case', ['boolean', ['get', 'isInside'], false], '#163b6b', '#cbd5e1'],
+            'line-width': ['case', ['boolean', ['get', 'isInside'], false], 0.9, 0.5]
+          }
+        });
+
+        STATE.map.on('mousemove', 'municipios-fill', onMapMove);
+        STATE.map.on('mouseleave', 'municipios-fill', onMapLeave);
+      }
+
+      const values = selectedRows.map(row => row.valor).filter(Number.isFinite);
+      STATE.breaks = buildBreaks(values);
+      const updated = {
+        type: 'FeatureCollection',
+        features: enriched.features.map(feature => {
+          const value = feature.properties.value;
+          const classes = STATE.breaks;
+          let valueClass = -1;
+          if (Number.isFinite(value) && classes.length) {
+            if (value <= classes[0]) valueClass = 0;
+            else if (value <= classes[1]) valueClass = 1;
+            else if (value <= classes[2]) valueClass = 2;
+            else if (value <= classes[3]) valueClass = 3;
+            else valueClass = 4;
+          }
+          return { ...feature, properties: { ...feature.properties, valueClass } };
+        })
+      };
+
+      STATE.map.getSource('municipios').setData(updated);
+      buildLegend();
+      renderInfoPanel();
+      fitToRi();
+      updateStatusLabel(selectedRows.length);
+    }
+
+    function updateStatusLabel(count) {
+      el.legendNote.textContent = count
+        ? `Foram encontrados ${count} registros válidos para ${STATE.currentRi}.`
+        : 'Selecione outra combinação para visualizar dados na malha municipal.';
+    }
+
+    function onMapMove(event) {
+      if (!event.features || !event.features.length) return;
+      const feature = event.features[0];
+      const props = feature.properties || {};
+      const value = props.value;
+      const coordinates = event.lngLat;
+
+      STATE.map.getCanvas().style.cursor = 'pointer';
+      if (STATE.popup) {
+        STATE.popup
+          .setLngLat(coordinates)
+          .setHTML(`
+            <div class="popup-title">${props.name || 'Município'}</div>
+            <div class="popup-row"><strong>RI:</strong> ${STATE.currentRi}</div>
+            <div class="popup-row"><strong>Indicador:</strong> ${INDICATOR_LABELS[STATE.currentIndicator] || STATE.currentIndicator}</div>
+            <div class="popup-row"><strong>Valor:</strong> ${formatNumber(value)}</div>
+          `)
+          .addTo(STATE.map);
+      }
+
+      if (STATE.hoverId !== feature.id) {
+        STATE.hoverId = feature.id;
+      }
+    }
+
+    function onMapLeave() {
+      STATE.map.getCanvas().style.cursor = '';
+      if (STATE.popup) STATE.popup.remove();
+      STATE.hoverId = null;
+    }
+
+    function populateSelectors() {
+      const riOptions = RI_SOURCES.map(source => `<option value="${source.label}">${source.label}</option>`).join('');
+      el.riSelect.innerHTML = riOptions;
+      el.indicatorSelect.innerHTML = Object.entries(INDICATOR_LABELS)
+        .map(([key, label], index) => `<option value="${key}" ${index === 0 ? 'selected' : ''}>${label}</option>`)
+        .join('');
+      STATE.currentRi = RI_SOURCES[0]?.label || null;
+    }
+
+    async function loadAllData() {
+      populateSelectors();
+      const jobs = RI_SOURCES.map(async source => {
+        const response = await fetch(new URL(source.file, window.location.href).href, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Falha ao carregar ${source.label}: HTTP ${response.status}`);
+        const text = await response.text();
+        const rows = parseDelimited(text, ',')
+          .map(row => ({
+            riLabel: source.label,
+            localidade: String(row.localidade || row.EstadoMunicpios || '').trim(),
+            variavel: String(row.variavel || '').trim(),
+            valor: parseNumber(row.valor)
+          }))
+          .filter(row => row.localidade && row.localidade !== 'Fonte: IBGE - Censo Demográfico' && row.localidade !== 'Elaboração: FAPESPA' && !row.localidade.startsWith('Nota'));
+        STATE.riData.set(source.label, rows);
+      });
+      await Promise.all(jobs);
+    }
+
+    async function init() {
+      try {
+        await loadAllData();
+        const geoResponse = await fetch(new URL('../data/para_municipios.geojson', window.location.href).href, { cache: 'no-store' });
+        if (!geoResponse.ok) throw new Error(`Falha ao carregar a malha municipal: HTTP ${geoResponse.status}`);
+        STATE.geojson = await geoResponse.json();
+
+        STATE.map = new maplibregl.Map({
+          container: 'map',
+          style: {
+            version: 8,
+            sources: {
+              'osm-tiles': {
+                type: 'raster',
+                tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+                tileSize: 256,
+                attribution: '© OpenStreetMap contributors'
+              }
+            },
+            layers: [{ id: 'osm-tiles', type: 'raster', source: 'osm-tiles' }]
+          },
+          center: [-52, -3.5],
+          zoom: 6,
+          minZoom: 5,
+          maxZoom: 10,
+          attributionControl: true
+        });
+
+        STATE.popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false });
+        STATE.map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+        STATE.map.on('load', () => {
+          updateMapData();
+          setTimeout(() => {
+            el.loading.classList.add('hidden');
+            STATE.map.resize();
+          }, 220);
+        });
+
+        el.riSelect.addEventListener('change', () => {
+          STATE.currentRi = el.riSelect.value;
+          updateMapData();
+        });
+
+        el.indicatorSelect.addEventListener('change', () => {
+          STATE.currentIndicator = el.indicatorSelect.value;
+          updateMapData();
+        });
+      } catch (error) {
+        console.error(error);
+        el.loading.innerHTML = `<div class="loading-card text-center"><strong>Erro ao carregar dados</strong><p>${error.message}</p></div>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
