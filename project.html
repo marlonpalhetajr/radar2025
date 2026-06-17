@@ -40,6 +40,51 @@
             overflow: hidden;
             background: #000;
         }
+        .portfolio-inner {
+            height: 100%;
+            min-height: 220px;
+        }
+        .portfolio-inner img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background: #f8f9fa;
+            display: block;
+        }
+        .project-map-section {
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
+            background: #f8fafc;
+        }
+        .project-map-frame {
+            width: 100%;
+            min-height: 980px;
+            margin: 0 auto;
+            border: 0;
+            border-radius: 0;
+            overflow: hidden;
+            background: transparent;
+            box-shadow: none;
+        }
+        .project-map-frame iframe {
+            display: block;
+            width: 100%;
+            height: 1100px;
+            min-height: 980px;
+            border: 0;
+        }
+        @media (max-width: 767.98px) {
+            .project-map-frame {
+                min-height: 920px;
+            }
+            .project-map-frame iframe {
+                height: 960px;
+                min-height: 920px;
+            }
+            .portfolio-inner img {
+                height: 190px;
+            }
+        }
         .portfolio-inner img {
             transition: transform 0.45s ease, opacity 0.45s ease;
         }
@@ -83,31 +128,505 @@
         .portfolio-text .btn i {
             color: #2f7f2f;
         }
-        .project-map-section {
-            padding-top: 2.5rem;
-            padding-bottom: 2.5rem;
-        }
-        </style>
-        <section class="project-map-section" id="mapas-lista">
-            <div class="container-fluid">
-                <div class="project-map-header text-center">
-                    <span class="project-map-badge mb-3"><i class="bi bi-map"></i> Radar 2025</span>
-                    <h1 class="display-6 mb-3">Mapa Interativo</h1>
-                    <p class="text-muted mb-4">A visualização principal agora está concentrada aqui.</p>
-                </div>
-                <div class="project-map-frame">
-                    <iframe src="mapa-interativo/project-map.html" title="Mapa Interativo do Radar 2025" loading="lazy"></iframe>
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" id="navbar">
+        <a href="https://www.fapespa.pa.gov.br/" target="_blank" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-3">FAPESPA</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Alternar navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ms-auto p-4 p-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#mapa-interativo">Mapa Interativo</a></li>
+                <li class="nav-item"><a class="nav-link" href="#mapas-lista">Mapas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                <li class="nav-item position-relative">
+                    <button id="acess-open-btn" class="nav-link border-0 bg-transparent" title="Acessibilidade" onclick="toggleAccessibilityMenu(event);" type="button">
+                        ♿ <span class="d-none d-lg-inline">Acessibilidade</span>
+                    </button>
+                    <div id="acessibilidadeMenu" class="acess-dropdown" style="display:none;">
+                        <div class="acess-section-title">Visão</div>
+                        <div class="acess-row">
+                            <button id="acess-contrast" class="acess-control" type="button">Alto contraste</button>
+                            <button id="acess-night" class="acess-control" type="button">Modo noturno</button>
+                        </div>
+                        <div class="acess-section-title">Cores</div>
+                        <div class="acess-row">
+                            <button id="acess-grayscale" class="acess-control" type="button">Escala em Cinza</button>
+                        </div>
+                        <div class="acess-section-title">Tamanho da Fonte</div>
+                        <div class="acess-row">
+                            <button id="font-dec" class="acess-control" type="button">A-</button>
+                            <button id="font-reset" class="acess-control" type="button">A</button>
+                            <button id="font-inc" class="acess-control" type="button">A+</button>
+                        </div>
+                        <div class="acess-section-title">Daltonismo</div>
+                        <div class="acess-row">
+                            <button id="dalton-prot" class="acess-control" type="button">Protanopia</button>
+                            <button id="dalton-deut" class="acess-control" type="button">Deuteranopia</button>
+                            <button id="dalton-trit" class="acess-control" type="button">Tritanopia</button>
+                            <button id="dalton-off" class="acess-control" type="button">Normal</button>
+                        </div>
+                        <div class="acess-section-title">Leitura &amp; Legibilidade</div>
+                        <div class="acess-row">
+                            <button id="acess-dislexia" class="acess-control" type="button">Modo Dislexia</button>
+                            <button id="acess-reading" class="acess-control" type="button">Modo Leitura</button>
+                            <button id="acess-links" class="acess-control" type="button">Destacar Links</button>
+                        </div>
+                        <div class="acess-section-title">Movimento</div>
+                        <div class="acess-row">
+                            <button id="reduce-motion" class="acess-control" type="button">Reduzir Animações</button>
+                        </div>
+                        <div class="acess-section-title">Geral</div>
+                        <div class="acess-row">
+                            <button id="acess-reset" class="acess-control acess-reset" type="button">Restaurar Tudo</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <section class="project-map-section" id="mapa-interativo">
+        <div class="container-fluid px-3 px-lg-4">
+            <div class="project-map-header text-center">
+                <span class="project-map-badge mb-3"><i class="bi bi-map"></i> Radar 2025</span>
+                <h1 class="display-6 mb-3">Mapa Interativo</h1>
+                <p class="text-muted mb-4">A visualização principal agora está concentrada aqui.</p>
+            </div>
+            <div class="project-map-frame">
+                <iframe id="projectMapFrame" src="mapa-interativo/project-map.html" title="Mapa Interativo do Radar 2025" loading="lazy" scrolling="no"></iframe>
+            </div>
+        </div>
+    </section>
+    <!-- Projects Start -->
+    <section class="container-xxl py-5" id="mapas-lista">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h1 class="display-6 mb-5">Radar 2025 - Mapas</h1>
+            </div>
+            <div class="row mb-5" style="margin-bottom: 3.5rem !important; margin-top: 0.5rem;">
+                <div class="col-12 d-flex flex-wrap justify-content-center gap-3" id="portfolio-flters">
+                    <button type="button" class="btn btn-primary active" data-filter=".demografia">Demografia</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".educacao">Educação</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".saude">Saúde</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".mercadoDeTrabalho">Mercado de Trabalho</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".assisPrevSocial">Assistência e Previdência</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".seguranca">Segurança</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".meioAmbiente">Meio Ambiente</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".economia">Economia</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".finanPublic">Finanças Públicas</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".infraestrutura">Infraestrutura</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter=".territorio">Território</button>
+                    <button type="button" class="btn btn-outline-primary" data-filter="*">Todos</button>
                 </div>
             </div>
-        </section>
-        <!-- Projects End -->
+            <div class="row g-4 portfolio-container pt-4 pb-5">
+                <div class="col-lg-4 col-md-6 portfolio-item demografia ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/02_demografia/Demografia_Estimativa_Populacional2025.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">População Estimada das Regiões de
+                                Integração do Pará
+                            </h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/02_demografia/Demografia_Estimativa_Populacional2025.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/02_demografia/Demografia_Estimativa_Populacional2025.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_IDEB_Series_Iniciais2023.png"
+                            alt="">
+                        <div class="portfolio-text">
+                            <h4 class="text-white mb-4 text-center">IDEB Séries Iniciais</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_IDEB_Series_Iniciais2023.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_IDEB_Series_Iniciais2023.png" target="_blank"
+                                    download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_IDEB_Series_finais2023.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">IDEB Séries Finais</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_IDEB_Series_finais2023.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_IDEB_Series_finais2023.png" target="_blank"
+                                    download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_TX_Aprovação_Fundamental2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Aprovação Ens. Fundamental</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Aprovação_Fundamental2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Aprovação_Fundamental2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_TX_Aprovação_Medio2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class=" text-white mb-4">Taxa de Aprovação Ens. Médio</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Aprovação_Medio2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Aprovação_Medio2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_TX_Reprovação_Fundamental2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Reprovação Ens. Fundamental</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Reprovação_Fundamental2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Reprovação_Fundamental2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_TX_Reprovação_Medio2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Reprovação Ens. Médio</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Reprovação_Medio2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Reprovação_Medio2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_TX_Abandono_Fundamental2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Abandono Ens. Fundamental</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Abandono_Fundamental2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Abandono_Fundamental2024.png" target="_blank"
+                                    download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item educacao ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/03_educacao/Educação_TX_Abandono_Medio2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Abandono Ens. Médio</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Abandono_Medio2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/03_educacao/Educação_TX_Abandono_Medio2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_Taxa_Mortalidade_Infantil_2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Mortalidade Infantil</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Mortalidade_Infantil_2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Mortalidade_Infantil_2024.png" target="_blank"
+                                    download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_Taxa_Mortalidade_NaInfância_2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Mortalidade na Infância(até 5 anos)</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Mortalidade_NaInfância_2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Mortalidade_NaInfância_2024.png" target="_blank"
+                                    download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_Taxa_Mortalidade_Materna_2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Mortalidade Materna</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Mortalidade_Materna_2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Mortalidade_Materna_2024.png" target="_blank"
+                                    download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_TX_Mortalidade_Geral2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Mortalidade Geral</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_TX_Mortalidade_Geral2024.png" title="Visualizar Mapa"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_TX_Mortalidade_Geral2024.png" target="_blank" download
+                                    title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_Taxa_Natalidade_2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Taxa de Natalidade</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Natalidade_2024.png" title="Visualizar Mapa"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_Taxa_Natalidade_2024.png" target="_blank" download
+                                    title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_PercentualNascidosVivos_Parto_Normal2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4">Percentual de Nascidos Vivos de Parto Normal</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Parto_Normal2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Parto_Normal2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_PercentualNascidosVivos_Parto_Cesáreo2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Percentual de Nascidos Vivos Por Cesária</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Parto_Cesáreo2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Parto_Cesáreo2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_PercentualNascidosVivos_Mães10A19anos_2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Percentual de Nascidos Vivos de Mães Faixa Etária 10 a 19 Anos
+                            </h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Mães10A19anos_2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Mães10A19anos_2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item saude ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="icons/04_saude/Saúde_PercentualNascidosVivos_Com7ouMaisConsultas2024.png" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Percentual de Nascidos Vivos com 7 ou Mais Consultas Pré-Natal
+                            </h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Com7ouMaisConsultas2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/04_saude/Saúde_PercentualNascidosVivos_Com7ouMaisConsultas2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--################ Mercado de Trabalho ################# -->
+
+                <div class="col-lg-4 col-md-6 portfolio-item mercadoDeTrabalho ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid"
+                            src="icons/05_mercado_de_trabalho/MercadoDeTrabalho_Vínculos_Empregatícios2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Vínculos Empregatícios Emprego Formal</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/05_mercado_de_trabalho/MercadoDeTrabalho_Vínculos_Empregatícios2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/05_mercado_de_trabalho/MercadoDeTrabalho_Vínculos_Empregatícios2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item mercadoDeTrabalho ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid"
+                            src="icons/05_mercado_de_trabalho/MercadoDeTrabalho_Remuneração_Média2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Remuneração Média do Trabalhador Formal</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/05_mercado_de_trabalho/MercadoDeTrabalho_Remuneração_Média2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/05_mercado_de_trabalho/MercadoDeTrabalho_Remuneração_Média2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--################ Mercado de Trabalho  FIm ################# -->
+
+
+                <!--############### Assistencia social e previdenciaria ##################-->
+
+                <div class="col-lg-4 col-md-6 portfolio-item assisPrevSocial ">
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid"
+                            src="icons/06_assistencia_e_previdencia_social/AssistênciaPrevidênciaSocial_Famílias_Inscritas_CadÚnico2024.png"
+                            alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Total de Famílias Inscritas no CadÚnico</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/06_assistencia_e_previdencia_social/AssistênciaPrevidênciaSocial_Famílias_Inscritas_CadÚnico2024.png"
+                                    title="Visualizar Mapa" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2"
+                                    href="mapas/06_assistencia_e_previdencia_social/AssistênciaPrevidênciaSocial_Famílias_Inscritas_CadÚnico2024.png"
+                                    target="_blank" download title="Baixar Mapa"><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4 col-md-6 portfolio-item assisPrevSocial " >
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="img/service-6.jpg" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Famílias Inscritas no Auxílio Brasil - 2022</h4>
+                            <div class="d-flex">
                                 <a class="btn btn-lg-square rounded-circle mx-2" href="img/service-6.jpg"
                                     data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
                                 <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-download"></i></a>
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
+                <div class="col-lg-4 col-md-6 portfolio-item assisPrevSocial " >
+                    <div class="portfolio-inner rounded">
+                        <img class="img-fluid" src="img/service-6.jpg" alt="">
+                        <div class="portfolio-text text-center">
+                            <h4 class="text-white mb-4"> Valor Total Pago às Famílias Por Meio do Programa Auxílio
+                                Brasil - 2022</h4>
+                            <div class="d-flex">
+                                <a class="btn btn-lg-square rounded-circle mx-2" href="img/service-6.jpg"
+                                    data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                                <a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
                 <div class="col-lg-4 col-md-6 portfolio-item assisPrevSocial ">
                     <div class="portfolio-inner rounded">
                         <img class="img-fluid"
@@ -802,6 +1321,10 @@
 </body>
 
 </html>
+
+
+
+
 
 
 
