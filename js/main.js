@@ -167,13 +167,6 @@ $(document).ready(function() {
 
 // --- BLOCOS DE CÓDIGO FORA DO JQUERY ---
 
-// Modal grande para visualizar mapas (DESABILITADO - usar links normais com target="_blank" e download)
-(function() {
-  'use strict';
-  // Função desabilitada - links nos mapas funcionam normalmente
-  // O botão olho abre em nova aba e o botão download faz download direto
-})();
-
 // --- MODAL CUSTOMIZADO (conteúdo por iframe) ---
 (function() {
   'use strict';
@@ -664,97 +657,6 @@ function changeLanguage(lang) {
 
     localStorage.setItem("lang", lang);
 }
-// Feedback queue removed
-    function openIDB() { return Promise.reject(new Error('Feedback disabled')); }
-    function idbAddFeedback() { return Promise.resolve(false); }
-    function idbGetAllFeedbacks() { return Promise.resolve([]); }
-    function idbClearFeedbacks() { return Promise.resolve(true); }
-    function enqueueFeedback() { /* no-op */ }
-
-    async function processFeedbackQueue() { /* no-op */ }
-
-    // attempt to resend queued feedback on load and when coming online
-    // Feedback DOM hooks removed
-
-    // Bootstrap-aware toast helper (prefers Bootstrap Toast if available)
-    function showToast(message, type = 'success', timeout = 4000) {
-      try {
-        // If Bootstrap Toast is available, use it for consistent styling
-        if (window.bootstrap && bootstrap.Toast) {
-          const toastId = `site-toast-${Date.now()}`;
-          const wrapper = document.createElement('div');
-          wrapper.innerHTML = `\n        <div id="${toastId}" class="toast align-items-center text-white bg-${type === 'success' ? 'success' : type === 'warning' ? 'warning' : 'danger'} border-0" role="alert" aria-live="assertive" aria-atomic="true">\n          <div class="d-flex">\n            <div class="toast-body">${message}</div>\n            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>\n          </div>\n        </div>\n      `;
-          let container = document.getElementById('bootstrap-toast-container');
-          if (!container) {
-            container = document.createElement('div');
-            container.id = 'bootstrap-toast-container';
-            container.className = 'position-fixed bottom-0 end-0 p-3';
-            container.style.zIndex = 200000;
-            document.body.appendChild(container);
-          }
-          container.appendChild(wrapper.firstElementChild);
-          const toastEl = container.lastElementChild;
-          const t = new bootstrap.Toast(toastEl, { delay: timeout });
-          t.show();
-          // cleanup after hidden
-          toastEl.addEventListener('hidden.bs.toast', () => { try { container.removeChild(toastEl); } catch (e) {} });
-          return;
-        }
-
-        // Fallback simple toast
-        const containerId = 'site-toast-container';
-        let container = document.getElementById(containerId);
-        if (!container) {
-          container = document.createElement('div');
-          container.id = containerId;
-          container.style.position = 'fixed';
-          container.style.right = '20px';
-          container.style.bottom = '20px';
-          container.style.zIndex = 200000;
-          document.body.appendChild(container);
-        }
-        const el = document.createElement('div');
-        el.className = `toast-msg toast-${type}`;
-        el.style.background = (type === 'success') ? '#198754' : (type === 'warning') ? '#ffc107' : '#dc3545';
-        el.style.color = '#fff';
-        el.style.padding = '10px 14px';
-        el.style.marginTop = '8px';
-        el.style.borderRadius = '6px';
-        el.style.boxShadow = '0 2px 8px rgba(0,0,0,0.12)';
-        el.textContent = message;
-        container.appendChild(el);
-        setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity 300ms'; }, timeout - 300);
-        setTimeout(() => { try { container.removeChild(el); } catch (e) {} }, timeout + 200);
-      } catch (e) { console.warn('Erro mostrando toast', e); }
-    }
-
-function submitFeedbackFromModal() { /* feedback disabled */ }
-
-async function sendFeedback() { return false; }
-// (enqueue/process functions replaced above with IndexedDB-aware implementations)
-
-// --- Feedback helpers (ensure functions/vars used elsewhere exist) ---
-// current rating (global so other handlers can read it)
-var __currentFeedbackRating = 0;
-
-function getFeedbackFormData() {
-  try {
-    const form = document.getElementById('feedbackForm');
-    if (!form) return {};
-    return {
-      nome: (document.getElementById('feedback_nome') && document.getElementById('feedback_nome').value) ? document.getElementById('feedback_nome').value.trim() : '',
-      sobrenome: (document.getElementById('feedback_sobrenome') && document.getElementById('feedback_sobrenome').value) ? document.getElementById('feedback_sobrenome').value.trim() : '',
-      contato: (document.getElementById('feedback_contato') && document.getElementById('feedback_contato').value) ? document.getElementById('feedback_contato').value.trim() : '',
-      mensagem: (document.getElementById('feedback_mensagem') && document.getElementById('feedback_mensagem').value) ? document.getElementById('feedback_mensagem').value.trim() : ''
-    };
-  } catch (e) {
-    console.warn('getFeedbackFormData error', e);
-    return {};
-  }
-}
-
-function initializeFeedbackAndSatisfaction() { /* feedback disabled */ }
-
 // LÓGICA DE DARK MODE (GLOBAL)
 // ===============================================================
 
@@ -807,110 +709,6 @@ function closeAccessibilityMenuOnClickOutside(event) {
         menu.style.display = 'none';
         document.removeEventListener('click', closeAccessibilityMenuOnClickOutside);
     }
-}
-
-// === MODAL CUSTOMIZADO FLUTUANTE ===
-function openCustomModal(event) {
-    event.preventDefault();
-    const trigger = event.currentTarget;
-    
-    const modal = document.getElementById("contentModal");
-    const backdrop = document.getElementById("modalBackdrop");
-    const modalBody = document.getElementById("contentModalBody");
-    const modalTitle = document.getElementById("contentModalLabel");
-    const modalOpenFull = document.getElementById("modal-open-full");
-
-    if (!modal || !modalBody || !modalTitle || !modalOpenFull) {
-        return;
-    }
-
-    const url = trigger.getAttribute("data-content-url");
-    const title = trigger.getAttribute("data-modal-title");
-
-    if (!url || !title) {
-        return;
-    }
-
-    modalTitle.textContent = '';
-    modalOpenFull.href = url;
-    modalBody.innerHTML = `<iframe src="${url}" loading="eager"></iframe>`;
-
-    const iframe = modalBody.querySelector('iframe');
-    if (iframe) {
-      // Harmoniza aparência do conteúdo carregado no iframe (mesmo domínio)
-      iframe.addEventListener('load', function () {
-        try {
-          const doc = iframe.contentDocument || iframe.contentWindow.document;
-          if (!doc) return;
-
-          const style = doc.createElement('style');
-          style.textContent = `
-            html, body { margin:0; padding:0; background:#fff; color:#222; font-family:'Open Sans', Arial, sans-serif; font-size:16px; line-height:1.6; }
-            header, nav, footer, .header, .topbar, .rodape, #topo, #menu { display:none !important; }
-            main, #corpo, .content, .container, body { max-width: 860px; margin: 0 auto !important; padding: 20px 24px !important; box-sizing: border-box; }
-            h1 { font-size: 1.75rem; color:#163b6b; margin: 0 0 1rem; font-weight: 800; }
-            h2 { font-size: 1.4rem; color:#163b6b; margin: 1.25rem 0 .75rem; font-weight: 700; }
-            h3 { font-size: 1.2rem; color:#163b6b; margin: 1rem 0 .5rem; font-weight: 700; }
-            p, li { font-size: 1rem; }
-            a { color:#2d6a47; text-decoration: underline; text-underline-offset: 2px; }
-            img, iframe, table { max-width: 100%; height: auto; }
-            table { border-collapse: collapse; width: 100%; }
-            th, td { border: 1px solid #e5e5e5; padding: 6px 8px; }
-          `;
-          doc.head.appendChild(style);
-
-          // Ajusta altura do iframe ao conteúdo e dimensiona o modal
-          const resizeToContent = () => {
-            try {
-              const h1 = doc.body ? doc.body.scrollHeight : 0;
-              const h2 = doc.documentElement ? doc.documentElement.scrollHeight : 0;
-              const contentHeight = Math.max(h1, h2);
-
-              const header = modal.querySelector('.custom-modal-header');
-              const footer = modal.querySelector('.custom-modal-footer');
-              const headerH = header ? header.offsetHeight : 0;
-              const footerH = footer ? footer.offsetHeight : 0;
-
-              const margin = 40; // margem total vertical
-              const maxModalH = Math.max(200, window.innerHeight - margin);
-              const availableBodyH = Math.max(120, maxModalH - headerH - footerH);
-
-              // altura final do iframe: cabe sem scroll se possível
-              const finalIframeH = Math.min(contentHeight + 1, availableBodyH);
-              iframe.style.height = finalIframeH + 'px';
-
-              // define max-height do modal e controle de overflow do body
-              modal.style.maxHeight = maxModalH + 'px';
-              if (contentHeight <= availableBodyH) {
-                modalBody.style.overflow = 'hidden';
-              } else {
-                modalBody.style.overflow = 'auto';
-              }
-            } catch (_) {}
-          };
-          resizeToContent();
-          setTimeout(resizeToContent, 50);
-          setTimeout(resizeToContent, 250);
-          window.addEventListener('resize', resizeToContent, { passive: true });
-        } catch (e) {
-          console.warn('Não foi possível harmonizar o conteúdo do iframe:', e);
-        }
-      }, { once: true });
-    }
-    
-    // Centralização e exibição — CSS já centraliza via translate(-50%, -50%)
-    
-    // Mostrar backdrop e modal
-    backdrop.style.display = "block";
-    modal.style.display = "block";
-}
-
-function closeCustomModal() {
-    const modal = document.getElementById("contentModal");
-    const backdrop = document.getElementById("modalBackdrop");
-    
-    if (modal) modal.style.display = "none";
-    if (backdrop) backdrop.style.display = "none";
 }
 
     // === CORREÇÃO DA PESQUISA DE SATISFAÇÃO (REMOVER {once: true}) === 
@@ -1524,4 +1322,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 })();
 }); // Fim do DOMContentLoaded wrapper para A11Y
+
+// Melhorias defensivas comuns a todas as páginas que carregam este arquivo.
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('a[target="_blank"]').forEach(function (link) {
+    const rel = new Set((link.getAttribute('rel') || '').split(/\s+/).filter(Boolean));
+    rel.add('noopener');
+    rel.add('noreferrer');
+    link.setAttribute('rel', Array.from(rel).join(' '));
+  });
+
+  document.querySelectorAll('.portfolio-item img[alt=""]').forEach(function (image) {
+    const item = image.closest('.portfolio-item');
+    const title = item && item.querySelector('h4');
+    if (title && title.textContent.trim()) {
+      image.alt = 'Mapa temático: ' + title.textContent.trim();
+    }
+  });
+});
 
